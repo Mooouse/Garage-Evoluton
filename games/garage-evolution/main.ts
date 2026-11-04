@@ -9,7 +9,7 @@ import { dayKey, formatAmount, languagePicker, recordDaily, rewardedButton, type
 import { fitCanvas, watchContext } from '@gp/art/bake';
 import { AutoQuality } from '@gp/art/perf';
 import { bakeCar, drawRim, shipLegs, shipNozzle, wheelAt } from './car-art.ts';
-import { carLoaded, carReady, pictures } from './painted-art.ts';
+import { carLoaded, carPictures, carReady, pictures } from './painted-art.ts';
 import { createMap, type MapPin, type MapView } from './map.ts';
 import { coverArt } from './cover.ts';
 import { CATS, FLOW, GARAGES, GRID, LAYER_CAT, PROFILES, type LayerKind, type Profile, PLAYER_STROKES, PRESTIGE, RARITIES, RARITY, ROBOTS, SITE, SITES, TIER_EVERY, TOOLS, starsFor, toolCap, toolPower, type Cat } from './data.ts';
@@ -174,12 +174,17 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
     if (roll) scene.setCar(c);
     else scene.showCar(c);
     // Its pictures in a later chapter, still on their way: a silhouette now, painted the moment they are decoded
-    if (c.model.painted && !carLoaded(c.model.id))
-      void carReady(c.model.id).then(() => {
-        if (car !== c) return;
-        scene.recolor();
-        wake();
-      });
+    if (c.model.painted && !carLoaded(c.model.id)) {
+      // Repaint as soon as the main body arrives; a missing wheel must not
+      // prevent the vehicle itself from appearing.
+      const ids = [c.model.id, ...carPictures(c.model.id).filter((id) => id !== c.model.id)];
+      for (const id of ids)
+        void pictures.ready([id]).then(() => {
+          if (car !== c) return;
+          scene.recolor();
+          wake();
+        }).catch((error) => console.warn('[garage] sprite unavailable:', id, error));
+    }
     // A spacecraft comes down on its engines
     if (roll && flies(c)) sound.ignite(FLOW.arriveSec, 0.22);
     // Each car its own size: the strip under it
@@ -891,7 +896,7 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
     const s = el('span', '', label);
     b.append(icon(iconId, 30), s);
     b.addEventListener('click', () => {
-      sound.tap();
+      try { sound.tap(); } catch (error) { console.warn('[garage] button audio:', error); }
       onClick();
     });
     return b;
@@ -1075,7 +1080,7 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
     b.type = 'button';
     if (opts.gp) b.dataset.gp = opts.gp;
     b.addEventListener('click', () => {
-      sound.tap();
+      try { sound.tap(); } catch (error) { console.warn('[garage] button audio:', error); }
       onClick();
     });
     return b;
@@ -2243,6 +2248,15 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
   function back(from: State): void {
     if (from === 'play' || from === 'paused') return resume();
     if (from === 'results') return showResultsAgain();
+    if (from === 'title') return showTitle();
+    if (from === 'shop') {
+      state = 'shop';
+      shopFrom = 'title';
+      return showShop(shopTab);
+    }
+    if (from === 'album') { state = 'title'; return showAlbum(); }
+    if (from === 'stats') { state = 'title'; return showStats(); }
+    if (from === 'map') { state = 'title'; return showMap(); }
     if (seenBefore || save.stats.restored > 0) return showTitle();
     // A new player back from a screen opened from another (the shop's map …): back to the car, never the start screen
     return car && car.stage !== 'done' ? resume() : showFirst();
@@ -2344,18 +2358,35 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
   /** An <img> of a car's thumbnail (or its silhouette) that redraws itself when the car's pictures arrive */
   function liveThumb(img: HTMLImageElement, id: string, silhouette = false): void {
     img.src = silhouette ? silhouetteThumb(id) : thumb(id);
-    if (!carLoaded(id))
-      void carReady(id).then(() => {
-        if (img.isConnected) img.src = silhouette ? silhouetteThumb(id) : thumb(id);
-      });
+    if (!carLoaded(id)) {
+      const ids = [id, ...carPictures(id).filter((key) => key !== id)];
+      for (const key of ids)
+        void pictures.ready([key]).then(() => {
+          if (img.isConnected) img.src = silhouette ? silhouetteThumb(id) : thumb(id);
+        }).catch((error) => console.warn('[garage] thumbnail sprite unavailable:', key, error));
+    }
   }
+
+  // Deferred decoding: off-screen album cards must not block the game thread.
+  const albumObserver: IntersectionObserver | null = typeof IntersectionObserver === 'undefined' ? null : new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      const img = entry.target as HTMLImageElement;
+      albumObserver?.unobserve(img);
+      const id = img.dataset.carId;
+      if (id) liveThumb(img, id, img.dataset.silhouette === '1');
+    }
+  }, { rootMargin: '120px' });
 
   function albumCard(id: string, known: boolean): HTMLElement {
     const m = MODEL.get(id)!;
     const rec = save.album[id];
     const card = el('div', `acard${known ? '' : ' unknown'}`);
     const img = el('img', 'car');
-    liveThumb(img, id, !known);
+    img.dataset.carId = id;
+    img.dataset.silhouette = known ? '0' : '1';
+    if (albumObserver) albumObserver.observe(img);
+    else liveThumb(img, id, !known);
     img.alt = '';
     card.append(img, el('b', '', known ? tr(`model.${id}.name`) : tr('album.unknown')));
     if (known && rec) {

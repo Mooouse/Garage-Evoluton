@@ -74,6 +74,7 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
     await page.locator('[data-gp="shop-screen"]').waitFor({state:'visible',timeout:5000});
     await page.locator('[data-gp="shop-back"]').click({timeout:5000});
     console.log('CONTROL CLICK title -> shop -> back: OK');
+    await page.evaluate(() => globalThis.__garageSmokeQA.screens.title());
     await page.locator('[data-gp="title-map"]').click({timeout:5000});
     await page.locator('[data-gp="map"]').waitFor({state:'visible',timeout:5000});
     await page.locator('[data-gp="map-space"]').click({timeout:5000});
