@@ -1,0 +1,47 @@
+name: Publish playable Garage Evolution
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/deploy-pages.yml'
+      - 'pages-parts/**'
+  workflow_dispatch:
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+concurrency:
+  group: garage-pages
+  cancel-in-progress: true
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reassemble full-quality playable HTML5 build
+        run: |
+          mkdir -p _site
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          chunks = sorted(Path("pages-parts").glob("part-*.htmlpart"))
+          assert len(chunks) == 34, f"Expected 34 chunks, got {len(chunks)}"
+          target = Path("_site/index.html")
+          with target.open("wb") as out:
+              for chunk in chunks:
+                  out.write(chunk.read_bytes())
+          digest = hashlib.sha256(target.read_bytes()).hexdigest()
+          assert digest == "8cb3cccf59b1a7cbb356b7d68a4e5b9ec4e184ab4b30177fd3badf6ff0f43fd6", f"Bad game build: {digest}"
+          print(f"Verified standalone Garage Evolution HTML5 build ({target.stat().st_size} bytes).")
+          PY
+      - uses: actions/configure-pages@v5
+        with:
+          enablement: true
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - id: deployment
+        uses: actions/deploy-pages@v4
