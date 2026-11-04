@@ -37,7 +37,7 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
     const message = m.text();
     // CrazyGames/HTML5 SDK rate-limits rapid test-only gameplay transitions.
     // This diagnostic is not a game error; keep reporting every other error.
-    if (/HTML5 SDK.*gameplay(Start|Stop)\\(\\) call throttled/.test(message)) return;
+    if (message.includes('HTML5 SDK') && message.includes('call throttled') && /gameplay(Start|Stop)/.test(message)) return;
     errors.push('CONSOLE ' + message);
   });
   page.on('response', r => { if(r.status() >= 400) missing.push(r.status() + ' ' + r.url()); });
