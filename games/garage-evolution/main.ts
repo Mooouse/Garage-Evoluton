@@ -1382,7 +1382,7 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
         requestAnimationFrame(() =>
           setTimeout(() => {
             for (const id of SITE.get(save.at)?.pool ?? []) void carReady(id);
-            for (const ch of pictures.chapters) pictures.prefetch(ch);
+            // Decode only the active garage's cars. Loading every chapter at once stalls the game on phones.
           }, 300),
         ),
       );
