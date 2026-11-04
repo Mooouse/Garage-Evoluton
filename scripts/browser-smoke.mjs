@@ -36,13 +36,28 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
     let nontrivial=0, transparent=0;
     if(pixel) for(let i=0;i<pixel.length;i+=64*4){if(pixel[i+3]===0)transparent++;if(Math.max(pixel[i],pixel[i+1],pixel[i+2])-Math.min(pixel[i],pixel[i+1],pixel[i+2])>15)nontrivial++;}
     return {title:document.title,canvas:{width:canvas?.width,height:canvas?.height,nontrivial,transparent},
-      ui:!!ui,uiHTML:(ui?.innerHTML ?? '').slice(0,700), buttons:[...document.querySelectorAll('#ui button')].slice(0,30).map(b=>({text:b.textContent?.trim().slice(0,48),gp:b.dataset.gp,visible:b.getBoundingClientRect().width>0}))};
+      ui:!!ui, buttons:[...document.querySelectorAll('#ui button')].slice(0,30).map(b=>({text:b.textContent?.trim().slice(0,48),gp:b.dataset.gp,visible:b.getBoundingClientRect().width>0}))};
   });
   console.log('VIEWPORT '+JSON.stringify(viewport)+' '+JSON.stringify(report));
   console.log('NETWORK ERRORS '+JSON.stringify(missing.slice(0,25)));
   if(!report.ui || !report.canvas.width || !report.buttons.some(b=>b.visible) || errors.length || missing.length)failures++;
   const targets = ['[data-gp=shop]','[data-gp=title-map]','[data-gp=quick-buy]','[data-gp=page-next]','[data-gp=resume]'];
   for(const selector of targets) console.log('CONTROL '+selector+': '+await page.locator(selector).count());
+  // Real mouse/touch-driven navigation, not just presence of click handlers.
+  try {
+    const menu = page.locator('[data-gp="menu"]');
+    await menu.click({timeout:5000});
+    await page.locator('[data-gp="resume"]').waitFor({state:'visible',timeout:5000});
+    console.log('CONTROL CLICK menu -> pause: OK');
+    await page.locator('[data-gp="resume"]').click({timeout:5000});
+    await menu.waitFor({state:'visible',timeout:5000});
+    console.log('CONTROL CLICK resume -> play: OK');
+    await page.waitForTimeout(500);
+  } catch (e) {
+    failures++;
+    console.error('CONTROL NAVIGATION FAILED', String(e).slice(0,1500));
+  }
+  if (errors.length || missing.length) failures++;
   console.log('BROWSER ERRORS '+JSON.stringify(errors.slice(0,20)));
   await page.screenshot({path:'/tmp/garage-'+viewport.width+'.png',fullPage:true});
   await context.close();
