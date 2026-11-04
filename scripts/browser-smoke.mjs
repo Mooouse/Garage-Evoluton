@@ -8,7 +8,15 @@ const server = createServer(async (req, res) => {
   const path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname === '/' ? '/index.html' : new URL(req.url, 'http://localhost').pathname));
   if (!path.startsWith(root + sep) && path !== resolve(root, 'index.html')) { res.writeHead(403); res.end(); return; }
   try {
-    const file = await readFile(path);
+    let file = await readFile(path);
+    // Expose the game's built-in QA driver ONLY in this local test response.
+    // The production game.js in the repository and Pages remains unchanged.
+    if (path.endsWith('/game.js')) {
+      const source = file.toString('utf8');
+      const marker = 'e.qa({play:';
+      if (!source.includes(marker)) throw Error('QA registration changed; update smoke harness');
+      file = Buffer.from(source.replace(marker, 'e.qa(globalThis.__garageSmokeQA={play:'));
+    }
     const ct = path.endsWith('.js') ? 'application/javascript' : path.endsWith('.webp') ? 'image/webp' : 'text/html';
     res.writeHead(200, { 'content-type': ct, 'cache-control': 'no-store' });
     res.end(file);
@@ -56,6 +64,33 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   } catch (e) {
     failures++;
     console.error('CONTROL NAVIGATION FAILED', String(e).slice(0,1500));
+  }
+  try {
+    // Exercise the real click handlers and every major screen with the game's own QA fixtures.
+    const qa = await page.evaluate(() => !!globalThis.__garageSmokeQA?.screens);
+    if (!qa) throw Error('QA driver unavailable in local browser');
+    await page.evaluate(() => globalThis.__garageSmokeQA.screens.title());
+    await page.locator('[data-gp="shop"]').first().click({timeout:5000});
+    await page.locator('[data-gp="shop-screen"]').waitFor({state:'visible',timeout:5000});
+    await page.locator('[data-gp="shop-back"]').click({timeout:5000});
+    console.log('CONTROL CLICK title -> shop -> back: OK');
+    await page.locator('[data-gp="title-map"]').click({timeout:5000});
+    await page.locator('[data-gp="map"]').waitFor({state:'visible',timeout:5000});
+    await page.locator('[data-gp="map-space"]').click({timeout:5000});
+    await page.locator('[data-gp="map-earth"]').click({timeout:5000});
+    console.log('CONTROL CLICK map tabs: OK');
+    for (const view of ['album', 'stats']) {
+      await page.evaluate(name => globalThis.__garageSmokeQA.screens[name](),view);
+      await page.locator('[data-gp="page-next"]').first().click({timeout:5000});
+      await page.locator('[data-gp="page-prev"]').first().click({timeout:5000});
+      console.log('CONTROL CLICK '+view+' paging: OK');
+    }
+    await page.evaluate(() => globalThis.__garageSmokeQA.screens.results());
+    await page.locator('[data-gp="results"]').waitFor({state:'visible',timeout:5000});
+    console.log('CONTROL QA results: OK');
+  } catch (e) {
+    failures++;
+    console.error('SCREEN FLOW FAILED', String(e).slice(0,1500));
   }
   if (errors.length || missing.length) failures++;
   console.log('BROWSER ERRORS '+JSON.stringify(errors.slice(0,20)));
