@@ -33,6 +33,7 @@ jobs:
           with target.open("wb") as out:
               for chunk in chunks:
                   out.write(chunk.read_bytes())
+              out.write(b"\n")  # restore final newline lost during transfer
           digest = hashlib.sha256(target.read_bytes()).hexdigest()
           assert digest == "8cb3cccf59b1a7cbb356b7d68a4e5b9ec4e184ab4b30177fd3badf6ff0f43fd6", f"Bad game build: {digest}"
           print(f"Verified standalone Garage Evolution HTML5 build ({target.stat().st_size} bytes).")
