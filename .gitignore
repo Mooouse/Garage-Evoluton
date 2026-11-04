@@ -1,0 +1,15 @@
+node_modules
+.gp-platform
+games/*/dist/
+games/*/qa/
+games/*/upload/
+games/*/upload-*/
+games/*/dist-*/
+# The submission folder is rebuilt by `scripts/gp.sh submission`; commit it only if the owner wants the files in git
+games/*/submission/
+# Scratch: your own probe scripts and a helper agent's (Echoflies' Playwright helpers at the root were swept into a
+# commit by `git add -A`). Put them in scratch/ — or better, in the session's scratchpad, outside the repository
+scratch/
+.scratch/
+/_*.mjs
+tools/paint-cars/.meta.lock

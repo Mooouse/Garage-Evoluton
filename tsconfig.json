@@ -1,0 +1,15 @@
+{
+  // Type-checks the game against game_platform's runtime (scripts/setup.sh links its node_modules)
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true
+  },
+  "include": ["games/*/**/*.ts"]
+}

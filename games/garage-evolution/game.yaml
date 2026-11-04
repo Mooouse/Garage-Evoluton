@@ -1,0 +1,57 @@
+# Garage Evolution — created with `gp init`. Replace every TODO: `gp validate` refuses the concept until it is written.
+spec: 0
+id: garage-evolution
+title: "Idle Garage Evolution"
+audience: general
+channel: crazygames
+kit: code
+entry: main.ts
+background: "#14202b"
+# The engine and its adapter (@gp/core/engines/canvas); Canvas 2D needs no package — docs/guides/code-games.md#engines
+engine: { name: canvas }
+# The release: `name` is what players see — raise it with every portal update, as CHANGELOG.md's heading does (an update
+# also writes patch-notes.md); `code` +1 for every Google Play upload
+version: { name: 1.5.1, code: 13 }
+# Raised on purpose (1.3.0): 25 cars are the owner's painted pictures (WebP, 368 KB of the upload) instead of shapes in
+# code — the look the owner asked for; cut to 520 px and quality 62 from 1 MB, ≈ 3.6 s to Play on the slow-phone model
+# 1.3.2, the owner (2026-10-17): «просто улучши разрешение всех текстур» — the pictures at 720 px (bodies) and 224 px
+# (wheels, the tyre bay's close-up), quality 70: 1.3 MB gzipped, ≈ 8 s to Play on the slow-phone model (≈ 1–2 s on 4G);
+# resolution over size by the owner's decision. 1.4.0: every Earth vehicle is one of the owner's 120 pictures (the owner,
+# 2026-10-19), at one utilitarian size for all (560 px bodies, 160 px wheels, WebP 60: the owner, 2026-10-17): 2.4 MB
+# gzipped, ≈ 14.6 s to Play on the slow-phone model (≈ 2–3 s on 4G); each further picture ≈ 19 KB
+# The languages it ships in: the ten CrazyGames' players speak most (the platform's docs/guides/i18n.md). Your texts are in
+# strings/<code>.yaml — write English in strings/en.yaml, then `scripts/gp.sh translate` lists the rest for you to translate;
+# the platform's own (the host, the shop, the dialogue box, the picker, gp.play…) are translated already
+languages: [en, es, pt-BR, fr, de, ru, tr, it, pl, id]
+# Names that stay as they are in every language (the title always does): your characters, places, the game's own words
+glossary: ["Daily Glide", "Wayfarer 1.8T", "Pocket Rocket 16V", "Salaryman Turbo", "Touge 1600", "Popup Roadster", "Redline Hatch", "Outback Ranger", "Savanna 4.7", "Chancellor 600", "Doodle Van", "Mule Pickup", "Silk Drift S", "Zephyr V6", "Redline 9K", "Rotary Wing", "Rally Nine", "Pleiad Rally", "Touring Champ 2.3", "Big Wing 2.5", "Fourfold Turbo", "Highlands Sport", "Comet 250", "Kaiju Twin Turbo", "Thunder 34", "Bavarian Six", "V10 Express", "Iron Brick", "Family Missile", "Stallion GT", "Rival SS", "Hellhound 707", "Manta Seven", "Hauler Box 7", "Metro Liner", "Hook & Tow", "Blaze Rescue", "Wanderer Camper", "Regent Stretch", "Courier High-Roof", "Samurai MR", "Executive Missile", "Long Nose GT", "Blade V10", "Track Wing RS", "Dune Turbo", "Fang V10", "Endurance Forty", "Wedge Twelve", "Rosso V8", "Apex Open-Wheeler", "Nightrun Proto", "Anniversary Turbo", "Screamer V10", "Storm V10", "Scissor V12", "Rosso Ibrido", "Centre Seat", "Neon Hybrid", "Nordic Ghost", "Mach Sixteen", "Horseshoe 1500", "Titan Hauler", "Crawler B-80", "Liftmaster Crane", "Longhorn Semi", "Field King", "Rhino 8x8", "Polar Snowcat", "Selene Rover", "Orbiter Shuttle", "Spark Launcher", "Packmule Freighter"]
+monetization:
+  ads: { rewarded: true }
+# Written BEFORE building (docs/concept.md has the search): Retro Garage, Idle Car Service: Tycoon and the power-wash sims.
+concept:
+  pitch: "Bring wrecked cars back with your own hands: the car changes layer by layer under your finger (mud, rust, paint, scratches, parts), drives out RESTORED, and the garage grows toward space."
+  closest: ["Retro Garage - Car Mechanic", "Idle Car Service: Tycoon", "Car Wash - Power Washing Game"]
+  different: "The car is a stack of real layers and a tap works on whatever surface is under the finger: the tool switches itself (brush, grinder, spray, polisher, wrench) and erases exactly where it touches. Retro Garage swaps parts from menus, Idle Car Service never touches a car, power-wash games only wash. Visible robots take over the layers."
+  # The twist's moment: the first layer is gone and the one under it shows — the tool changes by itself (rust under the mud)
+  twist: { event: layer-reveal, within: 30, explained: "Rust under the mud" }
+  progression: "Idle level shop with tiers: tool levels (a sponge becomes a hose, then a pressure washer), robots that appear in the garage and work a layer alone, 23 garages on a map as tiers, each with its own tools and robots earning in the background; a prestige opens space. Second track: a 142-vehicle album."
+# The anchor: an idle game converts everything into income per minute (docs/guides/upgrades.md → Start from time)
+balance:
+  anchor: { name: "income a minute", unit: "$/min", says: "money an average player earns in one minute of play with the tools and robots owned" }
+# Where the game earns (docs/guides/game-design.md → Design for money)
+money:
+  genre: idle
+  session: { minutes: 15, breaks: 14, breaksAt: "every restored car ends on its RESTORED card → Next car (about one a minute)" }
+  rewarded:
+    - { placement: double, kind: x2, per: run, gives: "Double the payout of the car just restored (offered on every fourth card and on rare cars)" }
+    - { placement: offline, kind: boost, per: session, gives: "Double what the robots earned while you were away" }
+  meta: { minutes: 40 }
+  returns: { kind: daily, what: "a rare car of the day waits at the gate (shown on the title), every robot earns while you are away from the first hire, and the next garage's fund (it only grows) is left part full" }
+# The portal form's texts (`gp submission` writes them into listing.md)
+listing:
+  description: "Idle Garage Evolution is an incremental restoration clicker: wrecked cars roll into your garage and you bring them back to life with your own hands. Scrub away the mud, grind the rust hidden under it, spray fresh paint, polish out the scratches, bolt on new parts and start the engine — every layer disappears exactly where you touch, and the finished car flashes its headlights and drives out RESTORED. Buy better tools and robots that you can see working beside you, grow a cramped shed into a workshop, a service station, a luxury showroom and an industrial plant, and collect 142 vehicles in every variant and rarity — from old hatchbacks to hypercars, heavy machines and the first spaceships.\n\n- Satisfying layer-by-layer restoration: mud, dust, soot, rust, paint, polish, parts, engine\n- The tool follows the surface: brush, grinder, spray gun, polisher, wrench\n- Visible automation: robots that work on their own, also while you are away\n- 23 garages on an interactive map: cities around the world, then the Moon and the planets, with spaceships to repair\n- A collection album with variants and rarities, a rare car of the day, and full statistics"
+  controls: "Mouse: click or drag over the car to work on it · Touch: tap or swipe over the car · Keyboard: P pauses · Map: drag to move, pinch or scroll to zoom, tap a garage"
+  orientation: both
+  tags: [idle, clicker, cars, incremental, satisfying, simulation]
+# No story chapters: the play is the restoration; every car brings a one-line backstory on its card (data.ts STORIES)
+story: { depth: none }

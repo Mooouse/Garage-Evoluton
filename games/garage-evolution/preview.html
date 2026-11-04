@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Idle Garage Evolution — проверка автомобилей</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#101319;color:#e6ebf5;font:15px system-ui,Arial,sans-serif}
+header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:22px 30px;border-bottom:1px solid #333b49}
+header strong{font-size:20px}header small,.muted{color:#a6b3ca}main{display:grid;grid-template-columns:minmax(230px,300px) 1fr;gap:24px;max-width:1550px;margin:auto;padding:24px}
+nav{max-height:calc(100vh - 160px);overflow:auto;border:1px solid #353e4b;border-radius:14px;padding:10px}
+nav button{display:block;text-align:left;width:100%;border:0;background:none;padding:12px;color:#d3dbe8;border-radius:8px;font:inherit;cursor:pointer}
+nav button:hover{background:#252e39}nav button.active{background:#30466c;color:white;font-weight:700}
+main>section{min-width:0}.stage{position:relative;background:radial-gradient(ellipse at 50% 12%,#363e4a,#1d242f 73%);border:1px solid #3a4553;border-radius:16px;min-height:330px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+canvas{display:block;width:100%;height:360px;max-height:55vh;cursor:crosshair;touch-action:manipulation}
+.controls{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}button.action{border:1px solid #56687c;border-radius:10px;color:white;background:#293649;padding:12px 16px;font:inherit;cursor:pointer}button.action:hover{background:#3d5576}
+h2{font-size:26px;margin:0 0 8px}.meta{font-size:13px;margin-top:12px;color:#9cacbf}.note{color:#b3bdcc;line-height:1.6;margin-top:26px}
+@media(max-width:800px){main{grid-template-columns:1fr;padding:14px}nav{display:flex;overflow:auto;max-height:95px;gap:6px}nav button{flex:0 0 auto;width:auto;white-space:nowrap;padding:10px}canvas{height:270px}header{padding:14px}}
+</style></head><body><header><strong>Idle Garage Evolution <span class="muted">/ Проверка ассетов</span></strong><small>15 оригинальных машин · без потери исходного разрешения</small></header>
+<main><nav aria-label="Модели" id="list"></nav><section><h2 id="modelName"></h2><p class="muted">Нажимайте на колёса автомобиля, чтобы снимать и устанавливать их. Можно снять оба одновременно.</p>
+<div class="stage"><canvas id="stage" role="img" aria-label="Машина в строгом профиле"></canvas></div>
+<div class="controls"><button class="action" id="rear">Снять заднее</button><button class="action" id="front">Снять переднее</button><button class="action" id="both">Снять оба</button><button class="action" id="reset">Установить оба</button></div>
+<p class="meta" id="dimension"></p><p class="note">Это интерактивная проверка исправленных изображений и вырезов колёс, а не полноценный запуск игры. Код самой игры и её ресурсы находятся рядом с этой страницей.</p>
+</section></main>
+<script>
+const catalog=[{"id":"touringgt","name":"Touring GT","w":1428,"h":456,"wheels":[{"lift":0.01488,"r":0.07778,"x":0.20444},{"lift":0.01266,"r":0.07667,"x":0.82111}],"wheelImg":[0,1]},{"id":"twincam","name":"Twin Cam R","w":1418,"h":458,"wheels":[{"lift":0.00966,"r":0.06667,"x":0.19667},{"lift":0.00855,"r":0.06778,"x":0.79}],"wheelImg":[0,1]},{"id":"sixcoupe","name":"Six Turbo","w":1433,"h":487,"wheels":[{"lift":0.02651,"r":0.07333,"x":0.15556},{"lift":0.00874,"r":0.07667,"x":0.72111}],"wheelImg":[0,1]},{"id":"zenith","name":"Zenith 37","w":1425,"h":484,"wheels":[{"lift":0.02187,"r":0.07444,"x":0.20667},{"lift":0.01743,"r":0.07444,"x":0.79556}],"wheelImg":[0,1]},{"id":"vten","name":"V-Ten","w":1419,"h":442,"wheels":[{"lift":0.02371,"r":0.07222,"x":0.19},{"lift":0.01815,"r":0.07222,"x":0.78556}],"wheelImg":[0,1]},{"id":"orangetrack","name":"Orange Track RS","w":1663,"h":511,"wheels":[{"lift":0.01616,"r":0.08222,"x":0.20333},{"lift":0.01172,"r":0.07778,"x":0.78222}],"wheelImg":[0,1]},{"id":"silveropen","name":"Silver Speedster","w":1657,"h":483,"wheels":[{"lift":0.0226,"r":0.07,"x":0.21889},{"lift":0.01594,"r":0.07,"x":0.77667}],"wheelImg":[0,1]},{"id":"violetwide","name":"Violet Wide","w":1655,"h":508,"wheels":[{"lift":0.02139,"r":0.06667,"x":0.22444},{"lift":0.01584,"r":0.06889,"x":0.78889}],"wheelImg":[0,1]},{"id":"yellowrally","name":"Yellow Rally R","w":1647,"h":545,"wheels":[{"lift":0.0209,"r":0.06778,"x":0.18111},{"lift":0.01979,"r":0.06778,"x":0.79}],"wheelImg":[0,1]},{"id":"blueline","name":"Blue Line M","w":1657,"h":522,"wheels":[{"lift":0.01169,"r":0.07111,"x":0.21},{"lift":-0.00275,"r":0.07444,"x":0.81222}],"wheelImg":[0,1]},{"id":"foresttrack","name":"Forest Track","w":1664,"h":498,"wheels":[{"lift":0.02039,"r":0.07,"x":0.21},{"lift":0.01039,"r":0.07222,"x":0.78889}],"wheelImg":[0,1]},{"id":"typhoon","name":"Typhoon","w":1661,"h":561,"wheels":[{"lift":0.02219,"r":0.07444,"x":0.19556},{"lift":0.01553,"r":0.07111,"x":0.79111}],"wheelImg":[0,1]},{"id":"whiteracer","name":"White Racer","w":1657,"h":469,"wheels":[{"lift":0.0186,"r":0.07222,"x":0.22111},{"lift":0.0086,"r":0.07444,"x":0.78444}],"wheelImg":[0,1]},{"id":"sakura","name":"Sakura S","w":1651,"h":558,"wheels":[{"lift":0.03131,"r":0.06556,"x":0.21222},{"lift":0.01798,"r":0.06778,"x":0.78}],"wheelImg":[0,1]},{"id":"greyestate","name":"Grey Estate","w":1655,"h":510,"wheels":[{"lift":0.0126,"r":0.07222,"x":0.20111},{"lift":0.01038,"r":0.07111,"x":0.79111}],"wheelImg":[0,1]}];
+const canvas=document.getElementById('stage'),ctx=canvas.getContext('2d');
+let current=0,loaded=null,visible=[true,true],hit=[];
+const list=document.getElementById('list');
+const imgs=new Map();
+function loadImage(path){if(imgs.has(path))return imgs.get(path);let img=new Image();const pending=new Promise((resolve)=>{img.onload=()=>resolve(img);img.onerror=()=>resolve(null)});img.src='painted/'+path;imgs.set(path,pending);return pending;}
+function imageFor(i){const c=catalog[i];return Promise.all([loadImage(c.id+'.webp'),...c.wheels.map((w,j)=>loadImage(c.id+'-w'+c.wheelImg[j]+'.webp'))]);}
+function renderList(){list.replaceChildren();catalog.forEach((m,i)=>{const btn=document.createElement('button');btn.textContent=m.name;btn.className=current===i?'active':'';btn.onclick=()=>select(i);list.append(btn);});}
+async function select(i){current=i;visible=[true,true];renderList();const car=catalog[i];document.getElementById('modelName').textContent=car.name;
+document.getElementById('dimension').textContent=`Исходный размер кузова: ${car.w} × ${car.h} px · изображения WebP без потерь, PNG-оригиналы в painted/originals/`;
+const expected=i;loaded=null;draw();const pics=await imageFor(i);if(expected!==current)return;loaded=pics;draw();}
+function draw(){const rect=canvas.getBoundingClientRect();const ratio=Math.min(devicePixelRatio||1,2);const cw=Math.max(1,Math.round(rect.width*ratio)),ch=Math.max(1,Math.round(rect.height*ratio));if(canvas.width!==cw||canvas.height!==ch){canvas.width=cw;canvas.height=ch;}
+ctx.clearRect(0,0,cw,ch);ctx.save();ctx.scale(ratio,ratio);const W=cw/ratio,H=ch/ratio;
+const floor=H*.83;ctx.fillStyle='#778aa0';ctx.globalAlpha=.28;ctx.fillRect(0,floor,W,1);ctx.globalAlpha=1;
+if(!loaded||!loaded[0]){ctx.fillStyle='#9aacbf';ctx.textAlign='center';ctx.fillText('Загружаются исходные спрайты…',W/2,H/2);ctx.restore();return;}
+const m=catalog[current];const scale=Math.min((W-48)/m.w,(H*.65)/m.h);const width=m.w*scale;const x=(W-width)/2;const y=floor-m.h*scale;
+ctx.imageSmoothingEnabled=true;ctx.imageSmoothingQuality='high';ctx.drawImage(loaded[0],x,y,width,m.h*scale);hit=[];
+m.wheels.forEach((w,i)=>{const r=w.r*m.w*scale;const cx=x+w.x*m.w*scale,cy=y+m.h*scale-(w.r+(w.lift||0))*m.w*scale;hit.push({cx,cy,r});
+if(visible[i]&&loaded[i+1]){const size=2*r*1.03;ctx.drawImage(loaded[i+1],cx-size/2,cy-size/2,size,size);}
+else {ctx.save();ctx.strokeStyle='#8e9dad';ctx.lineWidth=Math.max(2,scale*3);ctx.beginPath();ctx.arc(cx,cy,r*.35,0,Math.PI*2);ctx.stroke();ctx.fillStyle='#5b6776';ctx.beginPath();ctx.arc(cx,cy,r*.22,0,Math.PI*2);ctx.fill();ctx.restore();}});
+ctx.restore();}
+function refresh(){draw();document.getElementById('rear').textContent=(visible[0]?'Снять':'Установить')+' заднее';document.getElementById('front').textContent=(visible[1]?'Снять':'Установить')+' переднее';}
+canvas.addEventListener('click',e=>{const r=canvas.getBoundingClientRect();const x=e.clientX-r.left,y=e.clientY-r.top;let i=hit.findIndex(h=>Math.hypot(x-h.cx,y-h.cy)<h.r*1.6);if(i>=0){visible[i]=!visible[i];refresh();}});
+document.getElementById('rear').onclick=()=>{visible[0]=!visible[0];refresh()};
+document.getElementById('front').onclick=()=>{visible[1]=!visible[1];refresh()};
+document.getElementById('both').onclick=()=>{visible=[false,false];refresh()};
+document.getElementById('reset').onclick=()=>{visible=[true,true];refresh()};
+window.addEventListener('resize',draw);select(0);
+</script></body></html>

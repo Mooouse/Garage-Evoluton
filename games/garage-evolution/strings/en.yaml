@@ -1,0 +1,567 @@
+# Idle Garage Evolution — the game's texts in English, the source of every other language (scripts/gp.sh translate).
+# {name} is a parameter; { one, other } are plural forms chosen by {n}. The platform's own words are gp.* (gp.play …).
+start: "Start scrubbing"
+continue: "Continue"
+tagline: "From a muddy wreck to a shining classic"
+money: "{money}"
+perMin: "{money}/min"
+goal: "{name} · {pct}%"
+goalLabel: "Next goal"
+goalParts: "Cars {a}/{b} · fund {pct}%"
+albumCount: "Album {a}/{b}"
+pause:
+  tomorrow: "Come back tomorrow: day {n} reward +{money}"
+goalOpen: "Open it now!"
+goalPrestige: "Go international!"
+rush:
+  start: "Rush job! Beat the clock for double pay"
+  clock: "Rush job · {s} s"
+  late: "Rush job: too late"
+  won: "Rush job done! ×2"
+  lost: "Rush job missed"
+quick:
+  tool: "Upgrade"
+  robot: "Hire"
+  newTool: "New tool!"
+condition: "Condition {n}%"
+serial: "#{n}"
+btn:
+  garage: "Shop"
+  map: "Map"
+  album: "Album"
+  stats: "Stats"
+  gate: "Daily car"
+  menu: "Menu"
+hint:
+  scrub: "Scrub the mud off!"
+  twist: "Rust under the mud — grind it!"
+  dust: "Blow the dust off!"
+  soot: "Wash off the soot!"
+  rust: "Grind off the rust!"
+  paint: "Spray the bare metal!"
+  polish: "Polish out the scratches!"
+  parts: "Tap the bolts to fit the parts"
+  engine: "Tap the red spots to fix the engine"
+  buy: "Upgrade your tools in the Shop"
+  robot: "Hire a robot: it works on its own"
+  garage: "Build a bigger garage!"
+  dents: "Grab a dent and pull it out!"
+  thrusters: "Hold the wrench on each sparking nozzle"
+stage:
+  mud: "Mud"
+  dust: "Dust"
+  soot: "Soot"
+  rust: "Rust"
+  paint: "Paint"
+  polish: "Polish"
+  parts: "Parts"
+  engine: "Engine"
+  lights: "Lights"
+  wheels: "Wheels"
+  dents: "Dents"
+  thrusters: "Nozzles"
+results:
+  title: "RESTORED"
+  payout: "+{money}"
+  perfect: "Perfect clean! +30%"
+  newModel: "New model for the album!"
+  newVariant: "New version: {name}"
+  newRarity: "New rarity: {name}"
+  next: "Next car"
+  double: "×2 payout"
+  daily: "The rare car of the day!"
+  perfectWheels: "Perfect wheels: {n} (+10% each)"
+  newRim: "New rim: {name}"
+shop:
+  title: "Shop"
+  tools: "Tools"
+  robots: "Robots"
+  expand: "Expansion"
+  level: "Lv {n}"
+  max: "Max"
+  locked: "Opens with the {name}"
+  capped: "Needs the next garage"
+  strength: "Power ×{a} → ×{b}"
+  newTool: "Next: {name}"
+  robotCount: "{n} of {max} working"
+  robotFull: "No room: {n} of {max}"
+  robotHelp: "Works on its own, also while you are away"
+  build: "Build"
+  buildNext: "Next: {name}"
+  buildWhat: "New vehicles, new work, more robots"
+  buildPrestige: "Opens after the International Chain"
+  buildCars: "Restore cars in {garage} first: {a}/{b}"
+  allBuilt: "Every garage is built"
+  need: "Need {money} more"
+  gain: "+{money}/min income"
+  best: "Best buy"
+toolLine:
+  wash: "Washing"
+  grind: "Rust removal"
+  paint: "Paint"
+  polish: "Polishing"
+  wrench: "Mechanics"
+tool:
+  sponge: "Sponge"
+  hose: "Garden hose"
+  pressure: "Pressure washer"
+  foam: "Foam cannon"
+  industrial: "Industrial washer"
+  nano: "Nano washer"
+  wirebrush: "Wire brush"
+  grinder: "Angle grinder"
+  sandblaster: "Sandblaster"
+  needle: "Needle scaler"
+  laser: "Laser cleaner"
+  plasma: "Plasma cleaner"
+  rag: "Polishing rag"
+  orbital: "Orbital polisher"
+  rotary: "Rotary polisher"
+  dual: "Dual-head polisher"
+  ceramic: "Ceramic coater"
+  nanopolish: "Nano polisher"
+  spanner: "Spanner"
+  ratchet: "Ratchet set"
+  impact: "Impact wrench"
+  pneumatic: "Air wrench"
+  torquebot: "Torque robot"
+  magnetic: "Magnetic manipulator"
+  spraycan: "Spray can"
+  spraygun: "Spray gun"
+  hvlp: "HVLP gun"
+  airless: "Airless sprayer"
+  electro: "Electrostatic gun"
+  nanospray: "Nano sprayer"
+robot:
+  washbot: "Wash bot"
+  grindarm: "Grinder arm"
+  polishdrone: "Polish drone"
+  wrenchbot: "Wrench bot"
+  paintbooth: "Paint robot"
+garage:
+  shed: { name: "Shed", desc: "A cramped old shed: one bulb, one car" }
+  workshop: { name: "Workshop", desc: "Tuners, rally cars and a motorbike" }
+  station: { name: "Service Station", desc: "90s legends, muscle cars and trucks" }
+  luxury: { name: "Luxury Garage", desc: "Supercars, super saloons and racers" }
+  plant: { name: "Industrial Plant", desc: "Hypercars and heavy machines" }
+  hangar: { name: "Space Hangar", desc: "Rovers, shuttles and rockets" }
+level:
+  title: "New garage!"
+  surprise: "New vehicles to discover here: {n}"
+work:
+  mud: "Mud"
+  rust: "Rust"
+  polish: "Scratches"
+  parts: "Parts"
+  dust: "Dust"
+  engine: "Engine"
+  paint: "Paint"
+  soot: "Soot"
+rarity:
+  common: "Common"
+  uncommon: "Uncommon"
+  rare: "Rare"
+  epic: "Epic"
+  legendary: "Legendary"
+  mythic: "Mythic"
+  unknown: "Unknown"
+variant:
+  standard: "Standard"
+  racing: "Racing"
+  police: "Patrol"
+  luxury: "Luxury"
+  offroad: "Off-road"
+  prototype: "Prototype"
+  limited: "Limited"
+cls:
+  car: "Cars"
+  sport: "Sports cars"
+  truck: "Trucks and buses"
+  special: "Special"
+  moto: "Motorbikes"
+  heavy: "Heavy machines"
+  space: "Spacecraft"
+story:
+  barn: "Found in a barn after 30 years"
+  orbit: "Recovered from a decaying orbit"
+  splash: "Fished out of the ocean after splashdown"
+  reentry: "Scorched on re-entry"
+  pad: "Stood on a launch pad for decades"
+  derelict: "Towed in from a derelict station"
+  probe: "Brought back from a lost mission"
+  lake: "Pulled out of a lake"
+  crash: "Rescued after a crash on the highway"
+  fire: "Survived a garage fire"
+  desert: "Dug out after a sandstorm"
+  snow: "Spent a winter under the snow"
+  museum: "Sent over by a museum"
+  gate: "Left at the gate overnight by an unknown client"
+  storage: "Forgotten in storage for decades"
+  auction: "Bought at a mystery auction"
+  field: "Found in a field, half overgrown"
+  collector: "A collector's lost treasure"
+album:
+  title: "Album"
+  models: "Models {a}/{b}"
+  variants: "Versions {a}/{b}"
+  rare: "Rare finds {a}/{b}"
+  rims: "Rims {a}/{b}"
+  rimsTab: "Rims"
+  done: { one: "{n} restored", other: "{n} restored" }
+  arrives: "Arrives at the {name}"
+  best: "Best condition {n}%"
+  top: "Top payout {money}"
+  fastest: "Fastest {s} s"
+  versions: "Versions found"
+  unknown: "???"
+stats:
+  title: "Statistics"
+  restored: "Restored"
+  away: "Restored while away"
+  ach: "Achievements {a}/{b}"
+  earned: "Earned"
+  collection: "Collection"
+  priciest: "Most expensive"
+  dirtiest: "Dirtiest car"
+  worst: "Most damaged"
+  fastest: "Fastest restore"
+  longest: "Longest job"
+  area: "Area cleaned"
+  rust: "Rust removed"
+  parts: "Parts fitted"
+  engines: "Engines fixed"
+  wheels: "Wheels fixed"
+  perfect: "Perfect cleans"
+  byClass: "By class"
+  records: "Records"
+  byGarage: "By garage"
+  first: "First car"
+  time: "Time in the garage"
+  stars: "Chain stars"
+  m2: "{n} m²"
+  kg: "{n} kg"
+  sec: "{n} s"
+  min: "{n} min"
+  pct: "{n}%"
+welcome:
+  title: "Welcome back!"
+  body: { one: "Your robots restored {n} car while you were away", other: "Your robots restored {n} cars while you were away" }
+  collect: "Collect {money}"
+  double: "×2: {money}"
+daily:
+  title: "Rare car at the gate"
+  bring: "Bring it in"
+  queued: "Coming in next"
+  done: "Restored today ✓ New car tomorrow"
+  tomorrow: "Tomorrow:"
+  inHours: { one: "A new rare car in {n} hour", other: "A new rare car in {n} hours" }
+prestige:
+  title: "International Chain"
+  body: "Sell this garage and open a chain: start over with permanent stars, and the Space Hangar opens"
+  gain: { one: "+{n} star: income ×{x}", other: "+{n} stars: income ×{x}" }
+  have: "Stars: {n} · income ×{x}"
+  go: "Open the chain"
+  notYet: "Earn {money} more for the first star"
+  sure: "Sure? Money, tools and robots reset"
+  yes: "Yes, open it"
+model:
+  # Vehicles no longer in the game: an old save's statistics may still name one
+  courier: { name: "Courier High-Roof" }
+  hauler: { name: "Hauler Box 7" }
+  hook: { name: "Hook & Tow" }
+  metro: { name: "Metro Liner" }
+  blaze: { name: "Blaze Rescue" }
+  regent: { name: "Regent Stretch" }
+  crawler: { name: "Crawler B-80" }
+  lift: { name: "Liftmaster Crane" }
+  titan: { name: "Titan Hauler" }
+  touge: { name: "Touge 1600" }
+  popup: { name: "Popup Roadster" }
+  mule: { name: "Mule Pickup" }
+  doodle: { name: "Doodle Van" }
+  ranger: { name: "Outback Ranger" }
+  savanna: { name: "Savanna 4.7" }
+  silk: { name: "Silk Drift S" }
+  zephyr: { name: "Zephyr V6" }
+  ninek: { name: "Redline 9K" }
+  rotor: { name: "Rotary Wing" }
+  pleiad: { name: "Pleiad Rally" }
+  comet: { name: "Comet 250" }
+  champ: { name: "Touring Champ 2.3" }
+  kaiju: { name: "Kaiju Twin Turbo" }
+  thunder: { name: "Thunder 34" }
+  bavarian: { name: "Bavarian Six" }
+  express: { name: "V10 Express" }
+  samurai: { name: "Samurai MR" }
+  apex: { name: "Apex Open-Wheeler" }
+  nightrun: { name: "Nightrun Proto" }
+  aero: { name: "Aero Hatch", kind: "Swedish hatchback of the 80s" }
+  gamin: { name: "Gamin 1.9", kind: "French hot hatch of the 80s" }
+  bubble: { name: "Double Bubble", kind: "French sports coupe of the 2010s" }
+  swedebrick: { name: "Swede Brick", kind: "Swedish estate of the 90s" }
+  longroof: { name: "Longroof V8", kind: "American estate of the 2000s" }
+  hornet: { name: "Hornet GT", kind: "Korean fastback saloon of the 2010s" }
+  serpent: { name: "Serpent QV", kind: "Italian sports saloon of the 2010s" }
+  zenith: { name: "Zenith 37", kind: "Japanese sports coupe of the 2010s" }
+  thunderfour: { name: "Thunder Four", kind: "Japanese sports coupe of the 90s" }
+  sakura: { name: "Sakura S", kind: "Japanese sports coupe of the 90s" }
+  dusk: { name: "Dusk Turbo", kind: "Japanese sports coupe of the 90s" }
+  boxer: { name: "Boxer 86", kind: "Japanese sports coupe of the 2020s" }
+  tangerine: { name: "Tangerine V8", kind: "Japanese sports coupe of the 2010s" }
+  ember: { name: "Ember GT", kind: "Japanese sports coupe of the 2020s" }
+  cinq: { name: "Cinq Turbo", kind: "French rally hatch of the 80s" }
+  squadra: { name: "Evo Squadra", kind: "Italian rally hatch of the 90s" }
+  gremlin: { name: "Gremlin 4x4", kind: "Japanese rally hatch of the 2020s" }
+  voltage: { name: "Voltage Hatch", kind: "Korean electric hot hatch of the 2020s" }
+  sledge: { name: "Sledge Wagon V", kind: "American super estate of the 2010s" }
+  palace: { name: "Palace MPV", kind: "Chinese luxury MPV of the 2020s" }
+  capsule: { name: "Capsule EV", kind: "Chinese electric MPV of the 2020s" }
+  atlas: { name: "Atlas Six", kind: "Chinese family SUV of the 2020s" }
+  shootingstar: { name: "Shooting Star", kind: "Chinese electric shooting brake of the 2020s" }
+  ridgeback: { name: "Ridgeback", kind: "Chinese off-roader of the 2020s" }
+  skyscraper: { name: "Skyscraper", kind: "American full-size SUV of the 2020s" }
+  brawler: { name: "Brawler Widebody", kind: "American muscle saloon of the 2020s" }
+  vandal: { name: "Vandal V8", kind: "American sports saloon of the 2020s" }
+  midship: { name: "Midship Eight", kind: "American mid-engine sports car of the 2020s" }
+  emerald: { name: "Emerald V8", kind: "British sports coupe of the 2020s" }
+  pounce: { name: "Pounce R", kind: "British sports coupe of the 2010s" }
+  monarch: { name: "Monarch GT", kind: "British grand tourer of the 2010s" }
+  viaggio: { name: "Gran Viaggio", kind: "Italian grand tourer of the 2010s" }
+  lumen: { name: "Lumen V8", kind: "Japanese grand tourer of the 2010s" }
+  bellaotto: { name: "Bella Otto", kind: "Italian sports coupe of the 2000s" }
+  feather: { name: "Featherweight", kind: "British roadster of the 2010s" }
+  turini: { name: "Turini", kind: "French sports coupe of the 2010s" }
+  gecko: { name: "Gecko", kind: "German mid-engine sports car of the 2010s" }
+  verdant: { name: "Verdant GT", kind: "British grand tourer of the 2020s" }
+  carboncrown: { name: "Carbon Crown", kind: "British grand tourer of the 2020s" }
+  autobahn: { name: "Autobahn", kind: "German super saloon of the 2020s" }
+  carbonsix: { name: "Carbon Six", kind: "German sports coupe of the 2020s" }
+  tempest: { name: "Tempest", kind: "Italian super SUV of the 2020s" }
+  typhoon: { name: "Typhoon", kind: "Italian super SUV of the 2010s" }
+  sovereign: { name: "Sovereign", kind: "British limousine of the 2010s" }
+  apparition: { name: "Apparition", kind: "British luxury saloon of the 2020s" }
+  swiftarrow: { name: "Swift Arrow", kind: "British luxury saloon of the 2020s" }
+  mulberry: { name: "Mulberry", kind: "British luxury saloon of the 2010s" }
+  prowler: { name: "Prowler", kind: "British luxury saloon of the 2010s" }
+  senator: { name: "Senator", kind: "American luxury saloon of the 2010s" }
+  zeppelin: { name: "Zeppelin Twelve", kind: "German limousine of the 2020s" }
+  origami: { name: "Origami", kind: "Japanese luxury saloon of the 2020s" }
+  hanok: { name: "Hanok", kind: "Korean luxury saloon of the 2020s" }
+  ringleader: { name: "Ringleader", kind: "German luxury saloon of the 2010s" }
+  diamond: { name: "Diamond Mine", kind: "British luxury SUV of the 2010s" }
+  highwing: { name: "Highwing", kind: "British luxury SUV of the 2010s" }
+  heritage: { name: "Heritage GT", kind: "American supercar of the 2010s" }
+  homolog: { name: "Homologation", kind: "German race-bred supercar of the 90s" }
+  saber: { name: "Saber Seven", kind: "American supercar of the 2000s" }
+  bigcat: { name: "Big Cat 220", kind: "British supercar of the 90s" }
+  inferno: { name: "Inferno", kind: "Italian supercar of the 90s" }
+  propeller: { name: "Propeller", kind: "Dutch supercar of the 2000s" }
+  kabuki: { name: "Kabuki V10", kind: "Japanese supercar of the 2010s" }
+  kaminari: { name: "Kaminari", kind: "Japanese race-bred supercar of the 2020s" }
+  wisp: { name: "Wisp", kind: "British mid-engine sports car of the 2020s" }
+  papaya: { name: "Papaya", kind: "British supercar of the 2010s" }
+  fjord: { name: "Fjord", kind: "Swedish hypercar of the 2020s" }
+  vento: { name: "Vento", kind: "Italian track hypercar of the 2000s" }
+  zephyrus: { name: "Zephyrus", kind: "Italian hypercar of the 2010s" }
+  viola: { name: "Viola", kind: "Italian hypercar of the 2020s" }
+  brezza: { name: "Brezza", kind: "Italian open hypercar of the 2020s" }
+  halo: { name: "Halo", kind: "British track hypercar of the 2020s" }
+  prism: { name: "Prism", kind: "British hypercar of the 2020s" }
+  dart: { name: "Dart", kind: "French track hypercar of the 2020s" }
+  talon: { name: "Talon", kind: "German hypercar of the 2010s" }
+  raven: { name: "Raven", kind: "German track hypercar of the 2020s" }
+  orchid: { name: "Orchid", kind: "British supercar of the 2020s" }
+  amethyst: { name: "Amethyst", kind: "Italian hypercar of the 2020s" }
+  orca: { name: "Orca", kind: "Chinese electric saloon of the 2020s" }
+  pebble: { name: "Pebble", kind: "Chinese electric saloon of the 2020s" }
+  static: { name: "Static", kind: "Chinese electric super saloon of the 2020s" }
+  glide: { name: "Daily Glide", kind: "Japanese family saloon of the 2010s" }
+  wayfarer: { name: "Wayfarer 1.8T", kind: "German family saloon of the 90s" }
+  rocket: { name: "Pocket Rocket 16V", kind: "German hot hatch of the 2020s" }
+  salaryman: { name: "Salaryman Turbo", kind: "Japanese executive saloon of the 2010s" }
+  redline: { name: "Redline Hatch", kind: "German family hatch of the 2020s" }
+  chancellor: { name: "Chancellor 600", kind: "German luxury saloon of the 90s" }
+  rallynine: { name: "Rally Nine", kind: "Japanese rally saloon of the 2000s" }
+  bigwing: { name: "Big Wing 2.5", kind: "German touring-car saloon of the 90s" }
+  fourfold: { name: "Fourfold Turbo", kind: "German rally coupe of the 80s" }
+  highlands: { name: "Highlands Sport", kind: "British luxury SUV of the 2010s" }
+  ironbrick: { name: "Iron Brick", kind: "German off-roader, built since 1979" }
+  missile: { name: "Family Missile", kind: "German super estate of the 2020s" }
+  stallion: { name: "Stallion GT", kind: "American pony car of the 2010s" }
+  rival: { name: "Rival SS", kind: "American muscle coupe of the 2010s" }
+  hellhound: { name: "Hellhound 707", kind: "American muscle car of the 2010s" }
+  manta: { name: "Manta Seven", kind: "American sports car of the 2010s" }
+  wanderer: { name: "Wanderer Camper", kind: "American motorhome of the 70s" }
+  exec: { name: "Executive Missile", kind: "German executive saloon of the 90s" }
+  longnose: { name: "Long Nose GT", kind: "German grand tourer of the 2010s" }
+  blade: { name: "Blade V10", kind: "German mid-engine supercar of the 2000s" }
+  trackwing: { name: "Track Wing RS", kind: "German track coupe of the 2010s" }
+  dune: { name: "Dune Turbo", kind: "German rally supercar of the 80s" }
+  fang: { name: "Fang V10", kind: "American sports coupe of the 2010s" }
+  forty: { name: "Endurance Forty", kind: "American Le Mans racer of the 60s" }
+  wedge: { name: "Wedge Twelve", kind: "Italian wedge supercar of the 70s" }
+  rosso: { name: "Rosso V8", kind: "Italian mid-engine supercar of the 2010s" }
+  anniversary: { name: "Anniversary Turbo", kind: "Italian turbo supercar of the 80s" }
+  screamer: { name: "Screamer V10", kind: "German open supercar of the 2000s" }
+  storm: { name: "Storm V10", kind: "Italian supercar of the 2010s" }
+  scissor: { name: "Scissor V12", kind: "Italian supercar of the 2010s" }
+  ibrido: { name: "Rosso Ibrido", kind: "Italian hybrid hypercar of the 2010s" }
+  centreseat: { name: "Centre Seat", kind: "British supercar of the 90s" }
+  neon: { name: "Neon Hybrid", kind: "British hybrid hypercar of the 2010s" }
+  ghost: { name: "Nordic Ghost", kind: "Swedish hypercar of the 2010s" }
+  mach: { name: "Mach Sixteen", kind: "French hypercar of the 2000s" }
+  horseshoe: { name: "Horseshoe 1500", kind: "French hypercar of the 2010s" }
+  longhorn: { name: "Longhorn Semi", kind: "American long-nose semi" }
+  fieldking: { name: "Field King", kind: "American farm tractor of the 60s" }
+  rhino: { name: "Rhino 8x8", kind: "Soviet armoured transport (unarmed)" }
+  snowcat: { name: "Polar Snowcat", kind: "German snow groomer" }
+  selene: { name: "Selene Rover", kind: "American lunar rover of the 70s" }
+  orbiter: { name: "Orbiter Shuttle", kind: "American orbital shuttle" }
+  spark: { name: "Spark Launcher", kind: "Soviet rocket of the 60s" }
+  packmule: { name: "Packmule Freighter", kind: "boxy cargo spaceship" }
+  moth: { name: "Moth Lander", kind: "American lunar lander of the 60s" }
+  drift: { name: "Drift Capsule", kind: "American crew capsule of the 60s" }
+  drake: { name: "Drake Capsule", kind: "American crew capsule of the 2020s" }
+  tug: { name: "Pocket Tug", kind: "orbital tug" }
+  blizzard: { name: "Snowstorm Orbiter", kind: "Soviet orbital shuttle of the 80s" }
+  tallship: { name: "Tallship", kind: "American steel starship of the 2020s" }
+  kestrel: { name: "Kestrel Booster", kind: "American reusable booster of the 2010s" }
+  arrowx: { name: "Arrow X", kind: "American rocket plane of the 60s" }
+  colossus: { name: "Colossus V", kind: "American moon rocket of the 60s" }
+  orehauler: { name: "Ore Hauler", kind: "asteroid mining ship" }
+  ion: { name: "Glow Drifter", kind: "ion-drive science ship" }
+  skyracer: { name: "Halo Racer", kind: "solar-system racing ship" }
+  cruiser: { name: "Ring Cruiser", kind: "passenger space liner" }
+  icebreaker: { name: "Frost Breaker", kind: "ice miner of the outer planets" }
+  nomad: { name: "Last Nomad", kind: "deep-space ark" }
+  scout: { name: "Dart Scout", kind: "one-seat scout ship" }
+  trident: { name: "Deep Trident", kind: "patrol cruiser of the outer system" }
+  unknown: { name: "Unknown Object", kind: "origin unknown" }
+wheel:
+  nutsOff: "Tap the nuts in order: 1, 2, 3…"
+  find: "Rub the tyre with your finger to find the leak"
+  plug: "Tap the bubbles to plug the leak"
+  tyre: "Tap to pull the new tyre on"
+  dents: "Hammer out the dents"
+  pump: "Press and hold to pump — let go in the green"
+  balance: "Tap when the red mark is at the top"
+  nutsOn: "Tap the nuts in order to tighten them"
+  pop: "Pop! Too much air — pump again"
+  perfect: "Perfect wheel!"
+rim:
+  steel: "Steel"
+  classic: "Classic"
+  mesh: "Mesh"
+  spoke: "Wire spoke"
+  chrome: "Chrome"
+  racing: "Racing"
+  turbine: "Turbine"
+  gold: "Gold"
+profile:
+  daily: "Daily driver"
+  barn: "Barn find"
+  flood: "Flood car"
+  crash: "After a crash"
+  fire: "Fire damage"
+  desert: "Sun-baked"
+  space:
+    daily: "Routine service"
+    barn: "Mothballed"
+    flood: "After splashdown"
+    crash: "Hard landing"
+    fire: "Re-entry burns"
+    desert: "Dust-blasted"
+respray:
+  pick: "Pick the new colour"
+  rare: "Rare colour: +15%"
+streak:
+  title: "Day {n} in a row!"
+  claim: "Collect {money}"
+  claimBring: "Collect {money} & play"
+  tomorrow: "Come back tomorrow: {money}"
+order:
+  line: "Today's order: {a}/{b} · {profile}"
+  car: "A car for today's order!"
+  progress: "Order {a}/{b}"
+  paid: "Order done: +{money}"
+  done: "Today's order is done"
+away:
+  robots: "While you're away your robots earn ≈{money} an hour (up to 8 h)"
+  none: "Hire a robot: it earns while you're away"
+ach:
+  hidden: "Hidden achievement"
+  unlocked: "Achievement"
+  first: { name: "First Shine", desc: "Restore your first car" }
+  ten: { name: "Getting Warm", desc: "Restore 10 vehicles" }
+  perfect1: { name: "Flawless", desc: "Earn a Perfect restore" }
+  robot1: { name: "Helping Hand", desc: "Hire your first robot" }
+  workshop: { name: "Moving Up", desc: "Open the Workshop" }
+  night: { name: "Night Shift", desc: "Restore cars after midnight" }
+  hundred: { name: "Century", desc: "Restore 100 vehicles" }
+  station: { name: "Service Station", desc: "Open the Service Station" }
+  perfect25: { name: "Perfectionist", desc: "Earn 25 Perfect restores" }
+  rust: { name: "Rust Buster", desc: "Grind off 100 kg of rust" }
+  crew: { name: "Full Crew", desc: "Have a robot of every kind" }
+  album25: { name: "Collector", desc: "Fill a quarter of the album" }
+  million: { name: "Millionaire", desc: "Earn $1M in total" }
+  streak: { name: "Regular", desc: "Come back 7 days in a row" }
+  away: { name: "Night Crew", desc: "Robots restore 100 vehicles while you're away" }
+  speed: { name: "Lightning Hands", desc: "Restore a car in 10 seconds or less" }
+  luxury: { name: "Showroom", desc: "Open the Luxury Garage" }
+  fivehundred: { name: "Restoration Legend", desc: "Restore 500 vehicles" }
+  album50: { name: "Curator", desc: "Fill half the album" }
+  prestige: { name: "New Life", desc: "Start over with stars" }
+  rims: { name: "Wheel Hoarder", desc: "Collect every rim" }
+  mythic: { name: "Myth Made Real", desc: "Restore a Mythic vehicle" }
+  hangar: { name: "To the Stars", desc: "Open the Space Hangar" }
+  planets: { name: "Planet Hopper", desc: "Open 4 garages in space" }
+  neptune: { name: "Edge of the System", desc: "Open the garage on Neptune" }
+  billion: { name: "Billionaire", desc: "Earn $1B in total" }
+  stars: { name: "Star Collector", desc: "Hold 10 stars" }
+  album100: { name: "Complete Archive", desc: "Fill the whole album" }
+  unknown: { name: "Not of This World", desc: "Restore the Unknown Object" }
+  network5: { name: "Expansion", desc: "Have 5 garages" }
+  network: { name: "Worldwide", desc: "Open every garage on Earth" }
+site:
+  shed: { name: "Backyard Shed", city: "Detroit" }
+  corner: { name: "Corner Garage", city: "São Paulo" }
+  tuning: { name: "Tuning Workshop", city: "Tokyo" }
+  rally: { name: "Rally Works", city: "Helsinki" }
+  station: { name: "Service Station", city: "Mumbai" }
+  muscle: { name: "Muscle Shop", city: "Los Angeles" }
+  luxury: { name: "Luxury Studio", city: "Monaco" }
+  racing: { name: "Race Works", city: "Le Mans" }
+  plant: { name: "Heavy Plant", city: "Perth" }
+  hyper: { name: "Hypercar Lab", city: "Dubai" }
+  gt: { name: "GT Atelier", city: "Melbourne" }
+  prestige: { name: "Prestige Salon", city: "Shanghai" }
+  future: { name: "Future Centre", city: "Singapore" }
+  hangar: { name: "Lunar Hangar", city: "the Moon" }
+  dock: { name: "Orbital Dock", city: "Earth orbit" }
+  mars: { name: "Red Dust Hangar", city: "Mars" }
+  venus: { name: "Cloud Dock", city: "Venus" }
+  mercury: { name: "Sunside Works", city: "Mercury" }
+  jupiter: { name: "Europa Yard", city: "Jupiter" }
+  saturn: { name: "Ring Port", city: "Saturn" }
+  uranus: { name: "Tilted Station", city: "Uranus" }
+  neptune: { name: "Last Light Base", city: "Neptune" }
+map:
+  title: "Garage network"
+  total: "Robots: +{money}/min"
+  earth: "Earth"
+  space: "Space"
+  stats: "Robots {robots} · tools lv {level} · +{money}/min · {cars} restored"
+  here: "Work here"
+  go: "Go there"
+  locked: "Open {name} first"
+  planet:
+    mercury: "Mercury"
+    venus: "Venus"
+    earth: "Earth"
+    mars: "Mars"
+    jupiter: "Jupiter"
+    saturn: "Saturn"
+    uranus: "Uranus"
+    neptune: "Neptune"
+hud:
+  network: "Robots +{money}/min"
