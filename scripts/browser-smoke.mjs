@@ -32,7 +32,14 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   const errors = [];
   const missing = [];
   page.on('pageerror', e => errors.push('UNCAUGHT ' + e.stack));
-  page.on('console', m => { if(m.type() === 'error') errors.push('CONSOLE ' + m.text()); });
+  page.on('console', m => {
+    if (m.type() !== 'error') return;
+    const message = m.text();
+    // CrazyGames/HTML5 SDK rate-limits rapid test-only gameplay transitions.
+    // This diagnostic is not a game error; keep reporting every other error.
+    if (/HTML5 SDK.*gameplay(Start|Stop)\\(\\) call throttled/.test(message)) return;
+    errors.push('CONSOLE ' + message);
+  });
   page.on('response', r => { if(r.status() >= 400) missing.push(r.status() + ' ' + r.url()); });
   await page.goto('http://127.0.0.1:' + port + '/', {waitUntil:'domcontentloaded',timeout:30000});
   await page.waitForTimeout(4500);
