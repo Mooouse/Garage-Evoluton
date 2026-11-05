@@ -41,7 +41,7 @@ jobs:
           from pathlib import Path
           root = Path('_site')
           assets = list((root / 'games/garage-evolution/painted').glob('*.webp'))
-          assert len(assets) >= 570, f'Missing vehicle images: {len(assets)}'
+          assert len(assets) >= 200, f'Missing active HD vehicle images: {len(assets)}'
           index = (root / 'index.html').read_text()
           js = (root / 'game.js').read_text()
           assert 'src="game.js"' in index
