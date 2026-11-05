@@ -45,7 +45,7 @@ jobs:
                       im.verify()
           print('PASS: all 20 calibrated pilot assets verified')
           PY
-          git add games/garage-evolution/painted/prepared
+          git add games/garage-evolution/painted/prepared games/garage-evolution/wheel-calibration-runtime.js
           if ! git diff --cached --quiet; then
             git config user.name "github-actions[bot]"
             git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
