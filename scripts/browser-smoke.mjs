@@ -155,6 +155,20 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
     await page.evaluate(() => globalThis.__garageSmokeQA.screens.results());
     await page.locator('[data-gp="results"]').waitFor({state:'visible',timeout:5000});
     console.log('CONTROL QA results: OK');
+    // The next car may be in another image chapter. It must not expose a
+    // placeholder car or remain stuck on the factory-art loading screen.
+    await page.evaluate(() => globalThis.__garageSmokeQA.play());
+    await page.waitForTimeout(1000);
+    await page.waitForFunction(
+      () => !document.getElementById('garage-art-loading'),
+      null, {timeout: 30000}
+    );
+    console.log('NEXT CAR ASSETS READY '+JSON.stringify(
+      await page.evaluate(() => ({loading: !!document.getElementById('garage-art-loading'),
+        header: document.querySelector('#ui')?.textContent?.slice(0,180)}))
+    ));
+    if (viewport.width === 1280)
+      console.log('NEXT CAR JPEG BASE64 '+(await page.screenshot({type:'jpeg',quality:45})).toString('base64'));
   } catch (e) {
     failures++;
     console.error('SCREEN FLOW FAILED', String(e).slice(0,1500));
