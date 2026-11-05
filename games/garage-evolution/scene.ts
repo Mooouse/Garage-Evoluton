@@ -765,7 +765,8 @@ export function createScene(g: Ctx) {
     const job = currentWheel(car);
     if (!job) return;
     const [wx, wy] = wheelAt(art, job.wheel);
-    const rimNow = job.step === 'nutsOn' || job.step === 'pump' || job.step === 'balance' ? job.rim : defaultRim(car.model, car.variant);
+    // No random replacements: restore the exact same factory wheel.
+    const rimNow = defaultRim(car.model, car.variant);
     const a = art;
     // The close-up drawn at its own size from the full picture (a magnified small sprite was a blur of pixels)
     const own = (look: WheelLook, rPx: number) => {

@@ -23,7 +23,7 @@ import { createScene, type Coach } from './scene.ts';
 import { estimate } from './bot.ts';
 import { condition, currentLayerIndex, currentWheel, dentAt, isTaskStage, stageTasks, pullDent, releaseDent, newCar, newRobots, parSec, powers, robotsStep, stroke, tick, toolAt, topAt, wheelHand, wheelTime, type Car, type RobotState, type StrokeResult, type WheelEvent } from './sim.ts';
 import { bayAction, bayTarget } from './bay-art.ts';
-import { GREEN, RIMS } from './wheels.ts';
+import { GREEN } from './wheels.ts';
 import { createSound } from './sound.ts';
 import { bar, el, icon, installStyle } from './ui.ts';
 import { ACHIEVEMENTS, ACH_COLOR, checkAchievements } from './achievements.ts';
@@ -1629,7 +1629,6 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
     const tomorrowBox = c.daily ? tomorrowCar() : null;
     const pw = perfectWheels(c);
     if (pw) badges.append(el('span', 'badge gold', tr('results.perfectWheels', { n: pw })));
-    for (const rim of p.newRims ?? []) badges.append(el('span', 'badge', tr('results.newRim', { name: tr(`rim.${rim}`) })));
     if (orderNow === 'progress') badges.append(el('span', 'badge', tr('order.progress', { a: save.order.n, b: ORDER_NEED })));
     if (orderNow === 'done') badges.append(el('span', 'badge gold', tr('order.paid', { money: $(orderPaid) })));
     // The unfinished goal, with its share
@@ -2410,20 +2409,10 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
     scene.clearFx();
     const a = album(save);
     const sum = el('div', 'row sum');
-    sum.append(el('span', 'badge gold', tr('album.models', { a: a.models, b: a.of })), el('span', 'badge', tr('album.rims', { a: save.rims.length, b: RIMS.length })), el('span', 'badge', tr('album.variants', { a: a.variants, b: a.varOf })), el('span', 'badge', tr('album.rare', { a: a.rarities, b: a.rarOf })));
-    // The rim row: every rim style, the ones found in colour
-    const rims: HTMLElement[] = [];
-    for (const r of RIMS) {
-      const box = el('div', `rim${save.rims.includes(r.id) ? '' : ' off'}`);
-      const img = el('img');
-      img.src = rimUrl(r.id);
-      img.alt = '';
-      box.append(img, el('small', '', save.rims.includes(r.id) ? tr(`rim.${r.id}`) : tr('album.unknown')));
-      rims.push(box);
-    }
-    // A tab per garage of the network (its own vehicles), then the rims
+    sum.append(el('span', 'badge gold', tr('album.models', { a: a.models, b: a.of })), el('span', 'badge', tr('album.variants', { a: a.variants, b: a.varOf })), el('span', 'badge', tr('album.rare', { a: a.rarities, b: a.rarOf })));
+    // The vehicle album now contains factory models only; no aftermarket
+    // rim collection or extra tabs.
     const groups: Group[] = SITES.map((x) => ({ label: tr(`site.${x.id}.name`), items: x.pool.map((id) => albumCard(id, !!save.album[id])) }));
-    groups.push({ label: tr('album.rimsTab'), items: rims, cls: 'rims' });
     const pg = pager(groups, 'album', { g: Math.max(0, SITES.findIndex((x) => x.id === save.at)), k: 0 });
     const share = bar(a.share);
     share.classList.add('sumbar');
@@ -2745,24 +2734,6 @@ function renderThumb(id: string, g: CanvasRenderingContext2D, W: number, H: numb
   });
   for (const p of Object.values(art.parts)) if (p) g.drawImage(p.canvas, x + p.x, y + p.y, p.w, p.h);
   return g.canvas.toDataURL();
-}
-const rimUrls = new Map<string, string>();
-function rimUrl(id: string): string {
-  let u = rimUrls.get(id);
-  if (!u) {
-    const c = document.createElement('canvas');
-    c.width = c.height = 96;
-    const g = c.getContext('2d')!;
-    g.translate(48, 48);
-    g.fillStyle = '#1b1d23';
-    g.beginPath();
-    g.arc(0, 0, 46, 0, Math.PI * 2);
-    g.fill();
-    drawRim(g, 32, id);
-    u = c.toDataURL();
-    rimUrls.set(id, u);
-  }
-  return u;
 }
 const silhouettes = new Map<string, string>();
 function silhouetteThumb(id: string): string {

@@ -433,10 +433,10 @@ export function restore(s: Save, car: Car, sec: number, perfect: boolean, double
   st.rust += rust ? Math.round(rust.total * 0.004 * len * 10) / 10 : 0;
   st.parts += car.parts.length;
   st.engines += car.engine.length ? 1 : 0;
-  const rimsBefore = new Set(s.rims);
   st.wheels += car.wheels.length;
   st.perfectWheels += perfectWheels(car);
-  for (const j of car.wheels) if (!s.rims.includes(j.rim)) s.rims.push(j.rim);
+  // The old rim collection remains on old saves for compatibility only.
+  // No further decorative wheel rewards are awarded.
   st.earned += total;
   if (perfect) st.perfect++;
   if (!st.priciest || total > st.priciest.value) st.priciest = { id, value: total };
@@ -446,7 +446,7 @@ export function restore(s: Save, car: Car, sec: number, perfect: boolean, double
   st.fastest = st.fastest ? Math.min(st.fastest, sec) : sec;
   st.longest = Math.max(st.longest, sec);
   if (!st.first) st.first = { id, at: today.toISOString().slice(0, 10) };
-  return { base, perfect, total, newModel, newVariant, newRarity, newRims: s.rims.filter((r) => !rimsBefore.has(r)) };
+  return { base, perfect, total, newModel, newVariant, newRarity, newRims: [] };
 }
 
 /** The ×2 offer on this card? Every Nth car of the life and every rare one */

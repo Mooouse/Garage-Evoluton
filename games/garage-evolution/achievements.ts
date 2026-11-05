@@ -4,7 +4,7 @@
 
 import { CATS, SITES } from './data.ts';
 import { album, topTier, type Save } from './economy.ts';
-import { RIMS } from './wheels.ts';
+
 
 export type AchRarity = 'common' | 'rare' | 'epic' | 'legendary';
 export const ACH_COLOR: Record<AchRarity, string> = { common: '#c9d2dc', rare: '#4aa8ff', epic: '#b26bff', legendary: '#ffb02e' };
@@ -43,7 +43,7 @@ export const ACHIEVEMENTS: readonly Achievement[] = [
   { id: 'fivehundred', rarity: 'epic', icon: 'trophy', test: (s) => s.stats.restored >= 500 },
   { id: 'album50', rarity: 'epic', icon: 'album', test: (s) => share(s) >= 0.5 },
   { id: 'prestige', rarity: 'epic', icon: 'chain', test: (s) => s.prestige >= 1 },
-  { id: 'rims', rarity: 'epic', icon: 'parts', test: (s) => RIMS.every((r) => s.rims.includes(r.id)) },
+  { id: 'rims', rarity: 'epic', icon: 'parts', test: (s) => s.stats.wheels >= 100 },
   { id: 'mythic', rarity: 'epic', hidden: true, icon: 'star', test: (s) => Object.values(s.album).some((r) => r.rar.includes('mythic')) },
   { id: 'hangar', rarity: 'legendary', icon: 'garage:6', test: (s) => topTier(s) >= 6 },
   { id: 'planets', rarity: 'legendary', icon: 'map', test: (s) => SITES.filter((x) => x.space && s.sites[x.id]).length >= 4 },

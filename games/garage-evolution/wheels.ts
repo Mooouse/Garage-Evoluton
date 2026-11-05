@@ -72,24 +72,16 @@ export function starOrder(n: number): number[] {
 }
 
 export function newWheelJob(r: Rand, wheel: number, damage: WheelDamage, nuts = 5, first = false): WheelJob {
-  let rim: RimId = 'steel';
-  let sum = 0;
-  for (const x of RIMS) sum += x.weight;
-  let v = r() * sum;
-  for (const x of RIMS) {
-    v -= x.weight;
-    if (v <= 0) {
-      rim = x.id;
-      break;
-    }
-  }
+  // Repairs restore the exact wheel that arrived on this particular
+  // car, never a random aftermarket rim. Keep the saved field for backwards
+  // compatibility with older sessions.
   return {
     wheel, damage, step: 'nutsOff', st: 0, nuts, order: starOrder(nuts), nut: 0,
     leak: first ? Math.PI * 0.6 : r() * Math.PI * 2, found: 0,
     dents: damage === 'bent' ? [r() * 6.28, r() * 6.28, r() * 6.28].slice(0, 2 + Math.floor(r() * 2)) : [],
     pulls: 3, pressure: damage === 'flat' ? 0.05 : 0.3,
     heavy: r() * Math.PI * 2, spin: 3.6 + r() * 0.8, hits: 1,
-    mistakes: 0, robot: false, rim: first ? 'classic' : rim, popped: false, lastTap: null,
+    mistakes: 0, robot: false, rim: 'factory', popped: false, lastTap: null,
   };
 }
 
