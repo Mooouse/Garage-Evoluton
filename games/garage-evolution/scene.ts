@@ -989,9 +989,14 @@ export function createScene(g: Ctx) {
       pointer = { ...pointer, ...p };
     },
     /** The car's paint changed (the respray's colour): the body is baked again, the dirt layers stay as they are */
-    recolor(): void {
+    recolor(rebuildLayers = false): void {
       if (!car || !art) return;
       art = bakeCar(car.model, car.color, car.variant, carL);
+      // If the first bake used the placeholder raster, its dirt/rust mask
+      // is a jagged outline and remains on screen even after the HD car
+      // arrives. Recreate it against the true body silhouette once every
+      // factory image is decoded (the loading overlay prevents interim work).
+      if (rebuildLayers) layers = new LayerViews(car, art);
     },
     /** The effects' quality from AutoQuality (0 best … 3 cheapest) */
     setQuality(level: number): void {
