@@ -183,9 +183,13 @@ try {
   const editor = await browser.newPage({viewport:{width:1360,height:850}});
   const editorErrors = [];
   editor.on('pageerror', e => editorErrors.push(e.message));
-  await editor.goto('http://127.0.0.1:' + port + '/wheel-editor.html',
+  const editorResponse = await editor.goto('http://127.0.0.1:' + port + '/wheel-editor.html',
                     {waitUntil:'domcontentloaded'});
-  await editor.locator('#car option').first().waitFor({timeout:20000});
+  await editor.waitForTimeout(1200);
+  console.log('EDITOR DEBUG '+JSON.stringify({http:editorResponse?.status(),errors:editorErrors,
+    state:await editor.evaluate(()=>({title:document.title,status:document.getElementById('status')?.textContent,
+      html:document.body.innerHTML.length,options:document.querySelectorAll('#car option').length}))}));
+  await editor.locator('#car option').first().waitFor({timeout:8000});
   await editor.waitForFunction(() => document.getElementById('modelName')?.textContent.includes('Aero'));
   await editor.locator('#view').selectOption('removed');
   await editor.locator('#car').selectOption('blueline');
