@@ -68,6 +68,23 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   });
   console.log('VIEWPORT '+JSON.stringify(viewport)+' '+JSON.stringify(report));
   console.log('NETWORK ERRORS '+JSON.stringify(missing.slice(0,25)));
+  // Visual regression diagnosis: a first car may be only a raster silhouette
+  // even if the browser has no network or JavaScript errors.
+  if (viewport.width === 1280) {
+    const readiness = await page.evaluate(() => ({
+      aeroFiles: performance.getEntriesByType('resource')
+        .map(x => x.name.split('/').pop())
+        .filter(x => /^aero(?:-w[01])?\.webp$/.test(x)),
+      imageCount: performance.getEntriesByType('resource').filter(x => x.name.endsWith('.webp')).length,
+      readyState: document.readyState,
+    }));
+    console.log('INITIAL AUTO ART '+JSON.stringify(readiness));
+    if (!['aero.webp','aero-w0.webp','aero-w1.webp'].every(x=>readiness.aeroFiles.includes(x))) {
+      failures++;
+      console.error('STARTER CAR TEXTURES NOT READY BEFORE PLAY');
+    }
+    console.log('FIRST FRAME JPEG BASE64 '+(await page.screenshot({type:'jpeg',quality:46})).toString('base64'));
+  }
 
   // The eight original drawings must be present as native-HD textures and
   // each car must have its own separately decoded wheel sprites.
