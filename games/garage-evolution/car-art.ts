@@ -252,6 +252,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     return c;
   };
   const pic = paintedBody(model.id, model.colors[0], color);
+  const preSeparated = new Set(['aero', 'gamin', 'bubble', 'blueline', 'amethyst']).has(model.id);
   const drawBody = (g: Ctx) => {
     if (pic) g.drawImage(pic, ix, iy, meta.img.w * k, meta.img.h * k);
     else {
@@ -264,22 +265,25 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
         for (let x = 0; x < r.cols; x++) if (r.bits[y * r.cols + x]) g.fillRect(ix + x * cw, iy + y * ch, cw + 0.5, ch + 0.5);
     }
 
-    // The exported body images are NOT all wheel-free: several still contain
-    // the complete original tyre and spokes. Drawing an independent wheel on
-    // top hides them until the wheel is detached, when the old tyre remains on
-    // the car. Cut every axle out of the BODY texture itself, not out of the
-    // scene framebuffer (which would also erase the wall behind the car).
-    // Reuse the exact centre/radius used for the separate rotating wheel.
-    g.save();
-    g.globalCompositeOperation = 'destination-out';
-    g.fillStyle = '#000';
-    for (const wh of wheels) {
-      const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
-      g.beginPath();
-      g.arc(cx, cy, wh.r * L * 1.06, 0, Math.PI * 2);
-      g.fill();
-    }
-    g.restore();
+    if (!preSeparated) {
+      // The exported body images are NOT all wheel-free: several still contain
+      // the complete original tyre and spokes. Drawing an independent wheel on
+      // top hides them until the wheel is detached, when the old tyre remains on
+      // the car. Cut every axle out of the BODY texture itself, not out of the
+      // scene framebuffer (which would also erase the wall behind the car).
+      // Reuse the exact centre/radius used for the separate rotating wheel.
+      g.save();
+      g.globalCompositeOperation = 'destination-out';
+      g.fillStyle = '#000';
+      for (const wh of wheels) {
+        const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
+        g.beginPath();
+        g.arc(cx, cy, wh.r * L * 1.06, 0, Math.PI * 2);
+        g.fill();
+      }
+      g.restore();
+  
+      }
 
     // Leave the opening genuinely transparent. In particular, do not repaint
     // it with a dark circular/semicircular stand-in: the owner's source picture
