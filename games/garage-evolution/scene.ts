@@ -299,13 +299,8 @@ export function createScene(g: Ctx) {
       // In the bay (its nuts are off): the hub on a stand; a damaged one still on: its look; a done one: its new rim
       const inBay = !!job && job.step !== 'done' && job.step !== 'nutsOff';
       if (!partVisible(id) || inBay) {
-        // Suspension well only while the original wheel is removed.
-        if (car!.model.painted) {
-          gx.fillStyle = '#101218';
-          gx.beginPath();
-          gx.arc(x + wx, y + wy, r * 0.97, 0, Math.PI * 2);
-          gx.fill();
-        }
+        // The body texture is already wheel-free and contains only the upper
+        // recessed arch. Do not paint a second solid black "tyre" behind the hub.
         // Scale the hub to this axle (multi-axle trucks and cars with different
         // front/rear diameters were all using the first axle's hub size).
         const firstR = wheelAt(art!, 0)[2];
