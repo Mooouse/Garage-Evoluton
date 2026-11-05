@@ -130,6 +130,12 @@ export function drawBay(g: Ctx, bay: Bay, job: WheelJob, model: Model, variant: 
     g.save();
     g.translate(x, y);
     g.rotate(rot);
+    // The repair stand also has a full opaque circular tyre underneath the
+    // original spoke image, centred on its exact spindle.
+    g.fillStyle = '#17191e';
+    g.beginPath();
+    g.arc(0, 0, rw * 0.99, 0, Math.PI * 2);
+    g.fill();
     if (own) {
       // The wheel the car came on (a new tyre or a fixed rim looks the same as the other wheels: the owner, 2026-10-16)
       const o = own(look, rw);

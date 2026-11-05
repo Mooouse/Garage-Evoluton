@@ -361,7 +361,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
         g.fill();
         g.save();
         g.beginPath();
-        g.arc(0, 0, r * 0.945, 0, Math.PI * 2);
+        g.arc(0, 0, r * 0.925, 0, Math.PI * 2);
         g.clip();
         g.drawImage(own, -d / 2, -d / 2, d, d);
         g.restore();

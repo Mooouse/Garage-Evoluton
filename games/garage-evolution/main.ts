@@ -115,7 +115,7 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
   const found = () => new Set(Object.keys(save.album));
   function makeCar(): Car {
     const r = () => host.rng.random();
-    if (!save.stats.restored && !save.lifeCars && save.prestige === 0) return newCar(r, { garage: 1, first: true, model: 'glide', serial: () => 1 });
+    if (!save.stats.restored && !save.lifeCars && save.prestige === 0) return newCar(r, { garage: 1, first: true, model: 'aero', serial: () => 1 });
     // A new player meets the rare car of the day in the first session, on its own (in two 15-minute sessions it never
     // came: the designer, 1.5.0) — its card then shows tomorrow's
     if (!seenBefore && save.lifeCars === FIRST_DAILY_AT && save.prestige === 0 && !dailyCar(save, dayKey()).done) {

@@ -1396,8 +1396,8 @@ const SIDE_DOCK = new Set(['orbiter', 'blizzard', 'arrowx', 'skyracer', 'scout',
 
 // Only the owner's pictures are vehicles on the Earth (2026-10-19); the spacecraft stay drawn in the space garages
 export const MODELS: readonly Model[] = [
-  ...DRAWN.filter((m) => PAINTED[m.id] || m.cls === 'space').map((m) => (PAINTED[m.id] ? paintedModel(m, PAINTED[m.id]) : SIDE_DOCK.has(m.id) ? { ...m, dock: 'side' as const } : m)),
-  ...PHOTOS.filter((m) => PAINTED[m.id]).map((m) => ({ ...paintedModel(m, PAINTED[m.id]), drawnShape: undefined, work: PHOTO_WORK })),
+  ...DRAWN.filter((m) => (PAINTED[m.id]?.img.w ?? 0) >= 900 || m.cls === 'space').map((m) => (PAINTED[m.id] ? paintedModel(m, PAINTED[m.id]) : SIDE_DOCK.has(m.id) ? { ...m, dock: 'side' as const } : m)),
+  ...PHOTOS.filter((m) => (PAINTED[m.id]?.img.w ?? 0) >= 900).map((m) => ({ ...paintedModel(m, PAINTED[m.id]), drawnShape: undefined, work: PHOTO_WORK })),
 ];
 
 export const MODEL = new Map(MODELS.map((m) => [m.id, m]));

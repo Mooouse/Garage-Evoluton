@@ -1,3 +1,5 @@
+import { PAINTED } from './painted/meta.ts';
+
 // Every number of the game's balance in one place: Basic Launch data changes this file, not the code.
 // The anchor (game.yaml balance.anchor) is income a minute: a car's work and payout, the tools' strength and the robots'
 // rate all convert into it. Inputs (set by hand) say so; everything else is derived from them.
@@ -114,7 +116,14 @@ export const SITES: readonly Site[] = [
   { id: 'saturn', tier: 6, price: 2e13, lon: 0, lat: 0, space: 'saturn', look: 0, mult: 9, prestige: 1, pool: ['skyracer', 'cruiser'] },
   { id: 'uranus', tier: 6, price: 4e13, lon: 0, lat: 0, space: 'uranus', look: 1, mult: 13, prestige: 1, pool: ['ion', 'icebreaker'] },
   { id: 'neptune', tier: 6, price: 8e13, lon: 0, lat: 0, space: 'neptune', look: 0, mult: 18, prestige: 1, pool: ['nomad', 'trident'] },
-];
+].map((site): Site => {
+  if (site.space) return site; // Spacecraft remain as designed.
+  const hd = site.pool.filter((id) => (PAINTED[id]?.img.w ?? 0) >= 900);
+  // The industrial garage has no full-resolution heavy-vehicle originals yet.
+  // Keep its progression functional with four existing HD cars; never serve a
+  // low-resolution placeholder, even for a daily special.
+  return { ...site, pool: hd.length ? hd : ['scissor', 'storm', 'zephyrus', 'viola'] };
+});
 export const SITE = new Map(SITES.map((x) => [x.id, x]));
 
 /**

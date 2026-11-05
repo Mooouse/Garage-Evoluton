@@ -325,6 +325,12 @@ export function createScene(g: Ctx) {
       gx.save();
       gx.translate(x + wx, y + wy + (1 - k) * r);
       gx.rotate(spin * (s.wheels[0].r / s.wheels[i].r));
+      // Guard against transparency holes in photographed wheel cut-outs.
+      // The garage wall must never be visible through tyre rubber.
+      gx.fillStyle = '#17191e';
+      gx.beginPath();
+      gx.arc(0, 0, r * k * 0.99, 0, Math.PI * 2);
+      gx.fill();
       gx.drawImage(c, (-cw * k) / 2, (-cw * k) / 2, cw * k, cw * k);
       gx.restore();
       wheelLight(gx, x + wx, y + wy + (1 - k) * r, r * k, lx, ly, true);
