@@ -286,7 +286,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
       g.beginPath();
       // Importer removes a low tyre crescent as well as the circular tyre.
       // Cover that whole transparent opening, not just its upper half.
-      g.ellipse(cx, cy + r * 0.18, r * 1.15, r * 1.13, 0, 0, Math.PI * 2);
+      g.ellipse(cx, cy - r * 0.015, r * 1.13, r * 1.11, 0, 0, Math.PI * 2);
       g.fill();
     }
     g.restore();

@@ -11,8 +11,8 @@ const runtimeSource = await readFile(resolve(root, 'game.js'), 'utf8');
 // The body PNGs already have wheel cutouts; no extra runtime cutting.
 const bodySrc = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
 if (!bodySrc.includes('const body = make((g) => drawCleanBody(g, true));') ||
-    !bodySrc.includes('g.ellipse(cx, cy + r * 0.18, r * 1.15, r * 1.13') ||
-    !runtimeSource.includes('ctx.ellipse(cx,cy+rr*.18,rr*1.15,rr*1.13') ||
+    !bodySrc.includes('g.ellipse(cx, cy - r * 0.015, r * 1.13, r * 1.11') ||
+    !runtimeSource.includes('ctx.ellipse(cx,cy-rr*.015,rr*1.13,rr*1.11') ||
     !runtimeSource.includes('b=_(e=>cleanBody(e,!0))') ||
     runtimeSource.includes('bodyForMissingWheels:bodyForMissing')) {
   throw Error('Factory wheel wells must be opaque without cutting the source art twice');
