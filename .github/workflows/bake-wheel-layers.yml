@@ -1,0 +1,55 @@
+name: Build calibrated wheel layers (pilot)
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'games/garage-evolution/wheel-calibration.json'
+      - 'tools/paint-cars/bake-wheel-layers.py'
+      - '.github/workflows/bake-wheel-layers.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: garage-wheel-calibration
+  cancel-in-progress: true
+
+jobs:
+  bake:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install image processing tools
+        run: python -m pip install --disable-pip-version-check pillow numpy
+      - name: Bake five cars and proof images
+        run: python tools/paint-cars/bake-wheel-layers.py --proof
+      - name: Verify every output and commit prepared assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          import json
+          from PIL import Image
+          root = Path('games/garage-evolution/painted')
+          pilot = json.loads(Path('games/garage-evolution/wheel-calibration.json').read_text())['models']
+          for id in pilot:
+              for name in (f'{id}.webp', f'{id}-w0.webp', f'{id}-w1.webp', f'proof-{id}.webp'):
+                  path = root / 'prepared' / name
+                  assert path.exists(), f'Missing {path}'
+                  with Image.open(path) as im:
+                      im.verify()
+          print('PASS: all 20 calibrated pilot assets verified')
+          PY
+          git add games/garage-evolution/painted/prepared
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Bake five calibrated factory cars into independent body and wheel sprites"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
