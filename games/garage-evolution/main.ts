@@ -173,17 +173,36 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
     }
     if (roll) scene.setCar(c);
     else scene.showCar(c);
-    // Its pictures in a later chapter, still on their way: a silhouette now, painted the moment they are decoded
+    // Never let players restore a featureless raster silhouette with empty
+    // wheel arches while asynchronous factory photographs are decoding.
+    // Keep input covered until body AND each factory wheel are ready.
+    document.getElementById('garage-art-loading')?.remove();
     if (c.model.painted && !carLoaded(c.model.id)) {
-      // Repaint as soon as the main body arrives; a missing wheel must not
-      // prevent the vehicle itself from appearing.
-      const ids = [c.model.id, ...carPictures(c.model.id).filter((id) => id !== c.model.id)];
-      for (const id of ids)
-        void pictures.ready([id]).then(() => {
-          if (car !== c) return;
-          scene.recolor();
+      const overlay = document.createElement('div');
+      overlay.id = 'garage-art-loading';
+      overlay.setAttribute('role', 'status');
+      overlay.style.cssText =
+        'position:fixed;inset:0;z-index:2147483600;display:grid;place-items:center;' +
+        'background:#121722;color:#e9ebf7;font:700 20px system-ui,sans-serif;text-align:center;' +
+        'padding:24px;box-sizing:border-box';
+      overlay.textContent = (navigator.language || '').startsWith('ru')
+        ? 'Загружаем кузов и колёса автомобиля…'
+        : 'Loading factory car artwork…';
+      document.body.append(overlay);
+      void carReady(c.model.id).then(() => {
+        if (car !== c) { overlay.remove(); return; }
+        scene.recolor();
+        if (carLoaded(c.model.id)) {
+          overlay.remove();
           wake();
-        }).catch((error) => console.warn('[garage] sprite unavailable:', id, error));
+        } else {
+          overlay.textContent = (navigator.language || '').startsWith('ru')
+            ? 'Не удалось загрузить автомобиль. Нажмите, чтобы повторить.'
+            : 'Could not load car artwork. Tap to retry.';
+          overlay.style.cursor = 'pointer';
+          overlay.onclick = () => location.reload();
+        }
+      });
     }
     // A spacecraft comes down on its engines
     if (roll && flies(c)) sound.ignite(FLOW.arriveSec, 0.22);
