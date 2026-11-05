@@ -178,6 +178,55 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   await page.screenshot({path:'/tmp/garage-'+viewport.width+'.png',fullPage:true});
   await context.close();
 }
+// Independent wheel studio and baked-texture regression checks.
+try {
+  const editor = await browser.newPage({viewport:{width:1360,height:850}});
+  const editorErrors = [];
+  editor.on('pageerror', e => editorErrors.push(e.message));
+  await editor.goto('http://127.0.0.1:' + port + '/wheel-editor.html',
+                    {waitUntil:'domcontentloaded'});
+  await editor.locator('#car option').first().waitFor({timeout:20000});
+  await editor.waitForFunction(() => document.getElementById('modelName')?.textContent.includes('Aero'));
+  await editor.locator('#view').selectOption('removed');
+  await editor.locator('#car').selectOption('blueline');
+  await editor.waitForFunction(() => document.getElementById('modelName')?.textContent.includes('Blue Line'),
+                               {timeout:20000});
+  const result = await editor.evaluate(async () => {
+    const names=['aero','gamin','bubble','blueline','amethyst'];
+    const meta=await fetch('/games/garage-evolution/painted/meta.json').then(r=>r.json());
+    const checks=[];
+    for(const id of names) {
+      const prepared='/games/garage-evolution/painted/prepared/';
+      const photo=await createImageBitmap(await (await fetch(prepared+id+'.webp')).blob());
+      const c=document.createElement('canvas');c.width=photo.width;c.height=photo.height;
+      const g=c.getContext('2d',{willReadFrequently:true});g.drawImage(photo,0,0);
+      const alpha=meta[id].wheels.map(wh => {
+        const x=Math.round(wh.x*photo.width),y=Math.round(photo.height-(wh.r+(wh.lift||0))*photo.width);
+        return g.getImageData(x,y,1,1).data[3];
+      });
+      const tyres=[];
+      for(let i=0;i<2;i++){
+        const bmp=await createImageBitmap(await (await fetch(prepared+id+'-w'+i+'.webp')).blob());
+        const tc=document.createElement('canvas');tc.width=bmp.width;tc.height=bmp.height;
+        const tg=tc.getContext('2d',{willReadFrequently:true});tg.drawImage(bmp,0,0);
+        tyres.push(tg.getImageData(Math.floor(bmp.width/2),Math.floor(bmp.height/2),1,1).data[3]);
+        bmp.close();
+      }
+      checks.push({id,bodyCenters:alpha,wheelCenters:tyres});
+      photo.close();
+    }
+    return checks;
+  });
+  if(result.some(item=>item.bodyCenters.some(a=>a>20)||item.wheelCenters.some(a=>a<220)))
+    throw Error('Invalid alpha at calibrated body/wheel centres: '+JSON.stringify(result));
+  if(editorErrors.length) throw Error('Wheel editor JS: '+editorErrors.join('; '));
+  console.log('CALIBRATED WHEEL STUDIO PASS '+JSON.stringify(result));
+  console.log('WHEEL STUDIO JPEG BASE64 '+(await editor.screenshot({type:'jpeg',quality:40})).toString('base64'));
+  await editor.close();
+} catch (e) {
+  failures++;
+  console.error('WHEEL STUDIO FAILED '+String(e).slice(0,2000));
+}
 await browser.close();
 server.close();
 if(failures) process.exitCode=1;
