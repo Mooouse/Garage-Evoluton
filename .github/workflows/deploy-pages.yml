@@ -5,6 +5,8 @@ on:
     paths:
       - '.github/workflows/deploy-pages.yml'
       - 'index.html'
+      - 'wheel-editor.html'
+      - 'games/garage-evolution/wheel-calibration.json'
       - 'game.js'
       - 'games/garage-evolution/painted/**'
       - 'tools/paint-cars/rebuild-factory-body.py'
@@ -53,7 +55,8 @@ jobs:
           test -f index.html
           test -f games/garage-evolution/painted/aero.webp
           mkdir -p _site/games/garage-evolution
-          cp index.html game.js _site/
+          cp index.html game.js wheel-editor.html _site/
+          cp games/garage-evolution/wheel-calibration.json _site/games/garage-evolution/
           cp -a games/garage-evolution/painted _site/games/garage-evolution/
           touch _site/.nojekyll
           python3 - <<'PY'
