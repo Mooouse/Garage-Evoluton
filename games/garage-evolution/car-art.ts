@@ -9,7 +9,6 @@ import type { Variant } from './data.ts';
 import { bounds, type Detail, type Model, type Pt, type Thruster, type VehicleShape, type Wheel } from './models.ts';
 import { PAINTED } from './painted/meta.ts';
 import { paintedBody, paintedImg } from './painted-art.ts';
-import { alignedFactoryWheel } from './factory-wheel.ts';
 
 export type Ctx = CanvasRenderingContext2D;
 
@@ -322,7 +321,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
         const d = 2 * r * 1.065;
         g.imageSmoothingQuality = 'high';
         g.save();
-        g.drawImage(alignedFactoryWheel(own), -d / 2, -d / 2, d, d);
+        g.drawImage(own, -d / 2, -d / 2, d, d);
         // A bent rim stays on its axle (off it, it read as a wheel out of centre: the owner, 2026-10-17): a kink in the lip
         if (look === 'bent') bentKink(g, r);
         g.restore();
