@@ -1,0 +1,57 @@
+name: Regenerate full-resolution factory tyres
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/paint-cars/reextract-hd-tyres.py'
+      - '.github/workflows/reextract-hd-tyres.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: write
+concurrency:
+  group: garage-reextract-tyres
+  cancel-in-progress: true
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install --quiet Pillow numpy
+      - name: Restore original factory wheel pixels and opaque tyres
+        run: python tools/paint-cars/reextract-hd-tyres.py
+      - name: Check graphics and game
+        run: |
+          node --check game.js
+          python - <<'PY'
+          from pathlib import Path
+          from PIL import Image
+          p = Path('games/garage-evolution/painted')
+          items = list(p.glob('*-w*.webp'))
+          assert len(items) >= 120, len(items)
+          for f in items:
+              with Image.open(f) as image:
+                  assert image.width >= 140, f.name
+                  assert image.width == image.height, f.name
+                  assert image.convert('RGBA').getpixel((image.width//2,image.height//2))[3] == 255, f.name
+          print(f'Validated {len(items)} native factory wheel textures')
+          PY
+      - name: Commit regenerated full-resolution tyre textures
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add games/garage-evolution/painted/*-w*.webp
+          if ! git diff --cached --quiet; then
+            git commit -m "Rebuild original wheel textures without transparent tyre holes"
+            git push origin HEAD:main
+          fi
+      - name: Publish and smoke test
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy-pages.yml --ref main
+          gh workflow run browser-smoke.yml --ref main
