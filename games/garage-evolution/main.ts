@@ -191,7 +191,7 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
       document.body.append(overlay);
       void carReady(c.model.id).then(() => {
         if (car !== c) { overlay.remove(); return; }
-        scene.recolor();
+        scene.recolor(true);
         if (carLoaded(c.model.id)) {
           overlay.remove();
           wake();
