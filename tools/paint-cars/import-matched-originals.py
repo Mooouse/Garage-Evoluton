@@ -24,6 +24,38 @@ PARTS = ROOT / '.import/hd-candidates'
 REPORT_PATH = PAINT / 'original-match-report.json'
 IMPORTER_PATH = ROOT / 'tools/paint-cars/import-user-originals.py'
 
+# Additional candidates verified by side-by-side comparison of actual car silhouettes,
+# rooflines, headlamps, door seams, body shape, and rear lights against the game.
+# Entries with merely similar colours but different models are intentionally excluded.
+VISUALLY_REVIEWED = {
+    'highwing': 'car_034.webp',
+    'bubble': 'car_146.webp',
+    'sledge': 'car_131.webp',
+    'skyscraper': 'car_149.webp',
+    'dusk': 'car_052.webp',
+    'feather': 'car_101.webp',
+    'pounce': 'car_031.webp',
+    'mulberry': 'car_061.webp',
+    'boxer': 'car_063.webp',
+    'aero': 'car_026.webp',
+    'bellaotto': 'car_130.webp',
+    'swiftarrow': 'car_004.webp',
+    'senator': 'car_029.webp',
+    'sovereign': 'car_005.webp',
+    'thunderfour': 'car_072.webp',
+    'serpent': 'car_001.webp',
+    'emerald': 'car_085.webp',
+    'turini': 'car_137.webp',
+    'prowler': 'car_119.webp',
+    'viaggio': 'car_025.webp',
+    'kabuki': 'car_009.webp',
+    'diamond': 'car_050.webp',
+    'hanok': 'car_135.webp',
+    'zeppelin': 'car_105.webp',
+    'papaya': 'car_099.webp',
+    'amethyst': 'car_053.webp',
+}
+
 
 def load_importer():
     spec = importlib.util.spec_from_file_location('garage_full_res_importer', IMPORTER_PATH)
@@ -38,25 +70,30 @@ def validate_report(report):
         raise RuntimeError('The matching report was generated for a different source pack')
     matches = {}
     seen_art = set()
+    machine_verified = 0
     for model, entry in report['models'].items():
-        if not entry.get('confident'):
+        if not entry.get('confident') and model not in VISUALLY_REVIEWED:
             continue
         top = entry.get('top', [])
         if len(top) < 2:
             raise RuntimeError(f'{model}: cannot establish unique original match')
         best, runner_up = top[:2]
-        if not (best['score'] < 16 and runner_up['score'] - best['score'] > 8 and
-                runner_up['score'] / max(1, best['score']) > 1.55):
-            raise RuntimeError(f'{model}: confidence criteria were changed')
+        if entry.get('confident'):
+            if not (best['score'] < 16 and runner_up['score'] - best['score'] > 8 and
+                    runner_up['score'] / max(1, best['score']) > 1.55):
+                raise RuntimeError(f'{model}: confidence criteria were changed')
+            machine_verified += 1
+        elif best['file'] != VISUALLY_REVIEWED[model]:
+            raise RuntimeError(f'{model}: reviewed original changed since inspection')
         original_file = best['file']
         if original_file in seen_art:
             raise RuntimeError(f'{original_file}: same drawing mapped to multiple cars')
         seen_art.add(original_file)
         matches[model] = original_file
-    if len(matches) != report['confident_count']:
+    if machine_verified != report['confident_count']:
         raise RuntimeError('Confidence report count does not match its entries')
-    if len(matches) < 13:
-        raise RuntimeError('The original 13 verified matches are missing')
+    if len(matches) != machine_verified + len(VISUALLY_REVIEWED):
+        raise RuntimeError('Visual review mapping does not match candidate report')
     return matches
 
 
