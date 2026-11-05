@@ -185,9 +185,33 @@ async function loadCar() {
     im.src="games/garage-evolution/painted/originals/"+id+".png";
     await im.decode();
     if(current!==id)return;
-    source=im; selected=Number($("axle").value);
+    // The transparent original PNG has large studio margins. Mirror the
+    // offline layer baker's tight alpha crop and published metadata geometry:
+    // without this the editor shows holes 100px below the physical wheels.
+    const raw=document.createElement("canvas");
+    raw.width=im.naturalWidth; raw.height=im.naturalHeight;
+    const rg=raw.getContext("2d",{willReadFrequently:true});rg.drawImage(im,0,0);
+    const pixels=rg.getImageData(0,0,raw.width,raw.height).data;
+    let x0=raw.width,y0=raw.height,x1=-1,y1=-1;
+    for(let y=0;y<raw.height;y++)for(let x=0;x<raw.width;x++){
+      if(pixels[(y*raw.width+x)*4+3]>100){
+        x0=Math.min(x0,x);y0=Math.min(y0,y);x1=Math.max(x1,x);y1=Math.max(y1,y);
+      }
+    }
+    if(x1<x0 || y1<y0) throw Error("Исходник не содержит автомобиль");
+    const bw=x1-x0+1,bh=y1-y0+1;
+    const expected=meta[id].img;
+    if(Math.abs(bw-expected.w)>8) throw Error("Геометрия оригинала не совпадает с метаданными: "+bw+" / "+expected.w);
+    const painted=document.createElement("canvas");
+    painted.width=expected.w; painted.height=expected.h;
+    const scaledH=Math.round(bh*expected.w/bw);
+    if(scaledH+4<painted.height)throw Error("Исходное изображение короче ожидаемого");
+    painted.getContext("2d").drawImage(raw,x0,y0,bw,bh,0,0,expected.w,scaledH);
+    // Treat the cropped canvas as the actual native-resolution image.
+    painted.naturalWidth=painted.width;painted.naturalHeight=painted.height;
+    source=painted; selected=Number($("axle").value);
     $("modelName").textContent=CAR_NAMES[id]+" · "+id;
-    $("spec").textContent=im.naturalWidth+"×"+im.naturalHeight+" · 2 заводских колеса";
+    $("spec").textContent=painted.width+"×"+painted.height+" · 2 заводских колеса";
     refreshSliders(); paint(); notify("Оригинал загружен. Редактирование включено.");
   }catch(e){ notify("Ошибка загрузки оригинального PNG: "+e.message); }
   finally{ if(current===id)$("load").hidden=true; }
