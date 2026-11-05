@@ -5,6 +5,9 @@ on:
     paths:
       - 'game.js'
       - 'index.html'
+      - 'wheel-editor.html'
+      - 'games/garage-evolution/wheel-calibration.json'
+      - 'games/garage-evolution/painted/prepared/**'
       - 'scripts/browser-smoke.mjs'
       - '.github/workflows/browser-smoke.yml'
   workflow_dispatch:
