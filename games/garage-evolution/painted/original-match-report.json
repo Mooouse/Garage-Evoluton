@@ -1,0 +1,2408 @@
+{
+  "source_archive_sha256": "1a50cdc90cb7ecc75a36cccf47eea4a3f37adda6bf2ce5b1d2d63709c1597f95",
+  "candidate_count": 150,
+  "models": {
+    "aero": {
+      "confident": false,
+      "top": [
+        {
+          "score": 20.38,
+          "file": "car_026.webp",
+          "source_name": "image-gen-10(6).png"
+        },
+        {
+          "score": 39.02,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 41.93,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 43.03,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        },
+        {
+          "score": 44.05,
+          "file": "car_085.webp",
+          "source_name": "image-gen-5(5).png"
+        }
+      ]
+    },
+    "amethyst": {
+      "confident": false,
+      "top": [
+        {
+          "score": 47.66,
+          "file": "car_053.webp",
+          "source_name": "image-gen-3(20261017-181326).png"
+        },
+        {
+          "score": 50.79,
+          "file": "car_144.webp",
+          "source_name": "image-gen-9(20261017-233434).png"
+        },
+        {
+          "score": 52.13,
+          "file": "car_096.webp",
+          "source_name": "image-gen-6(20261017-232256).png"
+        },
+        {
+          "score": 52.86,
+          "file": "car_054.webp",
+          "source_name": "image-gen-3(20261017-222007).png"
+        },
+        {
+          "score": 53.42,
+          "file": "car_082.webp",
+          "source_name": "image-gen-5(20261017-232601).png"
+        }
+      ]
+    },
+    "anniversary": {
+      "confident": false,
+      "top": [
+        {
+          "score": 40.15,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 43.72,
+          "file": "car_051.webp",
+          "source_name": "image-gen-3(20261017-164627).png"
+        },
+        {
+          "score": 44.64,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 44.66,
+          "file": "car_037.webp",
+          "source_name": "image-gen-2(20261017-180929).png"
+        },
+        {
+          "score": 45.39,
+          "file": "car_072.webp",
+          "source_name": "image-gen-4(7).png"
+        }
+      ]
+    },
+    "bellaotto": {
+      "confident": false,
+      "top": [
+        {
+          "score": 20.6,
+          "file": "car_130.webp",
+          "source_name": "image-gen-8(5).png"
+        },
+        {
+          "score": 36.64,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        },
+        {
+          "score": 39.13,
+          "file": "car_080.webp",
+          "source_name": "image-gen-5(20261017-231612).png"
+        },
+        {
+          "score": 40.74,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 43.73,
+          "file": "car_001.webp",
+          "source_name": "image-gen-1(20261017-161948).png"
+        }
+      ]
+    },
+    "bigwing": {
+      "confident": false,
+      "top": [
+        {
+          "score": 45.71,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 54.33,
+          "file": "car_132.webp",
+          "source_name": "image-gen-8(7).png"
+        },
+        {
+          "score": 54.6,
+          "file": "car_030.webp",
+          "source_name": "image-gen-2(20261017-161653).png"
+        },
+        {
+          "score": 56.59,
+          "file": "car_002.webp",
+          "source_name": "image-gen-1(20261017-162727).png"
+        },
+        {
+          "score": 56.66,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        }
+      ]
+    },
+    "blade": {
+      "confident": false,
+      "top": [
+        {
+          "score": 60.21,
+          "file": "car_000.webp",
+          "source_name": "image-gen-1(20261017-161649).png"
+        },
+        {
+          "score": 64.93,
+          "file": "car_003.webp",
+          "source_name": "image-gen-1(20261017-163120).png"
+        },
+        {
+          "score": 67.62,
+          "file": "car_006.webp",
+          "source_name": "image-gen-1(20261017-164620).png"
+        },
+        {
+          "score": 68.11,
+          "file": "car_019.webp",
+          "source_name": "image-gen-10(20261017-222043).png"
+        },
+        {
+          "score": 70.28,
+          "file": "car_120.webp",
+          "source_name": "image-gen-8(10).png"
+        }
+      ]
+    },
+    "boxer": {
+      "confident": false,
+      "top": [
+        {
+          "score": 18.97,
+          "file": "car_063.webp",
+          "source_name": "image-gen-4(20261017-180938).png"
+        },
+        {
+          "score": 37.35,
+          "file": "car_103.webp",
+          "source_name": "image-gen-6(8).png"
+        },
+        {
+          "score": 39.13,
+          "file": "car_137.webp",
+          "source_name": "image-gen-9(20261017-180959).png"
+        },
+        {
+          "score": 39.91,
+          "file": "car_095.webp",
+          "source_name": "image-gen-6(20261017-231616).png"
+        },
+        {
+          "score": 42.74,
+          "file": "car_136.webp",
+          "source_name": "image-gen-9(20261017-164652).png"
+        }
+      ]
+    },
+    "bubble": {
+      "confident": false,
+      "top": [
+        {
+          "score": 16.26,
+          "file": "car_146.webp",
+          "source_name": "image-gen-9(6).png"
+        },
+        {
+          "score": 45.78,
+          "file": "car_011.webp",
+          "source_name": "image-gen-1(20261017-232234).png"
+        },
+        {
+          "score": 46.65,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 48.64,
+          "file": "car_131.webp",
+          "source_name": "image-gen-8(6).png"
+        },
+        {
+          "score": 53.41,
+          "file": "car_098.webp",
+          "source_name": "image-gen-6(20261017-233414).png"
+        }
+      ]
+    },
+    "capsule": {
+      "confident": false,
+      "top": [
+        {
+          "score": 41.73,
+          "file": "car_067.webp",
+          "source_name": "image-gen-4(20261017-232247).png"
+        },
+        {
+          "score": 48.9,
+          "file": "car_041.webp",
+          "source_name": "image-gen-2(20261017-232239).png"
+        },
+        {
+          "score": 70.6,
+          "file": "car_090.webp",
+          "source_name": "image-gen-6(10).png"
+        },
+        {
+          "score": 70.7,
+          "file": "car_076.webp",
+          "source_name": "image-gen-5(20261017-164635).png"
+        },
+        {
+          "score": 70.88,
+          "file": "car_140.webp",
+          "source_name": "image-gen-9(20261017-231629).png"
+        }
+      ]
+    },
+    "centreseat": {
+      "confident": false,
+      "top": [
+        {
+          "score": 46.33,
+          "file": "car_074.webp",
+          "source_name": "image-gen-4(9).png"
+        },
+        {
+          "score": 47.0,
+          "file": "car_079.webp",
+          "source_name": "image-gen-5(20261017-222017).png"
+        },
+        {
+          "score": 49.36,
+          "file": "car_099.webp",
+          "source_name": "image-gen-6(20261017-233418).png"
+        },
+        {
+          "score": 49.93,
+          "file": "car_078.webp",
+          "source_name": "image-gen-5(20261017-181334).png"
+        },
+        {
+          "score": 51.7,
+          "file": "car_109.webp",
+          "source_name": "image-gen-7(20261017-222027).png"
+        }
+      ]
+    },
+    "chancellor": {
+      "confident": false,
+      "top": [
+        {
+          "score": 49.35,
+          "file": "car_141.webp",
+          "source_name": "image-gen-9(20261017-232309).png"
+        },
+        {
+          "score": 51.39,
+          "file": "car_081.webp",
+          "source_name": "image-gen-5(20261017-232251).png"
+        },
+        {
+          "score": 52.85,
+          "file": "car_118.webp",
+          "source_name": "image-gen-7(8).png"
+        },
+        {
+          "score": 53.21,
+          "file": "car_120.webp",
+          "source_name": "image-gen-8(10).png"
+        },
+        {
+          "score": 55.25,
+          "file": "car_056.webp",
+          "source_name": "image-gen-3(20261017-232243).png"
+        }
+      ]
+    },
+    "diamond": {
+      "confident": false,
+      "top": [
+        {
+          "score": 29.63,
+          "file": "car_050.webp",
+          "source_name": "image-gen-3(20261017-164033).png"
+        },
+        {
+          "score": 46.76,
+          "file": "car_090.webp",
+          "source_name": "image-gen-6(10).png"
+        },
+        {
+          "score": 51.6,
+          "file": "car_041.webp",
+          "source_name": "image-gen-2(20261017-232239).png"
+        },
+        {
+          "score": 57.45,
+          "file": "car_067.webp",
+          "source_name": "image-gen-4(20261017-232247).png"
+        },
+        {
+          "score": 59.61,
+          "file": "car_092.webp",
+          "source_name": "image-gen-6(20261017-180947).png"
+        }
+      ]
+    },
+    "dune": {
+      "confident": false,
+      "top": [
+        {
+          "score": 57.07,
+          "file": "car_045.webp",
+          "source_name": "image-gen-3(20261017-161656).png"
+        },
+        {
+          "score": 57.28,
+          "file": "car_036.webp",
+          "source_name": "image-gen-2(20261017-164623).png"
+        },
+        {
+          "score": 57.96,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 60.82,
+          "file": "car_030.webp",
+          "source_name": "image-gen-2(20261017-161653).png"
+        },
+        {
+          "score": 61.55,
+          "file": "car_132.webp",
+          "source_name": "image-gen-8(7).png"
+        }
+      ]
+    },
+    "dusk": {
+      "confident": false,
+      "top": [
+        {
+          "score": 17.27,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 34.93,
+          "file": "car_051.webp",
+          "source_name": "image-gen-3(20261017-164627).png"
+        },
+        {
+          "score": 41.77,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        },
+        {
+          "score": 42.21,
+          "file": "car_088.webp",
+          "source_name": "image-gen-5(8).png"
+        },
+        {
+          "score": 42.45,
+          "file": "car_037.webp",
+          "source_name": "image-gen-2(20261017-180929).png"
+        }
+      ]
+    },
+    "emerald": {
+      "confident": false,
+      "top": [
+        {
+          "score": 24.97,
+          "file": "car_085.webp",
+          "source_name": "image-gen-5(5).png"
+        },
+        {
+          "score": 40.77,
+          "file": "car_098.webp",
+          "source_name": "image-gen-6(20261017-233414).png"
+        },
+        {
+          "score": 40.99,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 42.5,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 42.82,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        }
+      ]
+    },
+    "exec": {
+      "confident": false,
+      "top": [
+        {
+          "score": 48.19,
+          "file": "car_081.webp",
+          "source_name": "image-gen-5(20261017-232251).png"
+        },
+        {
+          "score": 51.85,
+          "file": "car_056.webp",
+          "source_name": "image-gen-3(20261017-232243).png"
+        },
+        {
+          "score": 52.67,
+          "file": "car_126.webp",
+          "source_name": "image-gen-8(20261017-232305).png"
+        },
+        {
+          "score": 54.44,
+          "file": "car_021.webp",
+          "source_name": "image-gen-10(20261017-232313).png"
+        },
+        {
+          "score": 55.03,
+          "file": "car_141.webp",
+          "source_name": "image-gen-9(20261017-232309).png"
+        }
+      ]
+    },
+    "fang": {
+      "confident": false,
+      "top": [
+        {
+          "score": 36.0,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 38.75,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        },
+        {
+          "score": 41.27,
+          "file": "car_080.webp",
+          "source_name": "image-gen-5(20261017-231612).png"
+        },
+        {
+          "score": 41.64,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 42.71,
+          "file": "car_093.webp",
+          "source_name": "image-gen-6(20261017-181338).png"
+        }
+      ]
+    },
+    "feather": {
+      "confident": false,
+      "top": [
+        {
+          "score": 17.61,
+          "file": "car_101.webp",
+          "source_name": "image-gen-6(6).png"
+        },
+        {
+          "score": 43.89,
+          "file": "car_048.webp",
+          "source_name": "image-gen-3(20261017-163124).png"
+        },
+        {
+          "score": 55.91,
+          "file": "car_066.webp",
+          "source_name": "image-gen-4(20261017-231608).png"
+        },
+        {
+          "score": 57.0,
+          "file": "car_074.webp",
+          "source_name": "image-gen-4(9).png"
+        },
+        {
+          "score": 57.0,
+          "file": "car_133.webp",
+          "source_name": "image-gen-8(8).png"
+        }
+      ]
+    },
+    "fieldking": {
+      "confident": false,
+      "top": [
+        {
+          "score": 46.33,
+          "file": "car_131.webp",
+          "source_name": "image-gen-8(6).png"
+        },
+        {
+          "score": 46.5,
+          "file": "car_058.webp",
+          "source_name": "image-gen-3(20261017-233400).png"
+        },
+        {
+          "score": 46.82,
+          "file": "car_111.webp",
+          "source_name": "image-gen-7(20261017-232300).png"
+        },
+        {
+          "score": 46.97,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 47.51,
+          "file": "car_083.webp",
+          "source_name": "image-gen-5(20261017-233409).png"
+        }
+      ]
+    },
+    "fjord": {
+      "confident": false,
+      "top": [
+        {
+          "score": 63.68,
+          "file": "car_055.webp",
+          "source_name": "image-gen-3(20261017-231603).png"
+        },
+        {
+          "score": 66.67,
+          "file": "car_020.webp",
+          "source_name": "image-gen-10(20261017-231634).png"
+        },
+        {
+          "score": 71.68,
+          "file": "car_070.webp",
+          "source_name": "image-gen-4(20261017-233408).png"
+        },
+        {
+          "score": 72.1,
+          "file": "car_018.webp",
+          "source_name": "image-gen-10(20261017-181354).png"
+        },
+        {
+          "score": 73.98,
+          "file": "car_068.webp",
+          "source_name": "image-gen-4(20261017-232557).png"
+        }
+      ]
+    },
+    "forty": {
+      "confident": false,
+      "top": [
+        {
+          "score": 69.68,
+          "file": "car_020.webp",
+          "source_name": "image-gen-10(20261017-231634).png"
+        },
+        {
+          "score": 72.18,
+          "file": "car_057.webp",
+          "source_name": "image-gen-3(20261017-232553).png"
+        },
+        {
+          "score": 74.39,
+          "file": "car_055.webp",
+          "source_name": "image-gen-3(20261017-231603).png"
+        },
+        {
+          "score": 75.41,
+          "file": "car_059.webp",
+          "source_name": "image-gen-3(20261017-233402).png"
+        },
+        {
+          "score": 75.56,
+          "file": "car_065.webp",
+          "source_name": "image-gen-4(20261017-222012).png"
+        }
+      ]
+    },
+    "fourfold": {
+      "confident": false,
+      "top": [
+        {
+          "score": 47.8,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 50.69,
+          "file": "car_132.webp",
+          "source_name": "image-gen-8(7).png"
+        },
+        {
+          "score": 50.93,
+          "file": "car_030.webp",
+          "source_name": "image-gen-2(20261017-161653).png"
+        },
+        {
+          "score": 51.01,
+          "file": "car_002.webp",
+          "source_name": "image-gen-1(20261017-162727).png"
+        },
+        {
+          "score": 52.04,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        }
+      ]
+    },
+    "gamin": {
+      "confident": true,
+      "top": [
+        {
+          "score": 11.63,
+          "file": "car_122.webp",
+          "source_name": "image-gen-8(20261017-180955).png"
+        },
+        {
+          "score": 57.75,
+          "file": "car_121.webp",
+          "source_name": "image-gen-8(20261017-164647).png"
+        },
+        {
+          "score": 57.77,
+          "file": "car_125.webp",
+          "source_name": "image-gen-8(20261017-231625).png"
+        },
+        {
+          "score": 58.12,
+          "file": "car_145.webp",
+          "source_name": "image-gen-9(5).png"
+        },
+        {
+          "score": 60.85,
+          "file": "car_001.webp",
+          "source_name": "image-gen-1(20261017-161948).png"
+        }
+      ]
+    },
+    "ghost": {
+      "confident": false,
+      "top": [
+        {
+          "score": 68.79,
+          "file": "car_065.webp",
+          "source_name": "image-gen-4(20261017-222012).png"
+        },
+        {
+          "score": 69.97,
+          "file": "car_055.webp",
+          "source_name": "image-gen-3(20261017-231603).png"
+        },
+        {
+          "score": 70.12,
+          "file": "car_020.webp",
+          "source_name": "image-gen-10(20261017-231634).png"
+        },
+        {
+          "score": 73.39,
+          "file": "car_064.webp",
+          "source_name": "image-gen-4(20261017-181330).png"
+        },
+        {
+          "score": 74.37,
+          "file": "car_042.webp",
+          "source_name": "image-gen-2(20261017-232548).png"
+        }
+      ]
+    },
+    "glide": {
+      "confident": false,
+      "top": [
+        {
+          "score": 49.63,
+          "file": "car_132.webp",
+          "source_name": "image-gen-8(7).png"
+        },
+        {
+          "score": 51.04,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 53.68,
+          "file": "car_045.webp",
+          "source_name": "image-gen-3(20261017-161656).png"
+        },
+        {
+          "score": 54.14,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        },
+        {
+          "score": 55.8,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        }
+      ]
+    },
+    "gremlin": {
+      "confident": true,
+      "top": [
+        {
+          "score": 9.65,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        },
+        {
+          "score": 49.87,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 54.16,
+          "file": "car_076.webp",
+          "source_name": "image-gen-5(20261017-164635).png"
+        },
+        {
+          "score": 56.11,
+          "file": "car_092.webp",
+          "source_name": "image-gen-6(20261017-180947).png"
+        },
+        {
+          "score": 57.03,
+          "file": "car_091.webp",
+          "source_name": "image-gen-6(20261017-164639).png"
+        }
+      ]
+    },
+    "hanok": {
+      "confident": false,
+      "top": [
+        {
+          "score": 30.11,
+          "file": "car_135.webp",
+          "source_name": "image-gen-9(10).png"
+        },
+        {
+          "score": 39.86,
+          "file": "car_035.webp",
+          "source_name": "image-gen-2(20261017-164029).png"
+        },
+        {
+          "score": 41.05,
+          "file": "car_134.webp",
+          "source_name": "image-gen-8(9).png"
+        },
+        {
+          "score": 41.51,
+          "file": "car_061.webp",
+          "source_name": "image-gen-4(20261017-164037).png"
+        },
+        {
+          "score": 43.54,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        }
+      ]
+    },
+    "hellhound": {
+      "confident": false,
+      "top": [
+        {
+          "score": 36.15,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 37.61,
+          "file": "car_093.webp",
+          "source_name": "image-gen-6(20261017-181338).png"
+        },
+        {
+          "score": 39.95,
+          "file": "car_037.webp",
+          "source_name": "image-gen-2(20261017-180929).png"
+        },
+        {
+          "score": 40.48,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 41.91,
+          "file": "car_079.webp",
+          "source_name": "image-gen-5(20261017-222017).png"
+        }
+      ]
+    },
+    "highlands": {
+      "confident": false,
+      "top": [
+        {
+          "score": 47.68,
+          "file": "car_041.webp",
+          "source_name": "image-gen-2(20261017-232239).png"
+        },
+        {
+          "score": 53.83,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        },
+        {
+          "score": 55.03,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 57.0,
+          "file": "car_067.webp",
+          "source_name": "image-gen-4(20261017-232247).png"
+        },
+        {
+          "score": 57.54,
+          "file": "car_076.webp",
+          "source_name": "image-gen-5(20261017-164635).png"
+        }
+      ]
+    },
+    "highwing": {
+      "confident": false,
+      "top": [
+        {
+          "score": 16.14,
+          "file": "car_034.webp",
+          "source_name": "image-gen-2(20261017-163556).png"
+        },
+        {
+          "score": 44.89,
+          "file": "car_058.webp",
+          "source_name": "image-gen-3(20261017-233400).png"
+        },
+        {
+          "score": 45.75,
+          "file": "car_043.webp",
+          "source_name": "image-gen-2(20261017-233356).png"
+        },
+        {
+          "score": 45.78,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 46.04,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        }
+      ]
+    },
+    "hornet": {
+      "confident": true,
+      "top": [
+        {
+          "score": 13.41,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 34.27,
+          "file": "car_093.webp",
+          "source_name": "image-gen-6(20261017-181338).png"
+        },
+        {
+          "score": 39.24,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 39.83,
+          "file": "car_094.webp",
+          "source_name": "image-gen-6(20261017-222022).png"
+        },
+        {
+          "score": 40.99,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        }
+      ]
+    },
+    "horseshoe": {
+      "confident": false,
+      "top": [
+        {
+          "score": 54.3,
+          "file": "car_007.webp",
+          "source_name": "image-gen-1(20261017-180926).png"
+        },
+        {
+          "score": 57.29,
+          "file": "car_096.webp",
+          "source_name": "image-gen-6(20261017-232256).png"
+        },
+        {
+          "score": 57.45,
+          "file": "car_148.webp",
+          "source_name": "image-gen-9(8).png"
+        },
+        {
+          "score": 59.23,
+          "file": "car_059.webp",
+          "source_name": "image-gen-3(20261017-233402).png"
+        },
+        {
+          "score": 59.39,
+          "file": "car_124.webp",
+          "source_name": "image-gen-8(20261017-222032).png"
+        }
+      ]
+    },
+    "ibrido": {
+      "confident": false,
+      "top": [
+        {
+          "score": 40.91,
+          "file": "car_014.webp",
+          "source_name": "image-gen-1(20261017-233351-1).png"
+        },
+        {
+          "score": 46.0,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 47.9,
+          "file": "car_088.webp",
+          "source_name": "image-gen-5(8).png"
+        },
+        {
+          "score": 48.64,
+          "file": "car_093.webp",
+          "source_name": "image-gen-6(20261017-181338).png"
+        },
+        {
+          "score": 48.85,
+          "file": "car_099.webp",
+          "source_name": "image-gen-6(20261017-233418).png"
+        }
+      ]
+    },
+    "ironbrick": {
+      "confident": false,
+      "top": [
+        {
+          "score": 57.57,
+          "file": "car_067.webp",
+          "source_name": "image-gen-4(20261017-232247).png"
+        },
+        {
+          "score": 63.13,
+          "file": "car_041.webp",
+          "source_name": "image-gen-2(20261017-232239).png"
+        },
+        {
+          "score": 69.96,
+          "file": "car_076.webp",
+          "source_name": "image-gen-5(20261017-164635).png"
+        },
+        {
+          "score": 70.74,
+          "file": "car_140.webp",
+          "source_name": "image-gen-9(20261017-231629).png"
+        },
+        {
+          "score": 74.99,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        }
+      ]
+    },
+    "kabuki": {
+      "confident": false,
+      "top": [
+        {
+          "score": 28.74,
+          "file": "car_009.webp",
+          "source_name": "image-gen-1(20261017-221957).png"
+        },
+        {
+          "score": 52.62,
+          "file": "car_019.webp",
+          "source_name": "image-gen-10(20261017-222043).png"
+        },
+        {
+          "score": 56.02,
+          "file": "car_028.webp",
+          "source_name": "image-gen-10(8).png"
+        },
+        {
+          "score": 58.97,
+          "file": "car_020.webp",
+          "source_name": "image-gen-10(20261017-231634).png"
+        },
+        {
+          "score": 61.86,
+          "file": "car_003.webp",
+          "source_name": "image-gen-1(20261017-163120).png"
+        }
+      ]
+    },
+    "longhorn": {
+      "confident": false,
+      "top": [
+        {
+          "score": 51.68,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 52.35,
+          "file": "car_080.webp",
+          "source_name": "image-gen-5(20261017-231612).png"
+        },
+        {
+          "score": 52.74,
+          "file": "car_046.webp",
+          "source_name": "image-gen-3(20261017-161953).png"
+        },
+        {
+          "score": 52.8,
+          "file": "car_001.webp",
+          "source_name": "image-gen-1(20261017-161948).png"
+        },
+        {
+          "score": 52.99,
+          "file": "car_145.webp",
+          "source_name": "image-gen-9(5).png"
+        }
+      ]
+    },
+    "longroof": {
+      "confident": true,
+      "top": [
+        {
+          "score": 12.32,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 42.21,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 42.29,
+          "file": "car_043.webp",
+          "source_name": "image-gen-2(20261017-233356).png"
+        },
+        {
+          "score": 43.15,
+          "file": "car_149.webp",
+          "source_name": "image-gen-9(9).png"
+        },
+        {
+          "score": 44.7,
+          "file": "car_098.webp",
+          "source_name": "image-gen-6(20261017-233414).png"
+        }
+      ]
+    },
+    "lumen": {
+      "confident": true,
+      "top": [
+        {
+          "score": 14.36,
+          "file": "car_007.webp",
+          "source_name": "image-gen-1(20261017-180926).png"
+        },
+        {
+          "score": 36.46,
+          "file": "car_095.webp",
+          "source_name": "image-gen-6(20261017-231616).png"
+        },
+        {
+          "score": 42.85,
+          "file": "car_137.webp",
+          "source_name": "image-gen-9(20261017-180959).png"
+        },
+        {
+          "score": 44.0,
+          "file": "car_025.webp",
+          "source_name": "image-gen-10(5).png"
+        },
+        {
+          "score": 44.31,
+          "file": "car_063.webp",
+          "source_name": "image-gen-4(20261017-180938).png"
+        }
+      ]
+    },
+    "mach": {
+      "confident": false,
+      "top": [
+        {
+          "score": 49.06,
+          "file": "car_007.webp",
+          "source_name": "image-gen-1(20261017-180926).png"
+        },
+        {
+          "score": 53.15,
+          "file": "car_148.webp",
+          "source_name": "image-gen-9(8).png"
+        },
+        {
+          "score": 54.51,
+          "file": "car_095.webp",
+          "source_name": "image-gen-6(20261017-231616).png"
+        },
+        {
+          "score": 54.66,
+          "file": "car_025.webp",
+          "source_name": "image-gen-10(5).png"
+        },
+        {
+          "score": 54.88,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        }
+      ]
+    },
+    "manta": {
+      "confident": false,
+      "top": [
+        {
+          "score": 49.98,
+          "file": "car_066.webp",
+          "source_name": "image-gen-4(20261017-231608).png"
+        },
+        {
+          "score": 51.06,
+          "file": "car_133.webp",
+          "source_name": "image-gen-8(8).png"
+        },
+        {
+          "score": 54.79,
+          "file": "car_048.webp",
+          "source_name": "image-gen-3(20261017-163124).png"
+        },
+        {
+          "score": 55.97,
+          "file": "car_109.webp",
+          "source_name": "image-gen-7(20261017-222027).png"
+        },
+        {
+          "score": 57.63,
+          "file": "car_074.webp",
+          "source_name": "image-gen-4(9).png"
+        }
+      ]
+    },
+    "midship": {
+      "confident": true,
+      "top": [
+        {
+          "score": 14.61,
+          "file": "car_109.webp",
+          "source_name": "image-gen-7(20261017-222027).png"
+        },
+        {
+          "score": 32.42,
+          "file": "car_066.webp",
+          "source_name": "image-gen-4(20261017-231608).png"
+        },
+        {
+          "score": 43.16,
+          "file": "car_108.webp",
+          "source_name": "image-gen-7(20261017-181341).png"
+        },
+        {
+          "score": 48.73,
+          "file": "car_133.webp",
+          "source_name": "image-gen-8(8).png"
+        },
+        {
+          "score": 51.32,
+          "file": "car_044.webp",
+          "source_name": "image-gen-2(20261017-233357).png"
+        }
+      ]
+    },
+    "missile": {
+      "confident": false,
+      "top": [
+        {
+          "score": 54.28,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 54.47,
+          "file": "car_045.webp",
+          "source_name": "image-gen-3(20261017-161656).png"
+        },
+        {
+          "score": 55.78,
+          "file": "car_120.webp",
+          "source_name": "image-gen-8(10).png"
+        },
+        {
+          "score": 55.8,
+          "file": "car_141.webp",
+          "source_name": "image-gen-9(20261017-232309).png"
+        },
+        {
+          "score": 56.21,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        }
+      ]
+    },
+    "monarch": {
+      "confident": true,
+      "top": [
+        {
+          "score": 15.57,
+          "file": "car_115.webp",
+          "source_name": "image-gen-7(5).png"
+        },
+        {
+          "score": 38.45,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        },
+        {
+          "score": 39.69,
+          "file": "car_004.webp",
+          "source_name": "image-gen-1(20261017-163552).png"
+        },
+        {
+          "score": 41.1,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 42.29,
+          "file": "car_113.webp",
+          "source_name": "image-gen-7(20261017-233418).png"
+        }
+      ]
+    },
+    "mulberry": {
+      "confident": false,
+      "top": [
+        {
+          "score": 18.25,
+          "file": "car_061.webp",
+          "source_name": "image-gen-4(20261017-164037).png"
+        },
+        {
+          "score": 38.46,
+          "file": "car_119.webp",
+          "source_name": "image-gen-7(9).png"
+        },
+        {
+          "score": 39.26,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        },
+        {
+          "score": 39.46,
+          "file": "car_004.webp",
+          "source_name": "image-gen-1(20261017-163552).png"
+        },
+        {
+          "score": 39.76,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        }
+      ]
+    },
+    "neon": {
+      "confident": false,
+      "top": [
+        {
+          "score": 57.9,
+          "file": "car_099.webp",
+          "source_name": "image-gen-6(20261017-233418).png"
+        },
+        {
+          "score": 59.09,
+          "file": "car_079.webp",
+          "source_name": "image-gen-5(20261017-222017).png"
+        },
+        {
+          "score": 59.97,
+          "file": "car_078.webp",
+          "source_name": "image-gen-5(20261017-181334).png"
+        },
+        {
+          "score": 60.49,
+          "file": "car_074.webp",
+          "source_name": "image-gen-4(9).png"
+        },
+        {
+          "score": 61.35,
+          "file": "car_109.webp",
+          "source_name": "image-gen-7(20261017-222027).png"
+        }
+      ]
+    },
+    "orchid": {
+      "confident": false,
+      "top": [
+        {
+          "score": 48.25,
+          "file": "car_053.webp",
+          "source_name": "image-gen-3(20261017-181326).png"
+        },
+        {
+          "score": 51.59,
+          "file": "car_144.webp",
+          "source_name": "image-gen-9(20261017-233434).png"
+        },
+        {
+          "score": 54.74,
+          "file": "car_054.webp",
+          "source_name": "image-gen-3(20261017-222007).png"
+        },
+        {
+          "score": 54.8,
+          "file": "car_096.webp",
+          "source_name": "image-gen-6(20261017-232256).png"
+        },
+        {
+          "score": 55.38,
+          "file": "car_082.webp",
+          "source_name": "image-gen-5(20261017-232601).png"
+        }
+      ]
+    },
+    "origami": {
+      "confident": false,
+      "top": [
+        {
+          "score": 44.38,
+          "file": "car_120.webp",
+          "source_name": "image-gen-8(10).png"
+        },
+        {
+          "score": 45.85,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 49.23,
+          "file": "car_045.webp",
+          "source_name": "image-gen-3(20261017-161656).png"
+        },
+        {
+          "score": 55.91,
+          "file": "car_132.webp",
+          "source_name": "image-gen-8(7).png"
+        },
+        {
+          "score": 56.79,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        }
+      ]
+    },
+    "papaya": {
+      "confident": false,
+      "top": [
+        {
+          "score": 43.69,
+          "file": "car_099.webp",
+          "source_name": "image-gen-6(20261017-233418).png"
+        },
+        {
+          "score": 45.76,
+          "file": "car_079.webp",
+          "source_name": "image-gen-5(20261017-222017).png"
+        },
+        {
+          "score": 52.78,
+          "file": "car_074.webp",
+          "source_name": "image-gen-4(9).png"
+        },
+        {
+          "score": 54.23,
+          "file": "car_078.webp",
+          "source_name": "image-gen-5(20261017-181334).png"
+        },
+        {
+          "score": 55.53,
+          "file": "car_014.webp",
+          "source_name": "image-gen-1(20261017-233351-1).png"
+        }
+      ]
+    },
+    "pounce": {
+      "confident": false,
+      "top": [
+        {
+          "score": 18.12,
+          "file": "car_031.webp",
+          "source_name": "image-gen-2(20261017-161951).png"
+        },
+        {
+          "score": 34.92,
+          "file": "car_080.webp",
+          "source_name": "image-gen-5(20261017-231612).png"
+        },
+        {
+          "score": 37.93,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        },
+        {
+          "score": 40.81,
+          "file": "car_040.webp",
+          "source_name": "image-gen-2(20261017-231559).png"
+        },
+        {
+          "score": 41.75,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        }
+      ]
+    },
+    "prowler": {
+      "confident": false,
+      "top": [
+        {
+          "score": 26.16,
+          "file": "car_119.webp",
+          "source_name": "image-gen-7(9).png"
+        },
+        {
+          "score": 38.74,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 38.82,
+          "file": "car_061.webp",
+          "source_name": "image-gen-4(20261017-164037).png"
+        },
+        {
+          "score": 38.93,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        },
+        {
+          "score": 40.97,
+          "file": "car_134.webp",
+          "source_name": "image-gen-8(9).png"
+        }
+      ]
+    },
+    "rallynine": {
+      "confident": false,
+      "top": [
+        {
+          "score": 43.58,
+          "file": "car_030.webp",
+          "source_name": "image-gen-2(20261017-161653).png"
+        },
+        {
+          "score": 45.59,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 49.75,
+          "file": "car_002.webp",
+          "source_name": "image-gen-1(20261017-162727).png"
+        },
+        {
+          "score": 50.89,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        },
+        {
+          "score": 53.42,
+          "file": "car_091.webp",
+          "source_name": "image-gen-6(20261017-164639).png"
+        }
+      ]
+    },
+    "raven": {
+      "confident": true,
+      "top": [
+        {
+          "score": 13.97,
+          "file": "car_017.webp",
+          "source_name": "image-gen-10(20261017-181003).png"
+        },
+        {
+          "score": 42.36,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 42.71,
+          "file": "car_128.webp",
+          "source_name": "image-gen-8(20261017-233423).png"
+        },
+        {
+          "score": 42.87,
+          "file": "car_084.webp",
+          "source_name": "image-gen-5(20261017-233413).png"
+        },
+        {
+          "score": 43.26,
+          "file": "car_144.webp",
+          "source_name": "image-gen-9(20261017-233434).png"
+        }
+      ]
+    },
+    "redline": {
+      "confident": false,
+      "top": [
+        {
+          "score": 49.19,
+          "file": "car_147.webp",
+          "source_name": "image-gen-9(7).png"
+        },
+        {
+          "score": 52.24,
+          "file": "car_041.webp",
+          "source_name": "image-gen-2(20261017-232239).png"
+        },
+        {
+          "score": 53.28,
+          "file": "car_090.webp",
+          "source_name": "image-gen-6(10).png"
+        },
+        {
+          "score": 53.5,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 53.98,
+          "file": "car_067.webp",
+          "source_name": "image-gen-4(20261017-232247).png"
+        }
+      ]
+    },
+    "rhino": {
+      "confident": false,
+      "top": [
+        {
+          "score": 43.72,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 45.56,
+          "file": "car_131.webp",
+          "source_name": "image-gen-8(6).png"
+        },
+        {
+          "score": 46.1,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 47.0,
+          "file": "car_058.webp",
+          "source_name": "image-gen-3(20261017-233400).png"
+        },
+        {
+          "score": 47.4,
+          "file": "car_083.webp",
+          "source_name": "image-gen-5(20261017-233409).png"
+        }
+      ]
+    },
+    "ringleader": {
+      "confident": true,
+      "top": [
+        {
+          "score": 15.81,
+          "file": "car_015.webp",
+          "source_name": "image-gen-10(10).png"
+        },
+        {
+          "score": 38.95,
+          "file": "car_138.webp",
+          "source_name": "image-gen-9(20261017-181350).png"
+        },
+        {
+          "score": 40.34,
+          "file": "car_139.webp",
+          "source_name": "image-gen-9(20261017-222037).png"
+        },
+        {
+          "score": 42.42,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 46.42,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        }
+      ]
+    },
+    "rival": {
+      "confident": false,
+      "top": [
+        {
+          "score": 47.82,
+          "file": "car_066.webp",
+          "source_name": "image-gen-4(20261017-231608).png"
+        },
+        {
+          "score": 48.56,
+          "file": "car_133.webp",
+          "source_name": "image-gen-8(8).png"
+        },
+        {
+          "score": 52.36,
+          "file": "car_109.webp",
+          "source_name": "image-gen-7(20261017-222027).png"
+        },
+        {
+          "score": 53.57,
+          "file": "car_048.webp",
+          "source_name": "image-gen-3(20261017-163124).png"
+        },
+        {
+          "score": 54.36,
+          "file": "car_079.webp",
+          "source_name": "image-gen-5(20261017-222017).png"
+        }
+      ]
+    },
+    "rocket": {
+      "confident": false,
+      "top": [
+        {
+          "score": 46.03,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 47.5,
+          "file": "car_091.webp",
+          "source_name": "image-gen-6(20261017-164639).png"
+        },
+        {
+          "score": 48.23,
+          "file": "car_147.webp",
+          "source_name": "image-gen-9(7).png"
+        },
+        {
+          "score": 49.15,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        },
+        {
+          "score": 54.16,
+          "file": "car_030.webp",
+          "source_name": "image-gen-2(20261017-161653).png"
+        }
+      ]
+    },
+    "rosso": {
+      "confident": false,
+      "top": [
+        {
+          "score": 39.51,
+          "file": "car_088.webp",
+          "source_name": "image-gen-5(8).png"
+        },
+        {
+          "score": 40.22,
+          "file": "car_014.webp",
+          "source_name": "image-gen-1(20261017-233351-1).png"
+        },
+        {
+          "score": 40.23,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 40.99,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 43.15,
+          "file": "car_051.webp",
+          "source_name": "image-gen-3(20261017-164627).png"
+        }
+      ]
+    },
+    "salaryman": {
+      "confident": false,
+      "top": [
+        {
+          "score": 41.86,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 46.89,
+          "file": "car_120.webp",
+          "source_name": "image-gen-8(10).png"
+        },
+        {
+          "score": 50.32,
+          "file": "car_045.webp",
+          "source_name": "image-gen-3(20261017-161656).png"
+        },
+        {
+          "score": 54.8,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        },
+        {
+          "score": 54.96,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        }
+      ]
+    },
+    "screamer": {
+      "confident": false,
+      "top": [
+        {
+          "score": 55.83,
+          "file": "car_020.webp",
+          "source_name": "image-gen-10(20261017-231634).png"
+        },
+        {
+          "score": 57.12,
+          "file": "car_019.webp",
+          "source_name": "image-gen-10(20261017-222043).png"
+        },
+        {
+          "score": 60.04,
+          "file": "car_055.webp",
+          "source_name": "image-gen-3(20261017-231603).png"
+        },
+        {
+          "score": 60.92,
+          "file": "car_009.webp",
+          "source_name": "image-gen-1(20261017-221957).png"
+        },
+        {
+          "score": 62.61,
+          "file": "car_114.webp",
+          "source_name": "image-gen-7(20261017-233423).png"
+        }
+      ]
+    },
+    "senator": {
+      "confident": false,
+      "top": [
+        {
+          "score": 21.56,
+          "file": "car_029.webp",
+          "source_name": "image-gen-10(9).png"
+        },
+        {
+          "score": 32.62,
+          "file": "car_134.webp",
+          "source_name": "image-gen-8(9).png"
+        },
+        {
+          "score": 33.53,
+          "file": "car_119.webp",
+          "source_name": "image-gen-7(9).png"
+        },
+        {
+          "score": 35.27,
+          "file": "car_004.webp",
+          "source_name": "image-gen-1(20261017-163552).png"
+        },
+        {
+          "score": 37.07,
+          "file": "car_104.webp",
+          "source_name": "image-gen-6(9).png"
+        }
+      ]
+    },
+    "serpent": {
+      "confident": false,
+      "top": [
+        {
+          "score": 24.31,
+          "file": "car_001.webp",
+          "source_name": "image-gen-1(20261017-161948).png"
+        },
+        {
+          "score": 43.95,
+          "file": "car_046.webp",
+          "source_name": "image-gen-3(20261017-161953).png"
+        },
+        {
+          "score": 43.95,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 44.14,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 44.65,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        }
+      ]
+    },
+    "skyscraper": {
+      "confident": false,
+      "top": [
+        {
+          "score": 17.06,
+          "file": "car_149.webp",
+          "source_name": "image-gen-9(9).png"
+        },
+        {
+          "score": 43.24,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 50.41,
+          "file": "car_069.webp",
+          "source_name": "image-gen-4(20261017-233405).png"
+        },
+        {
+          "score": 51.14,
+          "file": "car_043.webp",
+          "source_name": "image-gen-2(20261017-233356).png"
+        },
+        {
+          "score": 51.26,
+          "file": "car_058.webp",
+          "source_name": "image-gen-3(20261017-233400).png"
+        }
+      ]
+    },
+    "sledge": {
+      "confident": false,
+      "top": [
+        {
+          "score": 16.41,
+          "file": "car_131.webp",
+          "source_name": "image-gen-8(6).png"
+        },
+        {
+          "score": 40.04,
+          "file": "car_011.webp",
+          "source_name": "image-gen-1(20261017-232234).png"
+        },
+        {
+          "score": 41.36,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 44.24,
+          "file": "car_098.webp",
+          "source_name": "image-gen-6(20261017-233414).png"
+        },
+        {
+          "score": 44.64,
+          "file": "car_058.webp",
+          "source_name": "image-gen-3(20261017-233400).png"
+        }
+      ]
+    },
+    "snowcat": {
+      "confident": false,
+      "top": [
+        {
+          "score": 55.77,
+          "file": "car_016.webp",
+          "source_name": "image-gen-10(20261017-164655).png"
+        },
+        {
+          "score": 56.79,
+          "file": "car_110.webp",
+          "source_name": "image-gen-7(20261017-231621).png"
+        },
+        {
+          "score": 57.77,
+          "file": "car_131.webp",
+          "source_name": "image-gen-8(6).png"
+        },
+        {
+          "score": 58.92,
+          "file": "car_143.webp",
+          "source_name": "image-gen-9(20261017-233427).png"
+        },
+        {
+          "score": 59.7,
+          "file": "car_026.webp",
+          "source_name": "image-gen-10(6).png"
+        }
+      ]
+    },
+    "sovereign": {
+      "confident": false,
+      "top": [
+        {
+          "score": 23.92,
+          "file": "car_005.webp",
+          "source_name": "image-gen-1(20261017-164025).png"
+        },
+        {
+          "score": 38.18,
+          "file": "car_035.webp",
+          "source_name": "image-gen-2(20261017-164029).png"
+        },
+        {
+          "score": 39.18,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 42.39,
+          "file": "car_060.webp",
+          "source_name": "image-gen-4(10).png"
+        },
+        {
+          "score": 44.92,
+          "file": "car_084.webp",
+          "source_name": "image-gen-5(20261017-233413).png"
+        }
+      ]
+    },
+    "stallion": {
+      "confident": false,
+      "top": [
+        {
+          "score": 34.13,
+          "file": "car_025.webp",
+          "source_name": "image-gen-10(5).png"
+        },
+        {
+          "score": 37.68,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        },
+        {
+          "score": 38.91,
+          "file": "car_148.webp",
+          "source_name": "image-gen-9(8).png"
+        },
+        {
+          "score": 39.98,
+          "file": "car_013.webp",
+          "source_name": "image-gen-1(20261017-233351).png"
+        },
+        {
+          "score": 40.57,
+          "file": "car_085.webp",
+          "source_name": "image-gen-5(5).png"
+        }
+      ]
+    },
+    "swedebrick": {
+      "confident": true,
+      "top": [
+        {
+          "score": 15.53,
+          "file": "car_046.webp",
+          "source_name": "image-gen-3(20261017-161953).png"
+        },
+        {
+          "score": 42.32,
+          "file": "car_145.webp",
+          "source_name": "image-gen-9(5).png"
+        },
+        {
+          "score": 49.88,
+          "file": "car_001.webp",
+          "source_name": "image-gen-1(20261017-161948).png"
+        },
+        {
+          "score": 50.68,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 53.09,
+          "file": "car_106.webp",
+          "source_name": "image-gen-7(20261017-164643).png"
+        }
+      ]
+    },
+    "swiftarrow": {
+      "confident": false,
+      "top": [
+        {
+          "score": 21.21,
+          "file": "car_004.webp",
+          "source_name": "image-gen-1(20261017-163552).png"
+        },
+        {
+          "score": 30.0,
+          "file": "car_029.webp",
+          "source_name": "image-gen-10(9).png"
+        },
+        {
+          "score": 33.96,
+          "file": "car_104.webp",
+          "source_name": "image-gen-6(9).png"
+        },
+        {
+          "score": 36.73,
+          "file": "car_134.webp",
+          "source_name": "image-gen-8(9).png"
+        },
+        {
+          "score": 36.94,
+          "file": "car_119.webp",
+          "source_name": "image-gen-7(9).png"
+        }
+      ]
+    },
+    "tangerine": {
+      "confident": true,
+      "top": [
+        {
+          "score": 11.54,
+          "file": "car_079.webp",
+          "source_name": "image-gen-5(20261017-222017).png"
+        },
+        {
+          "score": 44.99,
+          "file": "car_099.webp",
+          "source_name": "image-gen-6(20261017-233418).png"
+        },
+        {
+          "score": 45.82,
+          "file": "car_074.webp",
+          "source_name": "image-gen-4(9).png"
+        },
+        {
+          "score": 47.52,
+          "file": "car_107.webp",
+          "source_name": "image-gen-7(20261017-180951).png"
+        },
+        {
+          "score": 50.77,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        }
+      ]
+    },
+    "thunderfour": {
+      "confident": false,
+      "top": [
+        {
+          "score": 24.2,
+          "file": "car_072.webp",
+          "source_name": "image-gen-4(7).png"
+        },
+        {
+          "score": 34.61,
+          "file": "car_052.webp",
+          "source_name": "image-gen-3(20261017-180934).png"
+        },
+        {
+          "score": 39.27,
+          "file": "car_100.webp",
+          "source_name": "image-gen-6(5).png"
+        },
+        {
+          "score": 40.45,
+          "file": "car_037.webp",
+          "source_name": "image-gen-2(20261017-180929).png"
+        },
+        {
+          "score": 40.56,
+          "file": "car_080.webp",
+          "source_name": "image-gen-5(20261017-231612).png"
+        }
+      ]
+    },
+    "turini": {
+      "confident": false,
+      "top": [
+        {
+          "score": 25.98,
+          "file": "car_137.webp",
+          "source_name": "image-gen-9(20261017-180959).png"
+        },
+        {
+          "score": 37.13,
+          "file": "car_063.webp",
+          "source_name": "image-gen-4(20261017-180938).png"
+        },
+        {
+          "score": 38.74,
+          "file": "car_136.webp",
+          "source_name": "image-gen-9(20261017-164652).png"
+        },
+        {
+          "score": 40.11,
+          "file": "car_095.webp",
+          "source_name": "image-gen-6(20261017-231616).png"
+        },
+        {
+          "score": 43.23,
+          "file": "car_103.webp",
+          "source_name": "image-gen-6(8).png"
+        }
+      ]
+    },
+    "vandal": {
+      "confident": true,
+      "top": [
+        {
+          "score": 15.38,
+          "file": "car_054.webp",
+          "source_name": "image-gen-3(20261017-222007).png"
+        },
+        {
+          "score": 36.55,
+          "file": "car_053.webp",
+          "source_name": "image-gen-3(20261017-181326).png"
+        },
+        {
+          "score": 46.11,
+          "file": "car_138.webp",
+          "source_name": "image-gen-9(20261017-181350).png"
+        },
+        {
+          "score": 47.06,
+          "file": "car_139.webp",
+          "source_name": "image-gen-9(20261017-222037).png"
+        },
+        {
+          "score": 50.93,
+          "file": "car_040.webp",
+          "source_name": "image-gen-2(20261017-231559).png"
+        }
+      ]
+    },
+    "vento": {
+      "confident": false,
+      "top": [
+        {
+          "score": 46.55,
+          "file": "car_144.webp",
+          "source_name": "image-gen-9(20261017-233434).png"
+        },
+        {
+          "score": 46.92,
+          "file": "car_082.webp",
+          "source_name": "image-gen-5(20261017-232601).png"
+        },
+        {
+          "score": 48.12,
+          "file": "car_096.webp",
+          "source_name": "image-gen-6(20261017-232256).png"
+        },
+        {
+          "score": 49.69,
+          "file": "car_128.webp",
+          "source_name": "image-gen-8(20261017-233423).png"
+        },
+        {
+          "score": 50.36,
+          "file": "car_012.webp",
+          "source_name": "image-gen-1(20261017-232544).png"
+        }
+      ]
+    },
+    "viaggio": {
+      "confident": false,
+      "top": [
+        {
+          "score": 28.63,
+          "file": "car_025.webp",
+          "source_name": "image-gen-10(5).png"
+        },
+        {
+          "score": 44.99,
+          "file": "car_095.webp",
+          "source_name": "image-gen-6(20261017-231616).png"
+        },
+        {
+          "score": 45.39,
+          "file": "car_033.webp",
+          "source_name": "image-gen-2(20261017-163122).png"
+        },
+        {
+          "score": 46.78,
+          "file": "car_148.webp",
+          "source_name": "image-gen-9(8).png"
+        },
+        {
+          "score": 47.03,
+          "file": "car_063.webp",
+          "source_name": "image-gen-4(20261017-180938).png"
+        }
+      ]
+    },
+    "voltage": {
+      "confident": true,
+      "top": [
+        {
+          "score": 10.49,
+          "file": "car_092.webp",
+          "source_name": "image-gen-6(20261017-180947).png"
+        },
+        {
+          "score": 39.42,
+          "file": "car_091.webp",
+          "source_name": "image-gen-6(20261017-164639).png"
+        },
+        {
+          "score": 55.97,
+          "file": "car_077.webp",
+          "source_name": "image-gen-5(20261017-180943).png"
+        },
+        {
+          "score": 59.62,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 61.31,
+          "file": "car_090.webp",
+          "source_name": "image-gen-6(10).png"
+        }
+      ]
+    },
+    "wanderer": {
+      "confident": false,
+      "top": [
+        {
+          "score": 89.97,
+          "file": "car_000.webp",
+          "source_name": "image-gen-1(20261017-161649).png"
+        },
+        {
+          "score": 93.77,
+          "file": "car_132.webp",
+          "source_name": "image-gen-8(7).png"
+        },
+        {
+          "score": 94.1,
+          "file": "car_120.webp",
+          "source_name": "image-gen-8(10).png"
+        },
+        {
+          "score": 95.22,
+          "file": "car_114.webp",
+          "source_name": "image-gen-7(20261017-233423).png"
+        },
+        {
+          "score": 95.87,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        }
+      ]
+    },
+    "wayfarer": {
+      "confident": false,
+      "top": [
+        {
+          "score": 50.09,
+          "file": "car_141.webp",
+          "source_name": "image-gen-9(20261017-232309).png"
+        },
+        {
+          "score": 52.21,
+          "file": "car_081.webp",
+          "source_name": "image-gen-5(20261017-232251).png"
+        },
+        {
+          "score": 53.49,
+          "file": "car_126.webp",
+          "source_name": "image-gen-8(20261017-232305).png"
+        },
+        {
+          "score": 53.79,
+          "file": "car_032.webp",
+          "source_name": "image-gen-2(20261017-162730).png"
+        },
+        {
+          "score": 54.29,
+          "file": "car_073.webp",
+          "source_name": "image-gen-4(8).png"
+        }
+      ]
+    },
+    "wedge": {
+      "confident": false,
+      "top": [
+        {
+          "score": 64.15,
+          "file": "car_000.webp",
+          "source_name": "image-gen-1(20261017-161649).png"
+        },
+        {
+          "score": 64.79,
+          "file": "car_020.webp",
+          "source_name": "image-gen-10(20261017-231634).png"
+        },
+        {
+          "score": 64.87,
+          "file": "car_019.webp",
+          "source_name": "image-gen-10(20261017-222043).png"
+        },
+        {
+          "score": 66.59,
+          "file": "car_114.webp",
+          "source_name": "image-gen-7(20261017-233423).png"
+        },
+        {
+          "score": 67.5,
+          "file": "car_003.webp",
+          "source_name": "image-gen-1(20261017-163120).png"
+        }
+      ]
+    },
+    "zeppelin": {
+      "confident": false,
+      "top": [
+        {
+          "score": 37.97,
+          "file": "car_105.webp",
+          "source_name": "image-gen-7(10).png"
+        },
+        {
+          "score": 47.34,
+          "file": "car_035.webp",
+          "source_name": "image-gen-2(20261017-164029).png"
+        },
+        {
+          "score": 48.18,
+          "file": "car_116.webp",
+          "source_name": "image-gen-7(6).png"
+        },
+        {
+          "score": 49.1,
+          "file": "car_005.webp",
+          "source_name": "image-gen-1(20261017-164025).png"
+        },
+        {
+          "score": 50.04,
+          "file": "car_061.webp",
+          "source_name": "image-gen-4(20261017-164037).png"
+        }
+      ]
+    }
+  },
+  "confident_count": 13,
+  "unresolved_count": 67
+}
