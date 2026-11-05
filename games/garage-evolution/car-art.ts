@@ -49,8 +49,6 @@ export interface CarArt {
   body: HTMLCanvasElement;
   /** body + wheels: what the layers are clipped to */
   silhouette: HTMLCanvasElement;
-  /** The intact factory body is never drilled through just to display attached wheels. */
-  bodyForMissingWheels?: (wheelIndices: readonly number[]) => HTMLCanvasElement;
   /** Factory wheel only. No drawn or aftermarket replacements for photographed cars. */
   wheelAvailable?: (i: number) => boolean;
   /** A wheel's sprite; `rPx` draws it at another radius (the tyre bay's close-up, from the full picture) */
@@ -266,104 +264,34 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
         for (let x = 0; x < r.cols; x++) if (r.bits[y * r.cols + x]) g.fillRect(ix + x * cw, iy + y * ch, cw + 0.5, ch + 0.5);
     }
   };
-  // A number of the original cut-outs still contain dark tyre pixels and fragments of the
-  // brake disc at the edge of an arch.  The detached wheel must never be part of the
-  // body texture: cut the *same* wheel-sized opening in both the painted body and its
-  // surface mask. Use the rendered (off-road-adjusted) axle positions, not the old
-  // raster's approximated wheel positions.  This is non-destructive to the WebP images.
+  // The high-resolution body WebP already has its factory tyres removed at
+  // import time. Never carve larger holes into the body a second time: that
+  // exposed blue garage-floor crescents beneath perfectly good wheels.
+  // Instead fill *all* transparent wheel cavities with black suspension
+  // darkness, including the bottom beneath the axle, then draw the car's
+  // original wheel sprites over them.
   const drawCleanBody = (g: Ctx, fillWheelWells = false) => {
     drawBody(g);
+    if (!fillWheelWells) return;
     g.save();
-    g.globalCompositeOperation = 'destination-out';
+    g.globalCompositeOperation = 'destination-over';
     for (const wh of wheels) {
       const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
       const r = wh.r * L;
+      const well = g.createRadialGradient(cx, cy - r * 0.15, r * 0.12, cx, cy + r * 0.12, r * 1.2);
+      well.addColorStop(0, '#161920');
+      well.addColorStop(0.7, '#101218');
+      well.addColorStop(1, '#050609');
+      g.fillStyle = well;
       g.beginPath();
-      g.arc(cx, cy, r * 1.075, 0, Math.PI * 2);
-      g.fill();
-      // Remove the lowest stray dark pixels from the original tyre and shadow. In
-      // particular, avoid a dark crescent after the wheel is taken to the tyre bay.
-      g.beginPath();
-      g.ellipse(cx, cy + r * 0.45, r * 1.125, r * 0.67, 0, 0, Math.PI * 2);
+      // Importer removes a low tyre crescent as well as the circular tyre.
+      // Cover that whole transparent opening, not just its upper half.
+      g.ellipse(cx, cy + r * 0.18, r * 1.15, r * 1.13, 0, 0, Math.PI * 2);
       g.fill();
     }
     g.restore();
-    if (fillWheelWells && model.cls !== 'moto') {
-      // A wheel is not covering a transparent hole in real bodywork: the
-      // black wheel housing and suspension remain when its tyre is removed.
-      // The well is behind the painted fender, not painted over the car.
-      g.save();
-      g.globalCompositeOperation = 'destination-over';
-      for (const wh of wheels) {
-        const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
-        const radius = wh.r * L;
-        const well = g.createRadialGradient(cx, cy - radius * 0.28, radius * 0.1, cx, cy, radius * 1.1);
-        well.addColorStop(0, '#0a0d13');
-        well.addColorStop(0.7, '#181b22');
-        well.addColorStop(1, '#050609');
-        g.fillStyle = well;
-        g.beginPath();
-        g.moveTo(cx - radius * 1.075, cy + radius * 0.11);
-        g.lineTo(cx - radius * 1.075, cy);
-        g.arc(cx, cy, radius * 1.075, Math.PI, Math.PI * 2);
-        g.lineTo(cx + radius * 1.075, cy + radius * 0.11);
-        g.closePath();
-        g.fill();
-        // The inner arch lip gives the cavity some depth without filling the
-        // open space underneath the chassis.
-        g.strokeStyle = 'rgba(65,72,84,0.48)';
-        g.lineWidth = Math.max(1.3, radius * 0.055);
-        g.beginPath();
-        g.arc(cx, cy, radius * 1.02, Math.PI * 1.04, Math.PI * 1.96);
-        g.stroke();
-      }
-      g.restore();
-    }
   };
-  // Keep the original art and its own factory wheels fully intact by default.
-  // Previously both arches were cut out all the time, revealing huge blue holes
-  // below installed tyres. Only remove pixels for axles actually in the tyre bay.
-  const body = make(drawBody);
-  const missingWheelBodies = new Map<number, HTMLCanvasElement>();
-  const bodyForMissingWheels = (wheelIndices: readonly number[]): HTMLCanvasElement => {
-    const key = wheelIndices.reduce((mask, i) => mask | (1 << i), 0);
-    if (!key) return body;
-    const cached = missingWheelBodies.get(key);
-    if (cached) return cached;
-    const cut = make((g) => {
-      drawBody(g);
-      g.save();
-      g.globalCompositeOperation = 'destination-out';
-      wheels.forEach((wh, i) => {
-        if (!(key & (1 << i))) return;
-        const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
-        const r = wh.r * L;
-        g.beginPath();
-        g.arc(cx, cy, r * 1.045, 0, Math.PI * 2);
-        g.fill();
-      });
-      g.restore();
-      // The wheel well remains opaque and dark even below the axle.
-      // Do not paint a giant blue/black tyre-shaped circle under good wheels.
-      g.save();
-      g.globalCompositeOperation = 'destination-over';
-      wheels.forEach((wh, i) => {
-        if (!(key & (1 << i))) return;
-        const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
-        const r = wh.r * L;
-        const well = g.createRadialGradient(cx, cy, r * 0.1, cx, cy, r * 1.05);
-        well.addColorStop(0, '#15171d');
-        well.addColorStop(1, '#050609');
-        g.fillStyle = well;
-        g.beginPath();
-        g.arc(cx, cy, r * 1.045, 0, Math.PI * 2);
-        g.fill();
-      });
-      g.restore();
-    });
-    missingWheelBodies.set(key, cut);
-    return cut;
-  };
+  const body = make((g) => drawCleanBody(g, true));
   const silhouette = make((g) => {
     drawCleanBody(g);
     g.globalCompositeOperation = 'source-in';
@@ -464,7 +392,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     g.drawImage(img, 0, 0, pw, ph);
     parts[key] = { canvas: c, x: x0, y: y0, w: pw, h: ph };
   }
-  return { model, L, w, h, x0: b.x0, y1: b.y1, scale, body, silhouette, wheel, wheelAvailable, bodyForMissingWheels, hub, parts, brokenHead: null, px, color, variant };
+  return { model, L, w, h, x0: b.x0, y1: b.y1, scale, body, silhouette, wheel, wheelAvailable, hub, parts, brokenHead: null, px, color, variant };
 }
 
 /** Wheel centres in box px (with the off-road lift) */

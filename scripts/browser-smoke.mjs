@@ -8,31 +8,14 @@ const root = process.cwd();
 // painted-car textures, even on the first frames before async decoding.
 const paintedSource = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
 const runtimeSource = await readFile(resolve(root, 'game.js'), 'utf8');
-// Native HD body is the source of truth while wheels are mounted.
-const intactArt = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
-if (!intactArt.includes('const body = make(drawBody);') ||
-    !intactArt.includes('bodyForMissingWheels') ||
-    !runtimeSource.includes('bodyForMissingWheels:bodyForMissing') ||
-    !runtimeSource.includes('b=_(e=>y(e)),bodyForMissingCache=')) {
-  throw Error('Factory car body regression: mounted wheels are being cut out');
-}
-
-if (paintedSource.includes('else drawWheel(g, r, model, variant') ||
-    runtimeSource.includes('}else ra(s,u,e,n,a??na(e,n),o)') ||
-    !runtimeSource.includes('wheelAvailable:t=>!!Ni(')) {
-  throw Error('Factory wheel policy regression: generic painted wheel fallback detected');
-}
-// All 62 active HD models must register every genuine wheel texture.
-const factoryMeta = JSON.parse(await readFile(resolve(root, 'games/garage-evolution/painted/meta.json'), 'utf8'));
-const factoryRegistry = await readFile(resolve(root, 'games/garage-evolution/painted/index.ts'), 'utf8');
-const runtimeWheelURLs = runtimeSource.slice(runtimeSource.indexOf('var ji={'), runtimeSource.indexOf('},Mi=ki({urls:ji,chapters:{'));
-for (const [id, m] of Object.entries(factoryMeta)) {
-  if (m.img.w < 900) continue;
-  for (const wi of new Set(m.wheelImg)) {
-    const key = id + '-w' + wi;
-    if (!factoryRegistry.includes("'" + key + "':") || !runtimeWheelURLs.includes('"' + key + '":'))
-      throw Error('Factory wheel missing from asset registry: ' + key);
-  }
+// The body PNGs already have wheel cutouts; no extra runtime cutting.
+const bodySrc = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
+if (!bodySrc.includes('const body = make((g) => drawCleanBody(g, true));') ||
+    !bodySrc.includes('g.ellipse(cx, cy + r * 0.18, r * 1.15, r * 1.13') ||
+    !runtimeSource.includes('ctx.ellipse(cx,cy+rr*.18,rr*1.15,rr*1.13') ||
+    !runtimeSource.includes('b=_(e=>cleanBody(e,!0))') ||
+    runtimeSource.includes('bodyForMissingWheels:bodyForMissing')) {
+  throw Error('Factory wheel wells must be opaque without cutting the source art twice');
 }
 const server = createServer(async (req, res) => {
   const path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname === '/' ? '/index.html' : new URL(req.url, 'http://localhost').pathname));

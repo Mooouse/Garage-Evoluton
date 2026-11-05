@@ -248,20 +248,14 @@ export function createScene(g: Ctx) {
     const air = Math.min(1, -vy / Math.max(1, carL * 0.5));
     contactShadow(gx, x + art.w / 2, ground + 2, art.w * (0.46 + air * 0.2), Math.max(6, carL * 0.03), '#05060a', 0.55 * (1 - air * 0.7));
     drawLegs(gx, x, y);
-    // Keep every original painted wheel in the native body while attached.
-    // The wheel well is cut only for the axle physically taken off the car.
+    // Body art already has factory tyres cut out. Fill the inner wheel wells
+    // behind the separate factory wheel sprites without cutting extra holes.
+    gx.drawImage(art.body, x, y, art.w, art.h);
     const task = (id: string) => car!.parts.find((p) => p.id === id);
     const partVisible = (id: string) => {
       const tk = task(id);
       return !tk || tk.left <= 0;
     };
-    const removedWheels = car.model.painted ? s.wheels.flatMap((_, i) => {
-      const job = car!.wheels.find((j) => j.wheel === i);
-      const inBay = !!job && job.step !== 'done' && job.step !== 'nutsOff';
-      return !partVisible(`wheel${i}`) || inBay ? [i] : [];
-    }) : [];
-    gx.drawImage(art.bodyForMissingWheels?.(removedWheels) ?? art.body, x, y, art.w, art.h);
-    // Parts: bumpers, mirror, the head lamp — missing ones aren't drawn, fixed ones pop in
     const pop = (id: string) => {
       const at = popped.get(id);
       if (at === undefined) return 1;
@@ -318,12 +312,6 @@ export function createScene(g: Ctx) {
       // Do not replace an image that is still decoding with a fake spoke wheel.
       // Its real factory tyre will appear when the asset is ready and the car re-bakes.
       if (car!.model.painted && !art!.wheelAvailable?.(i)) return;
-      // At rest the untouched factory wheel in the original illustration is
-      // sharper and perfectly registered with its fender than an overlaid crop.
-      // Keep spinning sprites for entry/exit and damaged wheels being worked on.
-      const isMoving = car!.stage === 'arrive' || car!.stage === 'finale' || car!.stage === 'done';
-      const isDamaged = !!job && job.step === 'nutsOff';
-      if (car!.model.painted && !isMoving && !isDamaged) return;
       // A replaced or repaired wheel is the car's own wheel again: both sides match (the owner, 2026-10-16)
       const c = art!.wheel(i, undefined, look);
       const cw = c.width / art!.scale;
