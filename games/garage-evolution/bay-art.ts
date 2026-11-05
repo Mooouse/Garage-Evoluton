@@ -3,7 +3,7 @@
 // spinning the wheel with its heavy spot and the mark on top. bayAction() turns a touch in the panel into the job's
 // action, so the page and the demo bot share the geometry.
 
-import { drawFlatWheel, drawWheel, wheelLight, type WheelLook } from './car-art.ts';
+import { drawWheel, wheelLight, type WheelLook } from './car-art.ts';
 import type { Variant } from './data.ts';
 import type { Model } from './models.ts';
 import { BALANCE_TOL, GREEN, type WheelAction, type WheelJob } from './wheels.ts';
@@ -109,38 +109,21 @@ export function drawBay(g: Ctx, bay: Bay, job: WheelJob, model: Model, variant: 
   const rw = r * WHEEL;
   const rot = job.step === 'balance' ? job.heavy : 0;
   const look: WheelLook = job.step === 'nutsOff' || job.step === 'find' || job.step === 'plug' || job.step === 'tyre' || job.step === 'dents' ? (job.damage === 'flat' ? 'ok' : job.damage === 'bald' && job.step !== 'tyre' ? 'bald' : job.damage === 'bent' ? 'bent' : 'ok') : 'ok';
-  // A flat tyre: the wheel's own rubber squashed, filling back to round as the pump works
-  const flat = job.damage === 'flat' && (job.step === 'nutsOff' || job.step === 'find' || job.step === 'plug' || (job.step === 'pump' && job.pressure < 0.5));
-  if (flat) {
-    const sag = job.step === 'pump' ? 1 - Math.min(1, job.pressure / 0.5) : 1;
-    if (own) {
-      const o = own(look, rw);
-      const k = rw / o.r;
-      drawFlatWheel(g, o.img as CanvasImageSource & { width: number }, o.size * k, x, y, rw, sag, t);
-    } else {
-      const size = Math.ceil(rw * 2 + 6);
-      const c = document.createElement('canvas');
-      c.width = c.height = size;
-      const cg = c.getContext('2d')!;
-      cg.translate(size / 2, size / 2);
-      drawWheel(cg, rw, model, variant, rimNow, look);
-      drawFlatWheel(g, c, size, x, y, rw, sag, t);
-    }
-  } else {
-    g.save();
-    g.translate(x, y);
-    g.rotate(rot);
-    // Render the complete original factory tyre; no artificial dark backing disk.
-    if (own) {
-      // The wheel the car came on (a new tyre or a fixed rim looks the same as the other wheels: the owner, 2026-10-16)
-      const o = own(look, rw);
-      const k = rw / o.r;
-      g.drawImage(o.img, (-o.size * k) / 2, (-o.size * k) / 2, o.size * k, o.size * k);
-    } else drawWheel(g, rw, model, variant, rimNow, look);
-    g.restore();
-  }
-  // The bay's light from above left, not turning with the wheel
-  wheelLight(g, x, y + (flat ? rw * 0.08 * (job.step === 'pump' ? 1 - Math.min(1, job.pressure / 0.5) : 1) : 0), rw, x - rw * 2, y - rw * 3, false);
+  // The tyre bay is a fixed-centre inspection/repair stand, not the garage
+  // floor. A puncture must not sink or clip the wheel inside its round frame:
+  // the previous drawFlatWheel() shifted the hub down, chopped the bottom and
+  // left a black crescent. The flat tyre still visibly sags on the *car*.
+  g.save();
+  g.translate(x, y);
+  g.rotate(rot);
+  if (own) {
+    const o = own(look, rw);
+    const k = rw / o.r;
+    g.drawImage(o.img, (-o.size * k) / 2, (-o.size * k) / 2, o.size * k, o.size * k);
+  } else drawWheel(g, rw, model, variant, rimNow, look);
+  g.restore();
+  // Lamp and the visual effects share the spindle's exact centre.
+  wheelLight(g, x, y, rw, x - rw * 2, y - rw * 3, false);
   // The new tyre pulled on, a third at a time
   if (job.step === 'tyre') {
     g.strokeStyle = '#2a2c33';
