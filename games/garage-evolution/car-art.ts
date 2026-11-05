@@ -12,6 +12,15 @@ import { paintedBody, paintedImg } from './painted-art.ts';
 
 export type Ctx = CanvasRenderingContext2D;
 
+/** Artwork calibration is authored in Wheel Studio and generated with the bitmap layers. */
+function manualWheel(modelId: string, i: number): { dx: number; dy: number; size: number } | undefined {
+  return (globalThis as typeof globalThis & {
+    GARAGE_WHEEL_CALIBRATION?: {
+      models?: Record<string, { wheels: Array<{ dx: number; dy: number; size: number }> }>
+    }
+  }).GARAGE_WHEEL_CALIBRATION?.models?.[modelId]?.wheels?.[i];
+}
+
 /** A rounded polygon with a radius per corner (in px) */
 export function roundPath(pts: [number, number, number][], path = new Path2D()): Path2D {
   const n = pts.length;
@@ -79,7 +88,9 @@ export function bakeCar(model: Model, color: string, variant: Variant, L: number
   const px = (x: number, y: number): [number, number] => [(x - b.x0) * L, (b.y1 - y) * L];
   const pts = (list: Pt[]): [number, number, number][] => list.map((p) => [...px(p[0], p[1]), (p[2] ?? 0) * L]);
   const offroad = variant === 'offroad' && model.cls !== 'space' && model.cls !== 'moto';
-  const wheels: Wheel[] = s.wheels.map((wh) => (offroad ? { ...wh, r: wh.r * 1.1 } : wh));
+  const wheels: Wheel[] = s.wheels.map((wh, i) => ({
+    ...wh, r: wh.r * (offroad ? 1.1 : 1) * (manualWheel(model.id, i)?.size ?? 1)
+  }));
 
   const make = (draw: (g: Ctx) => void): HTMLCanvasElement => {
     const [c, g] = canvas2d(w * scale, h * scale);
@@ -376,8 +387,12 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
 export function wheelAt(art: CarArt, i: number): [number, number, number] {
   const s = art.model.shape;
   const wh = s.wheels[i];
-  const r = wh.r * (art.variant === 'offroad' && art.model.cls !== 'space' && art.model.cls !== 'moto' ? 1.1 : 1);
-  const [x, y] = art.px(wh.x, r + (wh.lift ?? 0));
+  const adjusted = manualWheel(art.model.id, i);
+  const r = wh.r * (art.variant === 'offroad' && art.model.cls !== 'space' && art.model.cls !== 'moto' ? 1.1 : 1) * (adjusted?.size ?? 1);
+  // Position is the calibrated axle, independent of tyre size. "+dy" means
+  // downward in the source PNG, hence negative in the model's upward Y.
+  const [x, y] = art.px(wh.x + (adjusted?.dx ?? 0),
+    wh.r + (wh.lift ?? 0) - (adjusted?.dy ?? 0));
   return [x, y, r * art.L];
 }
 
