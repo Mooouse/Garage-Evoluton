@@ -49,6 +49,8 @@ export interface CarArt {
   body: HTMLCanvasElement;
   /** body + wheels: what the layers are clipped to */
   silhouette: HTMLCanvasElement;
+  /** The intact factory body is never drilled through just to display attached wheels. */
+  bodyForMissingWheels?: (wheelIndices: readonly number[]) => HTMLCanvasElement;
   /** Factory wheel only. No drawn or aftermarket replacements for photographed cars. */
   wheelAvailable?: (i: number) => boolean;
   /** A wheel's sprite; `rPx` draws it at another radius (the tyre bay's close-up, from the full picture) */
@@ -318,7 +320,50 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
       g.restore();
     }
   };
-  const body = make((g) => drawCleanBody(g, true));
+  // Keep the original art and its own factory wheels fully intact by default.
+  // Previously both arches were cut out all the time, revealing huge blue holes
+  // below installed tyres. Only remove pixels for axles actually in the tyre bay.
+  const body = make(drawBody);
+  const missingWheelBodies = new Map<number, HTMLCanvasElement>();
+  const bodyForMissingWheels = (wheelIndices: readonly number[]): HTMLCanvasElement => {
+    const key = wheelIndices.reduce((mask, i) => mask | (1 << i), 0);
+    if (!key) return body;
+    const cached = missingWheelBodies.get(key);
+    if (cached) return cached;
+    const cut = make((g) => {
+      drawBody(g);
+      g.save();
+      g.globalCompositeOperation = 'destination-out';
+      wheels.forEach((wh, i) => {
+        if (!(key & (1 << i))) return;
+        const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
+        const r = wh.r * L;
+        g.beginPath();
+        g.arc(cx, cy, r * 1.045, 0, Math.PI * 2);
+        g.fill();
+      });
+      g.restore();
+      // The wheel well remains opaque and dark even below the axle.
+      // Do not paint a giant blue/black tyre-shaped circle under good wheels.
+      g.save();
+      g.globalCompositeOperation = 'destination-over';
+      wheels.forEach((wh, i) => {
+        if (!(key & (1 << i))) return;
+        const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
+        const r = wh.r * L;
+        const well = g.createRadialGradient(cx, cy, r * 0.1, cx, cy, r * 1.05);
+        well.addColorStop(0, '#15171d');
+        well.addColorStop(1, '#050609');
+        g.fillStyle = well;
+        g.beginPath();
+        g.arc(cx, cy, r * 1.045, 0, Math.PI * 2);
+        g.fill();
+      });
+      g.restore();
+    });
+    missingWheelBodies.set(key, cut);
+    return cut;
+  };
   const silhouette = make((g) => {
     drawCleanBody(g);
     g.globalCompositeOperation = 'source-in';
@@ -419,7 +464,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     g.drawImage(img, 0, 0, pw, ph);
     parts[key] = { canvas: c, x: x0, y: y0, w: pw, h: ph };
   }
-  return { model, L, w, h, x0: b.x0, y1: b.y1, scale, body, silhouette, wheel, wheelAvailable, hub, parts, brokenHead: null, px, color, variant };
+  return { model, L, w, h, x0: b.x0, y1: b.y1, scale, body, silhouette, wheel, wheelAvailable, bodyForMissingWheels, hub, parts, brokenHead: null, px, color, variant };
 }
 
 /** Wheel centres in box px (with the off-road lift) */

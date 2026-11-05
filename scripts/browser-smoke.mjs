@@ -8,6 +8,15 @@ const root = process.cwd();
 // painted-car textures, even on the first frames before async decoding.
 const paintedSource = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
 const runtimeSource = await readFile(resolve(root, 'game.js'), 'utf8');
+// Native HD body is the source of truth while wheels are mounted.
+const intactArt = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
+if (!intactArt.includes('const body = make(drawBody);') ||
+    !intactArt.includes('bodyForMissingWheels') ||
+    !runtimeSource.includes('bodyForMissingWheels:bodyForMissing') ||
+    !runtimeSource.includes('b=_(e=>y(e)),bodyForMissingCache=')) {
+  throw Error('Factory car body regression: mounted wheels are being cut out');
+}
+
 if (paintedSource.includes('else drawWheel(g, r, model, variant') ||
     runtimeSource.includes('}else ra(s,u,e,n,a??na(e,n),o)') ||
     !runtimeSource.includes('wheelAvailable:t=>!!Ni(')) {
