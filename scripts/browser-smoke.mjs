@@ -55,6 +55,33 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   });
   console.log('VIEWPORT '+JSON.stringify(viewport)+' '+JSON.stringify(report));
   console.log('NETWORK ERRORS '+JSON.stringify(missing.slice(0,25)));
+
+  // The eight original drawings must be present as native-HD textures and
+  // each car must have its own separately decoded wheel sprites.
+  try {
+    const textures = await page.evaluate(async () => {
+      const ids = ['longnose','scissor','storm','zephyrus','viola','tempest','trackwing','carboncrown'];
+      let loaded = 0;
+      for (const id of ids) {
+        for (const file of [id, id + '-w0', id + '-w1']) {
+          const response = await fetch('/games/garage-evolution/painted/' + file + '.webp');
+          if (!response.ok) throw Error(file + ': HTTP ' + response.status);
+          const bitmap = await createImageBitmap(await response.blob());
+          const minimum = file === id ? 1500 : 150;
+          if (bitmap.width < minimum || bitmap.height < 100)
+            throw Error(file + ': unexpected low resolution ' + bitmap.width + 'x' + bitmap.height);
+          bitmap.close();
+          loaded++;
+        }
+      }
+      return loaded;
+    });
+    console.log('HD ORIGINAL SPRITES '+textures+'/24 decoded at source resolution');
+  } catch (error) {
+    failures++;
+    console.error('HD SPRITE VALIDATION FAILED', String(error));
+  }
+
   if(!report.ui || !report.canvas.width || !report.buttons.some(b=>b.visible) || errors.length || missing.length)failures++;
   const targets = ['[data-gp=shop]','[data-gp=title-map]','[data-gp=quick-buy]','[data-gp=page-next]','[data-gp=resume]'];
   for(const selector of targets) console.log('CONTROL '+selector+': '+await page.locator(selector).count());
