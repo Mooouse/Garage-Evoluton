@@ -69,3 +69,11 @@ jobs:
             git commit -m "Integrate original HD vehicle artwork and accurately separated wheels"
             git push origin HEAD:main
           fi
+      # GITHUB_TOKEN pushes do not trigger ordinary push workflows.
+      # Dispatch guarantees the generated version reaches Pages and smoke tests.
+      - name: Publish and browser-test the newly generated textures
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run deploy-pages.yml --ref main
+          gh workflow run browser-smoke.yml --ref main
