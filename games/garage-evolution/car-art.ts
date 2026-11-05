@@ -264,45 +264,10 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
         for (let x = 0; x < r.cols; x++) if (r.bits[y * r.cols + x]) g.fillRect(ix + x * cw, iy + y * ch, cw + 0.5, ch + 0.5);
     }
   };
-  // The high-resolution body WebP already has its factory tyres removed at
-  // import time. Never carve larger holes into the body a second time: that
-  // exposed blue garage-floor crescents beneath perfectly good wheels.
-  // Instead fill *all* transparent wheel cavities with black suspension
-  // darkness, including the bottom beneath the axle, then draw the car's
-  // original wheel sprites over them.
-  const drawCleanBody = (g: Ctx, fillWheelWells = false) => {
-    drawBody(g);
-    if (!fillWheelWells) return;
-    // The HD image importer removes a circular tyre AND a separate lower
-    // oval (centred 0.36 radius below the axle, width 1.12r, height 0.85r).
-    // Filling only a circle exposes blue garage-background crescents along
-    // the lower tyre. Match BOTH actual cutouts behind the factory wheel.
-    g.save();
-    g.globalCompositeOperation = 'destination-over';
-    const floorY = px(0, 0)[1];
-    g.beginPath();
-    g.rect(0, 0, w, floorY);
-    g.clip();
-    for (const wh of wheels) {
-      const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
-      const r = wh.r * L;
-      const well = g.createRadialGradient(cx, cy - r * 0.1, r * 0.12, cx, cy + r * 0.24, r * 1.55);
-      well.addColorStop(0, '#101217');
-      well.addColorStop(0.75, '#080a0e');
-      well.addColorStop(1, '#050609');
-      g.fillStyle = well;
-      g.beginPath();
-      g.arc(cx, cy, r * 1.095, 0, Math.PI * 2);
-      g.fill();
-      g.beginPath();
-      g.ellipse(cx, cy + r * 0.36, r * 1.16, r * 0.90, 0, 0, Math.PI * 2);
-      g.fill();
-    }
-    g.restore();
-  };
-  const body = make((g) => drawCleanBody(g, true));
+  // Genuine native PNG wheel cut-outs; no synthetic background circles.
+  const body = make(drawBody);
   const silhouette = make((g) => {
-    drawCleanBody(g);
+    drawBody(g);
     g.globalCompositeOperation = 'source-in';
     g.fillStyle = '#fff';
     g.fillRect(0, 0, w, h);
@@ -325,39 +290,16 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     let c = wheelCache.get(key);
     if (!c) {
       // Room for the picture's wheel (drawn 3 % past its tyre, more on an off-roader): a canvas of 2r cut its edge square
-      const size = Math.ceil(r * 2 * 1.03 + 6);
+      const size = Math.ceil(r * 2 * 1.07 + 6);
       const [cv, g] = canvas2d(size * scale, size * scale);
       g.scale(scale, scale);
       g.translate(size / 2, size / 2);
       if (own) {
-        // The picture's wheel: drawn to its tyre's radius (the sprite, centred on the axle, runs 3 % past it)
-        // r already incorporates the off-road variant. Do not scale it twice.
-        const d = 2 * r * 1.03;
+        // Paint and rubber are from the original wheel WebP, not generated.
+        const d = 2 * r * 1.065;
         g.imageSmoothingQuality = 'high';
         g.save();
-        // A real circular tyre, with the model's own detailed hub and spokes.
-        // Old photo cut-outs contain white bodywork / floor pixels on the
-        // outer edge. Keep the photographed wheel centre, but cover that
-        // contaminated fringe with a round, fixed dark rubber sidewall.
-        const rubber = g.createRadialGradient(-r * 0.16, -r * 0.2, r * 0.22, 0, 0, r);
-        rubber.addColorStop(0, '#42454c');
-        rubber.addColorStop(0.82, '#292c33');
-        rubber.addColorStop(1, '#111318');
-        g.fillStyle = rubber;
-        g.beginPath();
-        g.arc(0, 0, r, 0, Math.PI * 2);
-        g.fill();
-        g.save();
-        g.beginPath();
-        g.arc(0, 0, r * 0.925, 0, Math.PI * 2);
-        g.clip();
         g.drawImage(own, -d / 2, -d / 2, d, d);
-        g.restore();
-        g.strokeStyle = 'rgba(17,19,23,0.85)';
-        g.lineWidth = Math.max(1, r * 0.058);
-        g.beginPath();
-        g.arc(0, 0, r * 0.968, 0, Math.PI * 2);
-        g.stroke();
         // A bent rim stays on its axle (off it, it read as a wheel out of centre: the owner, 2026-10-17): a kink in the lip
         if (look === 'bent') bentKink(g, r);
         g.restore();

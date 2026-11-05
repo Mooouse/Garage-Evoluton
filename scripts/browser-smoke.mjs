@@ -8,23 +8,14 @@ const root = process.cwd();
 // painted-car textures, even on the first frames before async decoding.
 const paintedSource = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
 const runtimeSource = await readFile(resolve(root, 'game.js'), 'utf8');
-// The body PNGs already have wheel cutouts; no extra runtime cutting.
-const bodySrc = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
-if (!bodySrc.includes('const body = make((g) => drawCleanBody(g, true));') ||
-    !bodySrc.includes('g.ellipse(cx, cy + r * 0.36, r * 1.16, r * 0.90') ||
-    !runtimeSource.includes('ctx.ellipse(cx,cy+rr*.36,rr*1.16,rr*.9') ||
-    !runtimeSource.includes('b=_(e=>cleanBody(e,!0))') ||
-    !runtimeSource.includes('ctx.rect(0,0,l,floorY)') ||
-    runtimeSource.includes('bodyForMissingWheels:bodyForMissing')) {
-  throw Error('Factory wheel wells must be opaque without cutting the source art twice');
-}
-// Check the lower oval missing from the original factory cut-outs.
-// At the 4 and 8 o'clock sides, the blue backdrop must never show through.
-const coversWheelOpening = (x, y) =>
-  x * x + y * y <= 1.095 * 1.095 ||
-  (x / 1.16) ** 2 + ((y - 0.36) / 0.90) ** 2 <= 1;
-for (const [x, y] of [[-0.95,0.65],[0.95,0.65],[-0.88,0.90],[0.88,0.90]]) {
-  if (!coversWheelOpening(x,y)) throw Error('Wheel well does not cover lower cutout at '+x+','+y);
+// No fake wheel circles; old runner backed them with painted ellipses.
+const art = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
+if (!art.includes('const body = make(drawBody);') ||
+    !art.includes('g.drawImage(own, -d / 2, -d / 2, d, d);') ||
+    !runtimeSource.includes('b=_(e=>y(e))') ||
+    runtimeSource.includes('garageFactoryTyre(') ||
+    runtimeSource.includes('ctx.ellipse(cx,cy+rr*.36')) {
+  throw Error('Synthetic wheel patches unexpectedly returned');
 }
 const server = createServer(async (req, res) => {
   const path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname === '/' ? '/index.html' : new URL(req.url, 'http://localhost').pathname));

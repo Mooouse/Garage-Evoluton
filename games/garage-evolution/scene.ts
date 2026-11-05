@@ -299,6 +299,13 @@ export function createScene(g: Ctx) {
       // In the bay (its nuts are off): the hub on a stand; a damaged one still on: its look; a done one: its new rim
       const inBay = !!job && job.step !== 'done' && job.step !== 'nutsOff';
       if (!partVisible(id) || inBay) {
+        // Suspension well only while the original wheel is removed.
+        if (car!.model.painted) {
+          gx.fillStyle = '#101218';
+          gx.beginPath();
+          gx.arc(x + wx, y + wy, r * 0.97, 0, Math.PI * 2);
+          gx.fill();
+        }
         // Scale the hub to this axle (multi-axle trucks and cars with different
         // front/rear diameters were all using the first axle's hub size).
         const firstR = wheelAt(art!, 0)[2];
@@ -328,12 +335,7 @@ export function createScene(g: Ctx) {
       gx.save();
       gx.translate(x + wx, y + wy + (1 - k) * r);
       gx.rotate(spin * (s.wheels[0].r / s.wheels[i].r));
-      // Guard against transparency holes in photographed wheel cut-outs.
-      // The garage wall must never be visible through tyre rubber.
-      gx.fillStyle = '#17191e';
-      gx.beginPath();
-      gx.arc(0, 0, r * k * 0.99, 0, Math.PI * 2);
-      gx.fill();
+      // No black circle or synthetic rim behind the original tyre.
       gx.drawImage(c, (-cw * k) / 2, (-cw * k) / 2, cw * k, cw * k);
       gx.restore();
       wheelLight(gx, x + wx, y + wy + (1 - k) * r, r * k, lx, ly, true);
