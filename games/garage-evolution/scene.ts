@@ -309,6 +309,9 @@ export function createScene(g: Ctx) {
         return;
       }
       const look = job && job.step === 'nutsOff' ? (job.damage === 'flat' ? 'ok' : job.damage) : 'ok';
+      // Do not replace an image that is still decoding with a fake spoke wheel.
+      // Its real factory tyre will appear when the asset is ready and the car re-bakes.
+      if (car!.model.painted && !art!.wheelAvailable?.(i)) return;
       // A replaced or repaired wheel is the car's own wheel again: both sides match (the owner, 2026-10-16)
       const c = art!.wheel(i, undefined, look);
       const cw = c.width / art!.scale;
@@ -770,6 +773,8 @@ export function createScene(g: Ctx) {
     if (!bay || !car || !art) return;
     const job = currentWheel(car);
     if (!job) return;
+    // The tyre bay must also never show a generic rim while the factory wheel decodes.
+    if (car.model.painted && !art.wheelAvailable?.(job.wheel)) return;
     const [wx, wy] = wheelAt(art, job.wheel);
     // No random replacements: restore the exact same factory wheel.
     const rimNow = defaultRim(car.model, car.variant);

@@ -4,6 +4,15 @@ import { readFile } from 'node:fs/promises';
 import { resolve, sep } from 'node:path';
 
 const root = process.cwd();
+// Regression guard: no fake/racing/classic wheel may substitute for factory
+// painted-car textures, even on the first frames before async decoding.
+const paintedSource = await readFile(resolve(root, 'games/garage-evolution/car-art.ts'), 'utf8');
+const runtimeSource = await readFile(resolve(root, 'game.js'), 'utf8');
+if (paintedSource.includes('else drawWheel(g, r, model, variant') ||
+    runtimeSource.includes('}else ra(s,u,e,n,a??na(e,n),o)') ||
+    !runtimeSource.includes('wheelAvailable:t=>!!Ni(')) {
+  throw Error('Factory wheel policy regression: generic painted wheel fallback detected');
+}
 const server = createServer(async (req, res) => {
   const path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname === '/' ? '/index.html' : new URL(req.url, 'http://localhost').pathname));
   if (!path.startsWith(root + sep) && path !== resolve(root, 'index.html')) { res.writeHead(403); res.end(); return; }

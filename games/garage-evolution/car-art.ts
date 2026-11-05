@@ -49,6 +49,8 @@ export interface CarArt {
   body: HTMLCanvasElement;
   /** body + wheels: what the layers are clipped to */
   silhouette: HTMLCanvasElement;
+  /** Factory wheel only. No drawn or aftermarket replacements for photographed cars. */
+  wheelAvailable?: (i: number) => boolean;
   /** A wheel's sprite; `rPx` draws it at another radius (the tyre bay's close-up, from the full picture) */
   wheel: (i: number, rim?: string, look?: WheelLook, rPx?: number) => HTMLCanvasElement;
   /** The missing-wheel stand-in (a hub and a jack stand) */
@@ -323,17 +325,21 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     g.fillStyle = '#fff';
     g.fillRect(0, 0, w, h);
   });
+  // A missing factory texture may still be decoding. Request that exact sprite,
+  // never substitute a generic five-spoke or aftermarket wheel while it loads.
+  const wheelPicture = (i: number) => paintedImg(`${model.id}-w${meta.wheelImg?.[i] ?? i}`);
+  const wheelAvailable = (i: number) => !!wheelPicture(i);
   const wheelCache = new Map<string, HTMLCanvasElement>();
   const wheel = (i: number, rim?: string, look: WheelLook = 'ok', rPx?: number) => {
     const wh = wheels[i];
     const r = rPx ?? wh.r * L;
     // Always preserve this model's original wheel; alternate catalogue
     // rims have been removed, including for restored / balanced tyres.
-    const own = paintedImg(`${model.id}-w${PAINTED[model.id]?.wheelImg?.[i] ?? i}`);
+    const own = wheelPicture(i);
     // Two axles can have different spoke/brake images even when their radii match.
     // Including the source image in the key prevents one axle borrowing the other's
     // wheel sprite from the cache.
-    const key = `${i}:${Math.round(r * 10)}:${own ? `own${meta.wheelImg?.[i] ?? i}` : rim ?? ''}:${look}`;
+    const key = `${i}:${Math.round(r * 10)}:${own ? `factory${meta.wheelImg?.[i] ?? i}` : 'loading'}:${look}`;
     let c = wheelCache.get(key);
     if (!c) {
       // Room for the picture's wheel (drawn 3 % past its tyre, more on an off-roader): a canvas of 2r cut its edge square
@@ -388,7 +394,9 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
           g.arc(0, 0, r * 0.9, 3.6, 4.0);
           g.stroke();
         }
-      } else drawWheel(g, r, model, variant, rim ?? defaultRim(model, variant), look);
+      }
+      // Until the exact factory sprite arrives, leave this wheel transparent.
+      // The scene skips it instead of drawing unrelated generic rims.
       c = cv;
       wheelCache.set(key, c);
     }
@@ -411,7 +419,7 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     g.drawImage(img, 0, 0, pw, ph);
     parts[key] = { canvas: c, x: x0, y: y0, w: pw, h: ph };
   }
-  return { model, L, w, h, x0: b.x0, y1: b.y1, scale, body, silhouette, wheel, hub, parts, brokenHead: null, px, color, variant };
+  return { model, L, w, h, x0: b.x0, y1: b.y1, scale, body, silhouette, wheel, wheelAvailable, hub, parts, brokenHead: null, px, color, variant };
 }
 
 /** Wheel centres in box px (with the off-road lift) */
