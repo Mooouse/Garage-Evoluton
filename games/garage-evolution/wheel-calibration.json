@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "note": "Calibrations in source car-width units. No generated rims or runtime black circles. Edit in /wheel-editor.html; save as wheel-calibration.json.",
+  "models": {
+    "aero": {
+      "wheels": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        }
+      ]
+    },
+    "gamin": {
+      "wheels": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        }
+      ]
+    },
+    "bubble": {
+      "wheels": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        }
+      ]
+    },
+    "blueline": {
+      "wheels": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        }
+      ]
+    },
+    "amethyst": {
+      "wheels": [
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        },
+        {
+          "dx": 0,
+          "dy": 0,
+          "size": 1,
+          "cut": 1.023,
+          "edge": 1.003,
+          "eraseBody": [],
+          "restoreBody": [],
+          "eraseWheel": [],
+          "restoreWheel": []
+        }
+      ]
+    }
+  }
+}
