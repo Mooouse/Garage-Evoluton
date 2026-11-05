@@ -282,23 +282,10 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
     }
     g.restore();
 
-    // Recessed inner fender: only the TOP of the opening is shaded, because the
-    // lower part is open space. A complete black circle here looked like a
-    // second tyre when the mechanic removed the wheel.
-    g.save();
-    for (const wh of wheels) {
-      const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
-      const radius = wh.r * L * 1.04;
-      const well = g.createLinearGradient(cx, cy - radius, cx, cy);
-      well.addColorStop(0, '#090b0f');
-      well.addColorStop(1, '#1b1e26');
-      g.fillStyle = well;
-      g.beginPath();
-      g.arc(cx, cy, radius, Math.PI, Math.PI * 2);
-      g.closePath();
-      g.fill();
-    }
-    g.restore();
+    // Leave the opening genuinely transparent. In particular, do not repaint
+    // it with a dark circular/semicircular stand-in: the owner's source picture
+    // already carries the actual wheel arch OUTSIDE the tyre's circular cut.
+    // The exposed hub and background remain visible when the tyre is removed.
   };
   // Genuine native PNG wheel cut-outs; no synthetic background circles.
   const body = make(drawBody);
