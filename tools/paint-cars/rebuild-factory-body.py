@@ -65,7 +65,7 @@ def rebuild(name: str, meta: dict) -> int:
         count += int(np.count_nonzero(restore_pixels))
     if count:
         # Lossless: preserve the original wheel-arch texture and paint edges.
-        Image.fromarray(body, "RGBA").save(path, "WEBP", lossless=True, method=5)
+        Image.fromarray(body, "RGBA").save(path, "WEBP", lossless=True, exact=True, method=5)
         check = np.asarray(Image.open(path).convert("RGBA"))
         if not np.array_equal(check, body):
             raise ValueError(f"{name}: lossless WebP roundtrip mismatch")
