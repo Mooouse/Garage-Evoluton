@@ -7,6 +7,7 @@ on:
       - 'index.html'
       - 'wheel-editor.html'
       - 'games/garage-evolution/wheel-calibration.json'
+      - 'games/garage-evolution/wheel-calibration-runtime.js'
       - 'game.js'
       - 'games/garage-evolution/painted/**'
       - 'tools/paint-cars/rebuild-factory-body.py'
@@ -57,6 +58,7 @@ jobs:
           mkdir -p _site/games/garage-evolution
           cp index.html game.js wheel-editor.html _site/
           cp games/garage-evolution/wheel-calibration.json _site/games/garage-evolution/
+          cp games/garage-evolution/wheel-calibration-runtime.js _site/games/garage-evolution/
           cp -a games/garage-evolution/painted _site/games/garage-evolution/
           touch _site/.nojekyll
           python3 - <<'PY'
