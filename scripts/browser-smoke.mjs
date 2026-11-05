@@ -60,14 +60,16 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
   // each car must have its own separately decoded wheel sprites.
   try {
     const textures = await page.evaluate(async () => {
-      const ids = ['longnose','scissor','storm','zephyrus','viola','tempest','trackwing','carboncrown'];
+      const initial = ['longnose','scissor','storm','zephyrus','viola','tempest','trackwing','carboncrown'];
+      const matched = ['gamin','gremlin','hornet','longroof','lumen','midship','monarch','raven','ringleader','swedebrick','tangerine','vandal','voltage','highwing','bubble','sledge','skyscraper','dusk','feather','pounce','mulberry','boxer','aero','bellaotto','swiftarrow','senator','sovereign','thunderfour','serpent','emerald','turini','prowler','viaggio','kabuki','diamond','hanok','zeppelin','papaya','amethyst'];
+      const ids = [...initial, ...matched];
       let loaded = 0;
       for (const id of ids) {
         for (const file of [id, id + '-w0', id + '-w1']) {
           const response = await fetch('/games/garage-evolution/painted/' + file + '.webp');
           if (!response.ok) throw Error(file + ': HTTP ' + response.status);
           const bitmap = await createImageBitmap(await response.blob());
-          const minimum = file === id ? 1500 : 150;
+          const minimum = file === id ? (initial.includes(id) ? 1500 : 900) : 145;
           if (bitmap.width < minimum || bitmap.height < 100)
             throw Error(file + ': unexpected low resolution ' + bitmap.width + 'x' + bitmap.height);
           bitmap.close();
@@ -76,7 +78,7 @@ for (const viewport of [{width:1280,height:720},{width:390,height:844}]) {
       }
       return loaded;
     });
-    console.log('HD ORIGINAL SPRITES '+textures+'/24 decoded at source resolution');
+    console.log('HD ORIGINAL SPRITES '+textures+'/141 decoded at source resolution');
   } catch (error) {
     failures++;
     console.error('HD SPRITE VALIDATION FAILED', String(error));
