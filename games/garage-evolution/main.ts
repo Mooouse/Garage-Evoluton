@@ -8,7 +8,7 @@
 import { dayKey, formatAmount, languagePicker, recordDaily, rewardedButton, type GameContext } from '@gp/core';
 import { fitCanvas, watchContext } from '@gp/art/bake';
 import { AutoQuality } from '@gp/art/perf';
-import { bakeCar, drawRim, shipLegs, shipNozzle, wheelAt } from './car-art.ts';
+import { bakeCar, shipLegs, shipNozzle, wheelAt } from './car-art.ts';
 import { carLoaded, carPictures, carReady, pictures } from './painted-art.ts';
 import { createMap, type MapPin, type MapView } from './map.ts';
 import { coverArt } from './cover.ts';
