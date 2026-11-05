@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Idle Garage Evolution · Wheel Studio</title>
+<style>
+:root { color-scheme: dark; --panel:#181e2a; --line:#3c4b65; --text:#f0f5ff; --sub:#9eacc2; --gold:#f5bf57; --cyan:#63d8ff }
+* { box-sizing:border-box }
+html, body { margin:0; background:#0c111a; color:var(--text); font:14px/1.5 system-ui,Segoe UI,sans-serif }
+body { min-height:100vh; background:radial-gradient(circle at 50% -20%,#253449,#0d1119 65%) }
+header { display:flex; gap:18px; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:18px max(18px,3vw); border-bottom:1px solid #32405a }
+h1 { margin:0; font-size:22px; line-height:1.2 }
+small,p.help { color:var(--sub) }
+h2 { font-size:15px; margin:0 0 12px }
+a { color:var(--cyan); text-decoration:none }
+main { display:grid; grid-template-columns:minmax(250px,315px) minmax(0,1fr); gap:16px; padding:18px max(18px,3vw); max-width:1800px; margin:auto }
+aside,section.panel { padding:18px; border:1px solid var(--line); border-radius:16px; background:#151d2ae8 }
+aside { display:flex; flex-direction:column; gap:15px }
+section.panel { min-width:0 }
+.fields { display:grid; grid-template-columns:1fr 1fr; gap:10px }
+.field { display:grid; gap:5px }
+.field.wide { grid-column:1/-1 }
+label { color:#cdd7e9; font-weight:600; font-size:12px }
+select,input[type=number],button,input[type=file] { font:inherit; color:var(--text) }
+select, input[type=number] { width:100%; min-width:0; background:#202c40; border:1px solid #51617b; padding:9px; border-radius:9px }
+input[type=range] { width:100%; accent-color:var(--gold) }
+button { border:1px solid #566885; padding:9px 12px; border-radius:10px; background:#24334a; cursor:pointer }
+button:hover { background:#344866 }
+button.primary { border-color:var(--gold); color:#ffdc88; font-weight:700 }
+button.active { background:#72501f; border-color:#f4c15f }
+.actions { display:grid; grid-template-columns:1fr 1fr; gap:8px }
+.tools { display:grid; grid-template-columns:1fr 1fr; gap:6px }
+.tool { font-size:12px; padding:9px 4px }
+.status { font-size:12px; color:#bed2e8; min-height:36px }
+.stage { border-radius:13px; overflow:hidden; border:1px solid #364861; background:#263346; position:relative }
+canvas { display:block; width:100%; height:auto; aspect-ratio:1320/675; touch-action:none; cursor:crosshair }
+#zoomBar { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:12px; margin-bottom:10px }
+.legend { display:flex; gap:10px; align-items:center; color:var(--sub); font-size:12px; margin-top:8px }
+.swatch { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--gold) }
+.sep { border:0; border-top:1px solid #304059; margin:0 }
+.pill { color:#ffcf72; border:1px solid #967541; padding:4px 9px; border-radius:100px; font-size:11px }
+#load { position:absolute; inset:0; display:grid; place-items:center; background:#1a2635e8; z-index:2 }
+#load[hidden] { display:none }
+#info { margin-top:15px; font-size:13px; color:#aabbd2 }
+footer { padding:20px; text-align:center; color:#91a0b7; font-size:12px }
+@media(max-width:950px) { main {grid-template-columns:1fr} canvas { aspect-ratio:1320/675 } }
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>Wheel Studio <span class="pill">Garage Evolution · пилот 5 машин</span></h1>
+    <small>Пиксели исходника · независимые кузов и колёса · без подложных дисков и чёрных кругов</small>
+  </div>
+  <a href="./">← Вернуться в игру</a>
+</header>
+<main>
+<aside>
+  <h2>1. Выберите машину и колесо</h2>
+  <div class="fields">
+    <div class="field wide"><label for="car">Машина</label><select id="car"></select></div>
+    <div class="field"><label for="axle">Ось</label><select id="axle"><option value="0">Заднее колесо</option><option value="1">Переднее колесо</option></select></div>
+    <div class="field"><label for="view">Предпросмотр</label><select id="view"><option value="assembled">Собрано</option><option value="removed">Колёса сняты</option><option value="compare">До / после снятия</option><option value="original">Исходный оригинал</option><option value="wheel">Одно колесо</option></select></div>
+  </div>
+  <hr class="sep">
+  <h2>2. Настройка</h2>
+  <div class="fields">
+    <div class="field wide"><label for="dx">Центр по горизонтали: <output id="dxv"></output></label><input type="range" id="dx" min="-0.025" max="0.025" step="0.0001"></div>
+    <div class="field wide"><label for="dy">Центр по вертикали: <output id="dyv"></output></label><input type="range" id="dy" min="-0.025" max="0.025" step="0.0001"></div>
+    <div class="field wide"><label for="size">Размер колеса: <output id="sizev"></output></label><input type="range" id="size" min="0.85" max="1.15" step="0.001"></div>
+    <div class="field wide"><label for="cut">Контур выреза в кузове: <output id="cutv"></output></label><input type="range" id="cut" min="0.90" max="1.15" step="0.001"></div>
+    <div class="field wide"><label for="edge">Край отдельной шины: <output id="edgev"></output></label><input type="range" id="edge" min="0.90" max="1.10" step="0.001"></div>
+  </div>
+  <hr class="sep">
+  <h2>3. Ручная маска</h2>
+  <div class="tools" id="tools">
+    <button class="tool active" data-tool="move">✥ Переместить колесо</button>
+    <button class="tool" data-tool="eraseBody">− Стереть остатки на кузове</button>
+    <button class="tool" data-tool="restoreBody">+ Вернуть контур арки</button>
+    <button class="tool" data-tool="eraseWheel">− Убрать лишнее с шины</button>
+    <button class="tool" data-tool="restoreWheel">+ Восстановить край шины</button>
+  </div>
+  <div class="field"><label for="brush">Кисть: <output id="brushv"></output></label><input id="brush" type="range" min="2" max="55" value="12"></div>
+  <div class="actions"><button id="undo">↶ Отменить мазок</button><button id="reset">Сбросить эту ось</button></div>
+  <hr class="sep">
+  <h2>4. Сохранение</h2>
+  <div class="actions">
+    <button id="save" class="primary">Сохранить локально</button>
+    <button id="export" class="primary">Скачать настройки JSON</button>
+    <button id="images">Скачать 3 PNG-слоя</button>
+    <button id="importButton">Импорт JSON</button>
+  </div>
+  <input id="import" type="file" accept="application/json,.json" hidden>
+  <div class="status" id="status" role="status"></div>
+  <p class="help">Редактор сохраняет положения и маски в браузере. JSON можно отправить для переноса в опубликованную игру; PNG-слои получаются из оригинала без повторной обрезки.</p>
+</aside>
+<section class="panel">
+  <div id="zoomBar">
+    <div><strong id="modelName">Машина</strong> <small id="spec"></small></div>
+    <div class="field"><label for="zoom">Увеличение <output id="zoomv">100%</output></label><input type="range" id="zoom" min="0.5" max="2.6" value="1" step=".05"></div>
+  </div>
+  <div class="stage"><canvas id="stage" width="1320" height="675" aria-label="Редактор заводских колёс"></canvas><div id="load" hidden>Загрузка оригинального PNG…</div></div>
+  <div class="legend"><span class="swatch"></span> Жёлтый контур — выбранная ось; жёлтый крест — центр ступицы. Тяните колесо мышью или пальцем.</div>
+  <p id="info">В режиме «Колёса сняты» за отверстиями видна шахматная прозрачность; это не чёрная заглушка.</p>
+</section>
+</main>
+<footer>Idle Garage Evolution · точная калибровка по исходным изображениям · 2D без подмены дисков</footer>
+<script>
+"use strict";
+const $ = id => document.getElementById(id);
+const stage = $("stage"), ctx = stage.getContext("2d");
+const CAR_NAMES = {aero:"Aero Hatch",gamin:"Gamin 1.9",bubble:"Double Bubble",blueline:"Blue Line",amethyst:"Amethyst"};
+let meta, preset, draft, current = "aero", source = null, selected = 0, tool = "move";
+let drag = null, frame = null, transform = null;
+const STORAGE = "garage-wheel-studio-v1";
+function clone(x) { return structuredClone(x); }
+function wheelData() { return draft.models[current].wheels[selected]; }
+function dimensions() { return {w:source.naturalWidth,h:source.naturalHeight}; }
+function axle(i) {
+  const m = meta[current].wheels[i], a = draft.models[current].wheels[i];
+  const width = dimensions().w, height = dimensions().h;
+  return {x: (m.x + a.dx) * width,
+          y: (height / width - m.r - (m.lift || 0) + a.dy) * width,
+          r: m.r * a.size * width, data:a};
+}
+function notify(msg) { $("status").textContent=msg; }
+function download(blob, name) {
+  const a=document.createElement("a"),url=URL.createObjectURL(blob);
+  a.href=url; a.download=name; document.body.append(a); a.click(); a.remove();
+  setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
+function defaultAxle() { return {dx:0,dy:0,size:1,cut:1.023,edge:1.003,eraseBody:[],restoreBody:[],eraseWheel:[],restoreWheel:[]}; }
+function bindControls() {
+  for (const key of ["dx","dy","size","cut","edge"]) {
+    $(key).addEventListener("input", () => {
+      wheelData()[key] = Number($(key).value);
+      paint(); saveLocal(false);
+    });
+  }
+  $("brush").addEventListener("input", () => { $("brushv").textContent=$("brush").value+" px"; });
+  $("brushv").textContent=$("brush").value+" px";
+  $("car").addEventListener("change", () => { current=$("car").value; loadCar(); });
+  $("axle").addEventListener("change", () => { selected=Number($("axle").value); refreshSliders(); paint(); });
+  $("view").addEventListener("change", paint);
+  $("zoom").addEventListener("input", () => { $("zoomv").textContent=Math.round(100*Number($("zoom").value))+"%"; paint(); });
+  for (const b of document.querySelectorAll("[data-tool]")) b.onclick = () => {
+    tool=b.dataset.tool;
+    for (const el of document.querySelectorAll("[data-tool]")) el.classList.toggle("active",el===b);
+    notify(tool==="move"?"Перетащите выбранное колесо по изображению":"Проводите кистью по изображению");
+  };
+  $("undo").onclick=()=>{
+    const a=wheelData(); if (tool==="move") {a.dx=0;a.dy=0;}
+    else a[tool].pop();
+    refreshSliders(); saveLocal(); paint();
+  };
+  $("reset").onclick=()=>{ draft.models[current].wheels[selected]=clone(preset.models[current].wheels[selected] || defaultAxle());refreshSliders();saveLocal();paint(); };
+  $("save").onclick=()=>saveLocal();
+  $("export").onclick=()=>{ download(new Blob([JSON.stringify(draft,null,2)+"\n"],{type:"application/json"}),"wheel-calibration.json"); notify("Настройки JSON сохранены"); };
+  $("images").onclick=()=>{ if(!source)return;const body=makeBody();body.toBlob(b=>download(b,current+"-body.png"));for(let i=0;i<2;i++){let wh=makeWheel(i);wh.toBlob(b=>download(b,current+"-w"+i+".png"));}notify("Готовы: кузов и два отдельных колеса (PNG)"); };
+  $("importButton").onclick=()=>$("import").click();
+  $("import").onchange=async()=>{
+    try {
+      const config=JSON.parse(await $("import").files[0].text());
+      if(!config.models || !config.models[current] || !config.models[current].wheels) throw Error("Неверная структура файла");
+      for (const id of Object.keys(preset.models)) if (!config.models[id]) config.models[id]=clone(preset.models[id]);
+      draft=config; saveLocal(); refreshSliders(); paint(); notify("Калибровки импортированы");
+    } catch(e) {notify("Ошибка JSON: "+e.message);}
+  };
+}
+function saveLocal(alert=true) {
+  try {localStorage.setItem(STORAGE,JSON.stringify(draft)); if(alert)notify("Настройки сохранены в этом браузере");}
+  catch(e){notify("Ошибка локального сохранения: "+e.message);}
+}
+function refreshSliders() {
+  for(const k of ["dx","dy","size","cut","edge"]) {
+    $(k).value=wheelData()[k]; $(k+"v").textContent=k==="dx"||k==="dy" ? (wheelData()[k]*100).toFixed(2)+"% ширины" : (wheelData()[k]*100).toFixed(1)+"%";
+  }
+}
+async function loadCar() {
+  $("load").hidden=false;
+  const id=current;
+  try {
+    const im=new Image(); im.decoding="async";
+    im.src="games/garage-evolution/painted/originals/"+id+".png";
+    await im.decode();
+    if(current!==id)return;
+    source=im; selected=Number($("axle").value);
+    $("modelName").textContent=CAR_NAMES[id]+" · "+id;
+    $("spec").textContent=im.naturalWidth+"×"+im.naturalHeight+" · 2 заводских колеса";
+    refreshSliders(); paint(); notify("Оригинал загружен. Редактирование включено.");
+  }catch(e){ notify("Ошибка загрузки оригинального PNG: "+e.message); }
+  finally{ if(current===id)$("load").hidden=true; }
+}
+function imgCanvas() {const c=document.createElement("canvas");const d=dimensions();c.width=d.w;c.height=d.h;return c;}
+function brush(target, strokes, erase, preserveOuter) {
+  const g=target.getContext("2d"), w=target.width;
+  for (const stroke of strokes||[]) {
+    const x=stroke.x*dimensions().w, y=stroke.y*dimensions().w, r=stroke.r*dimensions().w;
+    g.save();g.beginPath();g.arc(x,y,r,0,Math.PI*2);
+    if(erase){g.globalCompositeOperation="destination-out";g.fillStyle="#fff";g.fill();}
+    else {g.clip();g.globalCompositeOperation="source-over";g.drawImage(source,0,0);}
+    g.restore();
+  }
+}
+function makeBody() {
+  const cv=imgCanvas(),g=cv.getContext("2d");
+  g.drawImage(source,0,0);
+  for(let i=0;i<2;i++){
+    const a=axle(i), r=a.r*a.data.cut;
+    g.save();g.globalCompositeOperation="destination-out";g.beginPath();g.arc(a.x,a.y,r,0,Math.PI*2);g.fill();g.restore();
+    brush(cv,a.data.restoreBody,false);
+    brush(cv,a.data.eraseBody,true);
+  }
+  return cv;
+}
+function makeWheel(i) {
+  const a=axle(i),R=Math.ceil(a.r*1.085)+3, sz=2*R+1, cv=document.createElement("canvas");
+  cv.width=cv.height=sz;
+  const g=cv.getContext("2d");
+  g.drawImage(source,-a.x+R,-a.y+R);
+  g.globalCompositeOperation="destination-in";
+  g.beginPath();g.arc(R,R,a.r*a.data.edge,0,Math.PI*2);g.fill();
+  g.globalCompositeOperation="source-over";
+  // Translate brush points from full-image coordinates into this tyre crop.
+  const apply=(items,remove)=>{
+    for(const p of items||[]){
+      const x=p.x*dimensions().w-a.x+R,y=p.y*dimensions().w-a.y+R,r=p.r*dimensions().w;
+      g.save();g.beginPath();g.arc(x,y,r,0,Math.PI*2);
+      if(remove){g.globalCompositeOperation="destination-out";g.fill();}
+      else{g.clip();g.globalCompositeOperation="source-over";g.drawImage(source,-a.x+R,-a.y+R);}
+      g.restore();
+    }
+  };
+  apply(a.data.restoreWheel,false);apply(a.data.eraseWheel,true);
+  return cv;
+}
+function assembled() {
+  const cv=makeBody(),g=cv.getContext("2d");
+  for(let i=0;i<2;i++){
+    const a=axle(i),wheel=makeWheel(i),R=(wheel.width-1)/2;
+    g.drawImage(wheel,a.x-R,a.y-R);
+  }
+  return cv;
+}
+function checker(x,y,w,h) {
+  ctx.fillStyle="#202b3b";ctx.fillRect(x,y,w,h);
+  const tile=18;for(let iy=0;iy<h;iy+=tile)for(let ix=0;ix<w;ix+=tile) {
+    if((Math.floor(ix/tile)+Math.floor(iy/tile))%2) {
+      ctx.fillStyle="#2d3c51";ctx.fillRect(x+ix,y+iy,tile,tile);
+    }
+  }
+}
+function drawView(img,x,y,w,h,zoom=1,mark=true) {
+  const sc=Math.min((w-40)/img.width,(h-55)/img.height)*zoom;
+  const ox=x+(w-img.width*sc)/2,oy=y+(h-img.height*sc)/2;
+  ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.drawImage(img,ox,oy,img.width*sc,img.height*sc);
+  if(mark) {
+    for(let i=0;i<2;i++){
+      const a=axle(i),cx=ox+a.x*sc,cy=oy+a.y*sc;
+      ctx.lineWidth=i===selected?2.5:1.2;ctx.strokeStyle=i===selected?"#ffd36d":"#6de5ff";
+      ctx.beginPath();ctx.arc(cx,cy,a.r*a.data.cut*sc,0,Math.PI*2);ctx.stroke();
+      ctx.beginPath();ctx.moveTo(cx-9,cy);ctx.lineTo(cx+9,cy);ctx.moveTo(cx,cy-9);ctx.lineTo(cx,cy+9);ctx.stroke();
+    }
+  }
+  ctx.restore();
+  return {ox,oy,scale:sc,width:w,height:h,x,y};
+}
+function paint() {
+  if(!source)return;
+  if(frame) cancelAnimationFrame(frame);
+  frame=requestAnimationFrame(()=>{
+    frame=null;
+    const w=stage.width,h=stage.height,mode=$("view").value,z=Number($("zoom").value);
+    checker(0,0,w,h);transform=null;
+    try{
+      if(mode==="compare") {
+        const a=assembled(),b=makeBody();
+        drawView(a,0,0,w/2,h,z,false);
+        drawView(b,w/2,0,w/2,h,z,false);
+        ctx.fillStyle="#f4cf7c";ctx.font="600 16px system-ui";
+        ctx.fillText("КОЛЁСА УСТАНОВЛЕНЫ",18,30);ctx.fillText("КОЛЁСА СНЯТЫ",w/2+18,30);
+      } else if(mode==="wheel"){
+        const a=makeWheel(selected);
+        drawView(a,0,0,w,h,z,false);
+      } else {
+        const img=mode==="original"?source:mode==="removed"?makeBody():assembled();
+        transform=drawView(img,0,0,w,h,z,true);
+      }
+    }catch(e){notify("Ошибка рендера: "+e.message);}
+  });
+}
+function pointerPosition(e) {
+  const r=stage.getBoundingClientRect();
+  return {x:(e.clientX-r.left)/r.width*stage.width,y:(e.clientY-r.top)/r.height*stage.height};
+}
+function carPosition(e) {
+  if(!transform)return null;
+  const p=pointerPosition(e);
+  return {x:(p.x-transform.ox)/transform.scale,y:(p.y-transform.oy)/transform.scale};
+}
+function onPointer(e) {
+  if(!source || !$("view").value.match(/^(assembled|removed|original)$/))return;
+  const p=carPosition(e);if(!p)return;
+  const a=axle(selected);
+  if(tool==="move"){
+    if(!drag || drag.kind!=="move")return;
+    const nextX=p.x-drag.start.x+drag.base.x,nextY=p.y-drag.start.y+drag.base.y;
+    wheelData().dx=drag.offset.dx+(nextX-drag.base.x)/dimensions().w;
+    wheelData().dy=drag.offset.dy+(nextY-drag.base.y)/dimensions().w;
+    refreshSliders();paint();return;
+  }
+  if(!drag || drag.kind!=="brush")return;
+  const pt={x:p.x/dimensions().w,y:p.y/dimensions().w,r:Number($("brush").value)/dimensions().w};
+  const arr=wheelData()[tool];
+  const last=arr[arr.length-1];
+  if(last && Math.hypot(pt.x-last.x,pt.y-last.y)*dimensions().w < Number($("brush").value)*.24)return;
+  arr.push(pt);paint();
+}
+stage.addEventListener("pointerdown",e=>{
+  if(!source || !$("view").value.match(/^(assembled|removed|original)$/))return;
+  const p=carPosition(e);if(!p)return;
+  if(tool==="move"){
+    let nearest=selected,d=Infinity;
+    for(let i=0;i<2;i++){const a=axle(i),nd=Math.hypot(p.x-a.x,p.y-a.y);if(nd<d){d=nd;nearest=i;}}
+    if(d<axle(nearest).r*1.5){selected=nearest;$("axle").value=String(nearest);}
+    refreshSliders();
+    drag={kind:"move",start:p,base:p,offset:{dx:wheelData().dx,dy:wheelData().dy}};
+  }else{
+    drag={kind:"brush"};
+    // Force the first stamp, even if the last brush stroke was nearby.
+    wheelData()[tool].push({x:p.x/dimensions().w,y:p.y/dimensions().w,r:Number($("brush").value)/dimensions().w});
+    paint();
+  }
+  stage.setPointerCapture(e.pointerId);e.preventDefault();
+});
+stage.addEventListener("pointermove",e=>{if(drag)onPointer(e);});
+function endPointer(){if(drag){drag=null;saveLocal(false);}}
+stage.addEventListener("pointerup",endPointer);stage.addEventListener("pointercancel",endPointer);
+async function init() {
+  bindControls();
+  try{
+    const [m,c]=await Promise.all([
+      fetch("games/garage-evolution/painted/meta.json").then(r=>{if(!r.ok)throw Error(r.status);return r.json();}),
+      fetch("games/garage-evolution/wheel-calibration.json").then(r=>{if(!r.ok)throw Error(r.status);return r.json();})
+    ]);
+    meta=m;preset=c;
+    try {const saved=JSON.parse(localStorage.getItem(STORAGE));draft=saved && saved.models? saved:clone(c);}
+    catch {draft=clone(c);}
+    for(const id of Object.keys(preset.models))if(!draft.models[id])draft.models[id]=clone(preset.models[id]);
+    for(const id of Object.keys(preset.models)){const opt=document.createElement("option");opt.value=id;opt.textContent=CAR_NAMES[id]||id;$("car").append(opt);}
+    await loadCar();
+  }catch(e){notify("Не удалось открыть редактор: "+e.message);}
+}
+init();
+</script>
+</body>
+</html>
