@@ -13,6 +13,18 @@ if (paintedSource.includes('else drawWheel(g, r, model, variant') ||
     !runtimeSource.includes('wheelAvailable:t=>!!Ni(')) {
   throw Error('Factory wheel policy regression: generic painted wheel fallback detected');
 }
+// All 62 active HD models must register every genuine wheel texture.
+const factoryMeta = JSON.parse(await readFile(resolve(root, 'games/garage-evolution/painted/meta.json'), 'utf8'));
+const factoryRegistry = await readFile(resolve(root, 'games/garage-evolution/painted/index.ts'), 'utf8');
+const runtimeWheelURLs = runtimeSource.slice(runtimeSource.indexOf('var ji={'), runtimeSource.indexOf('},Mi=ki({urls:ji,chapters:{'));
+for (const [id, m] of Object.entries(factoryMeta)) {
+  if (m.img.w < 900) continue;
+  for (const wi of new Set(m.wheelImg)) {
+    const key = id + '-w' + wi;
+    if (!factoryRegistry.includes("'" + key + "':") || !runtimeWheelURLs.includes('"' + key + '":'))
+      throw Error('Factory wheel missing from asset registry: ' + key);
+  }
+}
 const server = createServer(async (req, res) => {
   const path = resolve(root, '.' + decodeURIComponent(new URL(req.url, 'http://localhost').pathname === '/' ? '/index.html' : new URL(req.url, 'http://localhost').pathname));
   if (!path.startsWith(root + sep) && path !== resolve(root, 'index.html')) { res.writeHead(403); res.end(); return; }

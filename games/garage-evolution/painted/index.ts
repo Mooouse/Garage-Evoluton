@@ -4,10 +4,12 @@
 import p_aero_bf from './aero-bf.webp?gp-chapter=1';
 import p_aero_br from './aero-br.webp?gp-chapter=1';
 import p_aero_w0 from './aero-w0.webp?gp-chapter=1';
+import p_aero_w1 from './aero-w1.webp?gp-chapter=1';
 import p_aero from './aero.webp?gp-chapter=1';
 import p_amethyst_bf from './amethyst-bf.webp?gp-chapter=4';
 import p_amethyst_br from './amethyst-br.webp?gp-chapter=4';
 import p_amethyst_w0 from './amethyst-w0.webp?gp-chapter=4';
+import p_amethyst_w1 from './amethyst-w1.webp?gp-chapter=4';
 import p_amethyst from './amethyst.webp?gp-chapter=4';
 import p_bellaotto_bf from './bellaotto-bf.webp?gp-chapter=2';
 import p_bellaotto_br from './bellaotto-br.webp?gp-chapter=2';
@@ -22,26 +24,32 @@ import p_blueline from './blueline.webp?gp-chapter=2';
 import p_boxer_bf from './boxer-bf.webp?gp-chapter=1';
 import p_boxer_br from './boxer-br.webp?gp-chapter=1';
 import p_boxer_w0 from './boxer-w0.webp?gp-chapter=1';
+import p_boxer_w1 from './boxer-w1.webp?gp-chapter=1';
 import p_boxer from './boxer.webp?gp-chapter=1';
 import p_bubble_bf from './bubble-bf.webp?gp-chapter=1';
 import p_bubble_br from './bubble-br.webp?gp-chapter=1';
 import p_bubble_w0 from './bubble-w0.webp?gp-chapter=1';
+import p_bubble_w1 from './bubble-w1.webp?gp-chapter=1';
 import p_bubble from './bubble.webp?gp-chapter=1';
 import p_carboncrown_bf from './carboncrown-bf.webp?gp-chapter=3';
 import p_carboncrown_br from './carboncrown-br.webp?gp-chapter=3';
 import p_carboncrown_w0 from './carboncrown-w0.webp?gp-chapter=3';
+import p_carboncrown_w1 from './carboncrown-w1.webp?gp-chapter=3';
 import p_carboncrown from './carboncrown.webp?gp-chapter=3';
 import p_diamond_bf from './diamond-bf.webp?gp-chapter=3';
 import p_diamond_br from './diamond-br.webp?gp-chapter=3';
 import p_diamond_w0 from './diamond-w0.webp?gp-chapter=3';
+import p_diamond_w1 from './diamond-w1.webp?gp-chapter=3';
 import p_diamond from './diamond.webp?gp-chapter=3';
 import p_dusk_bf from './dusk-bf.webp?gp-chapter=1';
 import p_dusk_br from './dusk-br.webp?gp-chapter=1';
 import p_dusk_w0 from './dusk-w0.webp?gp-chapter=1';
+import p_dusk_w1 from './dusk-w1.webp?gp-chapter=1';
 import p_dusk from './dusk.webp?gp-chapter=1';
 import p_emerald_bf from './emerald-bf.webp?gp-chapter=2';
 import p_emerald_br from './emerald-br.webp?gp-chapter=2';
 import p_emerald_w0 from './emerald-w0.webp?gp-chapter=2';
+import p_emerald_w1 from './emerald-w1.webp?gp-chapter=2';
 import p_emerald from './emerald.webp?gp-chapter=2';
 import p_feather_bf from './feather-bf.webp?gp-chapter=2';
 import p_feather_br from './feather-br.webp?gp-chapter=2';
@@ -56,10 +64,12 @@ import p_foresttrack from './foresttrack.webp?gp-chapter=3';
 import p_gamin_bf from './gamin-bf.webp?gp-chapter=1';
 import p_gamin_br from './gamin-br.webp?gp-chapter=1';
 import p_gamin_w0 from './gamin-w0.webp?gp-chapter=1';
+import p_gamin_w1 from './gamin-w1.webp?gp-chapter=1';
 import p_gamin from './gamin.webp?gp-chapter=1';
 import p_gremlin_bf from './gremlin-bf.webp?gp-chapter=1';
 import p_gremlin_br from './gremlin-br.webp?gp-chapter=1';
 import p_gremlin_w0 from './gremlin-w0.webp?gp-chapter=1';
+import p_gremlin_w1 from './gremlin-w1.webp?gp-chapter=1';
 import p_gremlin from './gremlin.webp?gp-chapter=1';
 import p_greyestate_bf from './greyestate-bf.webp?gp-chapter=2';
 import p_greyestate_br from './greyestate-br.webp?gp-chapter=2';
@@ -69,14 +79,17 @@ import p_greyestate from './greyestate.webp?gp-chapter=2';
 import p_hanok_bf from './hanok-bf.webp?gp-chapter=3';
 import p_hanok_br from './hanok-br.webp?gp-chapter=3';
 import p_hanok_w0 from './hanok-w0.webp?gp-chapter=3';
+import p_hanok_w1 from './hanok-w1.webp?gp-chapter=3';
 import p_hanok from './hanok.webp?gp-chapter=3';
 import p_highwing_bf from './highwing-bf.webp?gp-chapter=3';
 import p_highwing_br from './highwing-br.webp?gp-chapter=3';
 import p_highwing_w0 from './highwing-w0.webp?gp-chapter=3';
+import p_highwing_w1 from './highwing-w1.webp?gp-chapter=3';
 import p_highwing from './highwing.webp?gp-chapter=3';
 import p_hornet_bf from './hornet-bf.webp?gp-chapter=1';
 import p_hornet_br from './hornet-br.webp?gp-chapter=1';
 import p_hornet_w0 from './hornet-w0.webp?gp-chapter=1';
+import p_hornet_w1 from './hornet-w1.webp?gp-chapter=1';
 import p_hornet from './hornet.webp?gp-chapter=1';
 import p_kabuki_bf from './kabuki-bf.webp?gp-chapter=3';
 import p_kabuki_br from './kabuki-br.webp?gp-chapter=3';
@@ -86,26 +99,32 @@ import p_kabuki from './kabuki.webp?gp-chapter=3';
 import p_longnose_bf from './longnose-bf.webp?gp-chapter=3';
 import p_longnose_br from './longnose-br.webp?gp-chapter=3';
 import p_longnose_w0 from './longnose-w0.webp?gp-chapter=3';
+import p_longnose_w1 from './longnose-w1.webp?gp-chapter=3';
 import p_longnose from './longnose.webp?gp-chapter=3';
 import p_longroof_bf from './longroof-bf.webp?gp-chapter=1';
 import p_longroof_br from './longroof-br.webp?gp-chapter=1';
 import p_longroof_w0 from './longroof-w0.webp?gp-chapter=1';
+import p_longroof_w1 from './longroof-w1.webp?gp-chapter=1';
 import p_longroof from './longroof.webp?gp-chapter=1';
 import p_lumen_bf from './lumen-bf.webp?gp-chapter=2';
 import p_lumen_br from './lumen-br.webp?gp-chapter=2';
 import p_lumen_w0 from './lumen-w0.webp?gp-chapter=2';
+import p_lumen_w1 from './lumen-w1.webp?gp-chapter=2';
 import p_lumen from './lumen.webp?gp-chapter=2';
 import p_midship_bf from './midship-bf.webp?gp-chapter=2';
 import p_midship_br from './midship-br.webp?gp-chapter=2';
 import p_midship_w0 from './midship-w0.webp?gp-chapter=2';
+import p_midship_w1 from './midship-w1.webp?gp-chapter=2';
 import p_midship from './midship.webp?gp-chapter=2';
 import p_monarch_bf from './monarch-bf.webp?gp-chapter=2';
 import p_monarch_br from './monarch-br.webp?gp-chapter=2';
 import p_monarch_w0 from './monarch-w0.webp?gp-chapter=2';
+import p_monarch_w1 from './monarch-w1.webp?gp-chapter=2';
 import p_monarch from './monarch.webp?gp-chapter=2';
 import p_mulberry_bf from './mulberry-bf.webp?gp-chapter=3';
 import p_mulberry_br from './mulberry-br.webp?gp-chapter=3';
 import p_mulberry_w0 from './mulberry-w0.webp?gp-chapter=3';
+import p_mulberry_w1 from './mulberry-w1.webp?gp-chapter=3';
 import p_mulberry from './mulberry.webp?gp-chapter=3';
 import p_orangetrack_bf from './orangetrack-bf.webp?gp-chapter=3';
 import p_orangetrack_br from './orangetrack-br.webp?gp-chapter=3';
@@ -120,10 +139,12 @@ import p_papaya from './papaya.webp?gp-chapter=3';
 import p_pounce_bf from './pounce-bf.webp?gp-chapter=2';
 import p_pounce_br from './pounce-br.webp?gp-chapter=2';
 import p_pounce_w0 from './pounce-w0.webp?gp-chapter=2';
+import p_pounce_w1 from './pounce-w1.webp?gp-chapter=2';
 import p_pounce from './pounce.webp?gp-chapter=2';
 import p_prowler_bf from './prowler-bf.webp?gp-chapter=3';
 import p_prowler_br from './prowler-br.webp?gp-chapter=3';
 import p_prowler_w0 from './prowler-w0.webp?gp-chapter=3';
+import p_prowler_w1 from './prowler-w1.webp?gp-chapter=3';
 import p_prowler from './prowler.webp?gp-chapter=3';
 import p_raven_bf from './raven-bf.webp?gp-chapter=4';
 import p_raven_br from './raven-br.webp?gp-chapter=4';
@@ -133,6 +154,7 @@ import p_raven from './raven.webp?gp-chapter=4';
 import p_ringleader_bf from './ringleader-bf.webp?gp-chapter=3';
 import p_ringleader_br from './ringleader-br.webp?gp-chapter=3';
 import p_ringleader_w0 from './ringleader-w0.webp?gp-chapter=3';
+import p_ringleader_w1 from './ringleader-w1.webp?gp-chapter=3';
 import p_ringleader from './ringleader.webp?gp-chapter=3';
 import p_sakura_bf from './sakura-bf.webp?gp-chapter=1';
 import p_sakura_br from './sakura-br.webp?gp-chapter=1';
@@ -147,10 +169,12 @@ import p_scissor from './scissor.webp?gp-chapter=4';
 import p_senator_bf from './senator-bf.webp?gp-chapter=3';
 import p_senator_br from './senator-br.webp?gp-chapter=3';
 import p_senator_w0 from './senator-w0.webp?gp-chapter=3';
+import p_senator_w1 from './senator-w1.webp?gp-chapter=3';
 import p_senator from './senator.webp?gp-chapter=3';
 import p_serpent_bf from './serpent-bf.webp?gp-chapter=1';
 import p_serpent_br from './serpent-br.webp?gp-chapter=1';
 import p_serpent_w0 from './serpent-w0.webp?gp-chapter=1';
+import p_serpent_w1 from './serpent-w1.webp?gp-chapter=1';
 import p_serpent from './serpent.webp?gp-chapter=1';
 import p_silveropen_bf from './silveropen-bf.webp?gp-chapter=3';
 import p_silveropen_br from './silveropen-br.webp?gp-chapter=3';
@@ -165,6 +189,7 @@ import p_sixcoupe from './sixcoupe.webp?gp-chapter=1';
 import p_skyscraper_bf from './skyscraper-bf.webp?gp-chapter=2';
 import p_skyscraper_br from './skyscraper-br.webp?gp-chapter=2';
 import p_skyscraper_w0 from './skyscraper-w0.webp?gp-chapter=2';
+import p_skyscraper_w1 from './skyscraper-w1.webp?gp-chapter=2';
 import p_skyscraper from './skyscraper.webp?gp-chapter=2';
 import p_sledge_bf from './sledge-bf.webp?gp-chapter=2';
 import p_sledge_br from './sledge-br.webp?gp-chapter=2';
@@ -174,30 +199,37 @@ import p_sledge from './sledge.webp?gp-chapter=2';
 import p_sovereign_bf from './sovereign-bf.webp?gp-chapter=3';
 import p_sovereign_br from './sovereign-br.webp?gp-chapter=3';
 import p_sovereign_w0 from './sovereign-w0.webp?gp-chapter=3';
+import p_sovereign_w1 from './sovereign-w1.webp?gp-chapter=3';
 import p_sovereign from './sovereign.webp?gp-chapter=3';
 import p_storm_bf from './storm-bf.webp?gp-chapter=4';
 import p_storm_br from './storm-br.webp?gp-chapter=4';
 import p_storm_w0 from './storm-w0.webp?gp-chapter=4';
+import p_storm_w1 from './storm-w1.webp?gp-chapter=4';
 import p_storm from './storm.webp?gp-chapter=4';
 import p_swedebrick_bf from './swedebrick-bf.webp?gp-chapter=1';
 import p_swedebrick_br from './swedebrick-br.webp?gp-chapter=1';
 import p_swedebrick_w0 from './swedebrick-w0.webp?gp-chapter=1';
+import p_swedebrick_w1 from './swedebrick-w1.webp?gp-chapter=1';
 import p_swedebrick from './swedebrick.webp?gp-chapter=1';
 import p_swiftarrow_bf from './swiftarrow-bf.webp?gp-chapter=3';
 import p_swiftarrow_br from './swiftarrow-br.webp?gp-chapter=3';
 import p_swiftarrow_w0 from './swiftarrow-w0.webp?gp-chapter=3';
+import p_swiftarrow_w1 from './swiftarrow-w1.webp?gp-chapter=3';
 import p_swiftarrow from './swiftarrow.webp?gp-chapter=3';
 import p_tangerine_bf from './tangerine-bf.webp?gp-chapter=1';
 import p_tangerine_br from './tangerine-br.webp?gp-chapter=1';
 import p_tangerine_w0 from './tangerine-w0.webp?gp-chapter=1';
+import p_tangerine_w1 from './tangerine-w1.webp?gp-chapter=1';
 import p_tangerine from './tangerine.webp?gp-chapter=1';
 import p_tempest_bf from './tempest-bf.webp?gp-chapter=3';
 import p_tempest_br from './tempest-br.webp?gp-chapter=3';
 import p_tempest_w0 from './tempest-w0.webp?gp-chapter=3';
+import p_tempest_w1 from './tempest-w1.webp?gp-chapter=3';
 import p_tempest from './tempest.webp?gp-chapter=3';
 import p_thunderfour_bf from './thunderfour-bf.webp?gp-chapter=1';
 import p_thunderfour_br from './thunderfour-br.webp?gp-chapter=1';
 import p_thunderfour_w0 from './thunderfour-w0.webp?gp-chapter=1';
+import p_thunderfour_w1 from './thunderfour-w1.webp?gp-chapter=1';
 import p_thunderfour from './thunderfour.webp?gp-chapter=1';
 import p_touringgt_bf from './touringgt-bf.webp?gp-chapter=2';
 import p_touringgt_br from './touringgt-br.webp?gp-chapter=2';
@@ -207,10 +239,12 @@ import p_touringgt from './touringgt.webp?gp-chapter=2';
 import p_trackwing_bf from './trackwing-bf.webp?gp-chapter=3';
 import p_trackwing_br from './trackwing-br.webp?gp-chapter=3';
 import p_trackwing_w0 from './trackwing-w0.webp?gp-chapter=3';
+import p_trackwing_w1 from './trackwing-w1.webp?gp-chapter=3';
 import p_trackwing from './trackwing.webp?gp-chapter=3';
 import p_turini_bf from './turini-bf.webp?gp-chapter=2';
 import p_turini_br from './turini-br.webp?gp-chapter=2';
 import p_turini_w0 from './turini-w0.webp?gp-chapter=2';
+import p_turini_w1 from './turini-w1.webp?gp-chapter=2';
 import p_turini from './turini.webp?gp-chapter=2';
 import p_twincam_bf from './twincam-bf.webp?gp-chapter=1';
 import p_twincam_br from './twincam-br.webp?gp-chapter=1';
@@ -225,6 +259,7 @@ import p_typhoon from './typhoon.webp?gp-chapter=3';
 import p_vandal_bf from './vandal-bf.webp?gp-chapter=2';
 import p_vandal_br from './vandal-br.webp?gp-chapter=2';
 import p_vandal_w0 from './vandal-w0.webp?gp-chapter=2';
+import p_vandal_w1 from './vandal-w1.webp?gp-chapter=2';
 import p_vandal from './vandal.webp?gp-chapter=2';
 import p_viaggio_bf from './viaggio-bf.webp?gp-chapter=2';
 import p_viaggio_br from './viaggio-br.webp?gp-chapter=2';
@@ -234,6 +269,7 @@ import p_viaggio from './viaggio.webp?gp-chapter=2';
 import p_viola_bf from './viola-bf.webp?gp-chapter=4';
 import p_viola_br from './viola-br.webp?gp-chapter=4';
 import p_viola_w0 from './viola-w0.webp?gp-chapter=4';
+import p_viola_w1 from './viola-w1.webp?gp-chapter=4';
 import p_viola from './viola.webp?gp-chapter=4';
 import p_violetwide_bf from './violetwide-bf.webp?gp-chapter=2';
 import p_violetwide_br from './violetwide-br.webp?gp-chapter=2';
@@ -243,6 +279,7 @@ import p_violetwide from './violetwide.webp?gp-chapter=2';
 import p_voltage_bf from './voltage-bf.webp?gp-chapter=1';
 import p_voltage_br from './voltage-br.webp?gp-chapter=1';
 import p_voltage_w0 from './voltage-w0.webp?gp-chapter=1';
+import p_voltage_w1 from './voltage-w1.webp?gp-chapter=1';
 import p_voltage from './voltage.webp?gp-chapter=1';
 import p_vten_bf from './vten-bf.webp?gp-chapter=3';
 import p_vten_br from './vten-br.webp?gp-chapter=3';
@@ -272,6 +309,7 @@ import p_zephyrus from './zephyrus.webp?gp-chapter=4';
 import p_zeppelin_bf from './zeppelin-bf.webp?gp-chapter=3';
 import p_zeppelin_br from './zeppelin-br.webp?gp-chapter=3';
 import p_zeppelin_w0 from './zeppelin-w0.webp?gp-chapter=3';
+import p_zeppelin_w1 from './zeppelin-w1.webp?gp-chapter=3';
 import p_zeppelin from './zeppelin.webp?gp-chapter=3';
 
 /** Picture name (`<model>`, `<model>-w0`, `<model>-bf` …) → its URL */
@@ -279,10 +317,12 @@ export const URLS: Record<string, string> = {
   'aero-bf': p_aero_bf,
   'aero-br': p_aero_br,
   'aero-w0': p_aero_w0,
+  'aero-w1': p_aero_w1,
   'aero': p_aero,
   'amethyst-bf': p_amethyst_bf,
   'amethyst-br': p_amethyst_br,
   'amethyst-w0': p_amethyst_w0,
+  'amethyst-w1': p_amethyst_w1,
   'amethyst': p_amethyst,
   'bellaotto-bf': p_bellaotto_bf,
   'bellaotto-br': p_bellaotto_br,
@@ -297,26 +337,32 @@ export const URLS: Record<string, string> = {
   'boxer-bf': p_boxer_bf,
   'boxer-br': p_boxer_br,
   'boxer-w0': p_boxer_w0,
+  'boxer-w1': p_boxer_w1,
   'boxer': p_boxer,
   'bubble-bf': p_bubble_bf,
   'bubble-br': p_bubble_br,
   'bubble-w0': p_bubble_w0,
+  'bubble-w1': p_bubble_w1,
   'bubble': p_bubble,
   'carboncrown-bf': p_carboncrown_bf,
   'carboncrown-br': p_carboncrown_br,
   'carboncrown-w0': p_carboncrown_w0,
+  'carboncrown-w1': p_carboncrown_w1,
   'carboncrown': p_carboncrown,
   'diamond-bf': p_diamond_bf,
   'diamond-br': p_diamond_br,
   'diamond-w0': p_diamond_w0,
+  'diamond-w1': p_diamond_w1,
   'diamond': p_diamond,
   'dusk-bf': p_dusk_bf,
   'dusk-br': p_dusk_br,
   'dusk-w0': p_dusk_w0,
+  'dusk-w1': p_dusk_w1,
   'dusk': p_dusk,
   'emerald-bf': p_emerald_bf,
   'emerald-br': p_emerald_br,
   'emerald-w0': p_emerald_w0,
+  'emerald-w1': p_emerald_w1,
   'emerald': p_emerald,
   'feather-bf': p_feather_bf,
   'feather-br': p_feather_br,
@@ -331,10 +377,12 @@ export const URLS: Record<string, string> = {
   'gamin-bf': p_gamin_bf,
   'gamin-br': p_gamin_br,
   'gamin-w0': p_gamin_w0,
+  'gamin-w1': p_gamin_w1,
   'gamin': p_gamin,
   'gremlin-bf': p_gremlin_bf,
   'gremlin-br': p_gremlin_br,
   'gremlin-w0': p_gremlin_w0,
+  'gremlin-w1': p_gremlin_w1,
   'gremlin': p_gremlin,
   'greyestate-bf': p_greyestate_bf,
   'greyestate-br': p_greyestate_br,
@@ -344,14 +392,17 @@ export const URLS: Record<string, string> = {
   'hanok-bf': p_hanok_bf,
   'hanok-br': p_hanok_br,
   'hanok-w0': p_hanok_w0,
+  'hanok-w1': p_hanok_w1,
   'hanok': p_hanok,
   'highwing-bf': p_highwing_bf,
   'highwing-br': p_highwing_br,
   'highwing-w0': p_highwing_w0,
+  'highwing-w1': p_highwing_w1,
   'highwing': p_highwing,
   'hornet-bf': p_hornet_bf,
   'hornet-br': p_hornet_br,
   'hornet-w0': p_hornet_w0,
+  'hornet-w1': p_hornet_w1,
   'hornet': p_hornet,
   'kabuki-bf': p_kabuki_bf,
   'kabuki-br': p_kabuki_br,
@@ -361,26 +412,32 @@ export const URLS: Record<string, string> = {
   'longnose-bf': p_longnose_bf,
   'longnose-br': p_longnose_br,
   'longnose-w0': p_longnose_w0,
+  'longnose-w1': p_longnose_w1,
   'longnose': p_longnose,
   'longroof-bf': p_longroof_bf,
   'longroof-br': p_longroof_br,
   'longroof-w0': p_longroof_w0,
+  'longroof-w1': p_longroof_w1,
   'longroof': p_longroof,
   'lumen-bf': p_lumen_bf,
   'lumen-br': p_lumen_br,
   'lumen-w0': p_lumen_w0,
+  'lumen-w1': p_lumen_w1,
   'lumen': p_lumen,
   'midship-bf': p_midship_bf,
   'midship-br': p_midship_br,
   'midship-w0': p_midship_w0,
+  'midship-w1': p_midship_w1,
   'midship': p_midship,
   'monarch-bf': p_monarch_bf,
   'monarch-br': p_monarch_br,
   'monarch-w0': p_monarch_w0,
+  'monarch-w1': p_monarch_w1,
   'monarch': p_monarch,
   'mulberry-bf': p_mulberry_bf,
   'mulberry-br': p_mulberry_br,
   'mulberry-w0': p_mulberry_w0,
+  'mulberry-w1': p_mulberry_w1,
   'mulberry': p_mulberry,
   'orangetrack-bf': p_orangetrack_bf,
   'orangetrack-br': p_orangetrack_br,
@@ -395,10 +452,12 @@ export const URLS: Record<string, string> = {
   'pounce-bf': p_pounce_bf,
   'pounce-br': p_pounce_br,
   'pounce-w0': p_pounce_w0,
+  'pounce-w1': p_pounce_w1,
   'pounce': p_pounce,
   'prowler-bf': p_prowler_bf,
   'prowler-br': p_prowler_br,
   'prowler-w0': p_prowler_w0,
+  'prowler-w1': p_prowler_w1,
   'prowler': p_prowler,
   'raven-bf': p_raven_bf,
   'raven-br': p_raven_br,
@@ -408,6 +467,7 @@ export const URLS: Record<string, string> = {
   'ringleader-bf': p_ringleader_bf,
   'ringleader-br': p_ringleader_br,
   'ringleader-w0': p_ringleader_w0,
+  'ringleader-w1': p_ringleader_w1,
   'ringleader': p_ringleader,
   'sakura-bf': p_sakura_bf,
   'sakura-br': p_sakura_br,
@@ -422,10 +482,12 @@ export const URLS: Record<string, string> = {
   'senator-bf': p_senator_bf,
   'senator-br': p_senator_br,
   'senator-w0': p_senator_w0,
+  'senator-w1': p_senator_w1,
   'senator': p_senator,
   'serpent-bf': p_serpent_bf,
   'serpent-br': p_serpent_br,
   'serpent-w0': p_serpent_w0,
+  'serpent-w1': p_serpent_w1,
   'serpent': p_serpent,
   'silveropen-bf': p_silveropen_bf,
   'silveropen-br': p_silveropen_br,
@@ -440,6 +502,7 @@ export const URLS: Record<string, string> = {
   'skyscraper-bf': p_skyscraper_bf,
   'skyscraper-br': p_skyscraper_br,
   'skyscraper-w0': p_skyscraper_w0,
+  'skyscraper-w1': p_skyscraper_w1,
   'skyscraper': p_skyscraper,
   'sledge-bf': p_sledge_bf,
   'sledge-br': p_sledge_br,
@@ -449,30 +512,37 @@ export const URLS: Record<string, string> = {
   'sovereign-bf': p_sovereign_bf,
   'sovereign-br': p_sovereign_br,
   'sovereign-w0': p_sovereign_w0,
+  'sovereign-w1': p_sovereign_w1,
   'sovereign': p_sovereign,
   'storm-bf': p_storm_bf,
   'storm-br': p_storm_br,
   'storm-w0': p_storm_w0,
+  'storm-w1': p_storm_w1,
   'storm': p_storm,
   'swedebrick-bf': p_swedebrick_bf,
   'swedebrick-br': p_swedebrick_br,
   'swedebrick-w0': p_swedebrick_w0,
+  'swedebrick-w1': p_swedebrick_w1,
   'swedebrick': p_swedebrick,
   'swiftarrow-bf': p_swiftarrow_bf,
   'swiftarrow-br': p_swiftarrow_br,
   'swiftarrow-w0': p_swiftarrow_w0,
+  'swiftarrow-w1': p_swiftarrow_w1,
   'swiftarrow': p_swiftarrow,
   'tangerine-bf': p_tangerine_bf,
   'tangerine-br': p_tangerine_br,
   'tangerine-w0': p_tangerine_w0,
+  'tangerine-w1': p_tangerine_w1,
   'tangerine': p_tangerine,
   'tempest-bf': p_tempest_bf,
   'tempest-br': p_tempest_br,
   'tempest-w0': p_tempest_w0,
+  'tempest-w1': p_tempest_w1,
   'tempest': p_tempest,
   'thunderfour-bf': p_thunderfour_bf,
   'thunderfour-br': p_thunderfour_br,
   'thunderfour-w0': p_thunderfour_w0,
+  'thunderfour-w1': p_thunderfour_w1,
   'thunderfour': p_thunderfour,
   'touringgt-bf': p_touringgt_bf,
   'touringgt-br': p_touringgt_br,
@@ -482,10 +552,12 @@ export const URLS: Record<string, string> = {
   'trackwing-bf': p_trackwing_bf,
   'trackwing-br': p_trackwing_br,
   'trackwing-w0': p_trackwing_w0,
+  'trackwing-w1': p_trackwing_w1,
   'trackwing': p_trackwing,
   'turini-bf': p_turini_bf,
   'turini-br': p_turini_br,
   'turini-w0': p_turini_w0,
+  'turini-w1': p_turini_w1,
   'turini': p_turini,
   'twincam-bf': p_twincam_bf,
   'twincam-br': p_twincam_br,
@@ -500,6 +572,7 @@ export const URLS: Record<string, string> = {
   'vandal-bf': p_vandal_bf,
   'vandal-br': p_vandal_br,
   'vandal-w0': p_vandal_w0,
+  'vandal-w1': p_vandal_w1,
   'vandal': p_vandal,
   'viaggio-bf': p_viaggio_bf,
   'viaggio-br': p_viaggio_br,
@@ -509,6 +582,7 @@ export const URLS: Record<string, string> = {
   'viola-bf': p_viola_bf,
   'viola-br': p_viola_br,
   'viola-w0': p_viola_w0,
+  'viola-w1': p_viola_w1,
   'viola': p_viola,
   'violetwide-bf': p_violetwide_bf,
   'violetwide-br': p_violetwide_br,
@@ -518,6 +592,7 @@ export const URLS: Record<string, string> = {
   'voltage-bf': p_voltage_bf,
   'voltage-br': p_voltage_br,
   'voltage-w0': p_voltage_w0,
+  'voltage-w1': p_voltage_w1,
   'voltage': p_voltage,
   'vten-bf': p_vten_bf,
   'vten-br': p_vten_br,
@@ -547,6 +622,7 @@ export const URLS: Record<string, string> = {
   'zeppelin-bf': p_zeppelin_bf,
   'zeppelin-br': p_zeppelin_br,
   'zeppelin-w0': p_zeppelin_w0,
+  'zeppelin-w1': p_zeppelin_w1,
   'zeppelin': p_zeppelin,
 };
 
@@ -555,10 +631,12 @@ export const CHAPTERS: Record<string, number> = {
   'aero-bf': 1,
   'aero-br': 1,
   'aero-w0': 1,
+  'aero-w1': 1,
   'aero': 1,
   'amethyst-bf': 4,
   'amethyst-br': 4,
   'amethyst-w0': 4,
+  'amethyst-w1': 4,
   'amethyst': 4,
   'bellaotto-bf': 2,
   'bellaotto-br': 2,
@@ -573,26 +651,32 @@ export const CHAPTERS: Record<string, number> = {
   'boxer-bf': 1,
   'boxer-br': 1,
   'boxer-w0': 1,
+  'boxer-w1': 1,
   'boxer': 1,
   'bubble-bf': 1,
   'bubble-br': 1,
   'bubble-w0': 1,
+  'bubble-w1': 1,
   'bubble': 1,
   'carboncrown-bf': 3,
   'carboncrown-br': 3,
   'carboncrown-w0': 3,
+  'carboncrown-w1': 3,
   'carboncrown': 3,
   'diamond-bf': 3,
   'diamond-br': 3,
   'diamond-w0': 3,
+  'diamond-w1': 3,
   'diamond': 3,
   'dusk-bf': 1,
   'dusk-br': 1,
   'dusk-w0': 1,
+  'dusk-w1': 1,
   'dusk': 1,
   'emerald-bf': 2,
   'emerald-br': 2,
   'emerald-w0': 2,
+  'emerald-w1': 2,
   'emerald': 2,
   'feather-bf': 2,
   'feather-br': 2,
@@ -607,10 +691,12 @@ export const CHAPTERS: Record<string, number> = {
   'gamin-bf': 1,
   'gamin-br': 1,
   'gamin-w0': 1,
+  'gamin-w1': 1,
   'gamin': 1,
   'gremlin-bf': 1,
   'gremlin-br': 1,
   'gremlin-w0': 1,
+  'gremlin-w1': 1,
   'gremlin': 1,
   'greyestate-bf': 2,
   'greyestate-br': 2,
@@ -620,14 +706,17 @@ export const CHAPTERS: Record<string, number> = {
   'hanok-bf': 3,
   'hanok-br': 3,
   'hanok-w0': 3,
+  'hanok-w1': 3,
   'hanok': 3,
   'highwing-bf': 3,
   'highwing-br': 3,
   'highwing-w0': 3,
+  'highwing-w1': 3,
   'highwing': 3,
   'hornet-bf': 1,
   'hornet-br': 1,
   'hornet-w0': 1,
+  'hornet-w1': 1,
   'hornet': 1,
   'kabuki-bf': 3,
   'kabuki-br': 3,
@@ -637,26 +726,32 @@ export const CHAPTERS: Record<string, number> = {
   'longnose-bf': 3,
   'longnose-br': 3,
   'longnose-w0': 3,
+  'longnose-w1': 3,
   'longnose': 3,
   'longroof-bf': 1,
   'longroof-br': 1,
   'longroof-w0': 1,
+  'longroof-w1': 1,
   'longroof': 1,
   'lumen-bf': 2,
   'lumen-br': 2,
   'lumen-w0': 2,
+  'lumen-w1': 2,
   'lumen': 2,
   'midship-bf': 2,
   'midship-br': 2,
   'midship-w0': 2,
+  'midship-w1': 2,
   'midship': 2,
   'monarch-bf': 2,
   'monarch-br': 2,
   'monarch-w0': 2,
+  'monarch-w1': 2,
   'monarch': 2,
   'mulberry-bf': 3,
   'mulberry-br': 3,
   'mulberry-w0': 3,
+  'mulberry-w1': 3,
   'mulberry': 3,
   'orangetrack-bf': 3,
   'orangetrack-br': 3,
@@ -671,10 +766,12 @@ export const CHAPTERS: Record<string, number> = {
   'pounce-bf': 2,
   'pounce-br': 2,
   'pounce-w0': 2,
+  'pounce-w1': 2,
   'pounce': 2,
   'prowler-bf': 3,
   'prowler-br': 3,
   'prowler-w0': 3,
+  'prowler-w1': 3,
   'prowler': 3,
   'raven-bf': 4,
   'raven-br': 4,
@@ -684,6 +781,7 @@ export const CHAPTERS: Record<string, number> = {
   'ringleader-bf': 3,
   'ringleader-br': 3,
   'ringleader-w0': 3,
+  'ringleader-w1': 3,
   'ringleader': 3,
   'sakura-bf': 1,
   'sakura-br': 1,
@@ -698,10 +796,12 @@ export const CHAPTERS: Record<string, number> = {
   'senator-bf': 3,
   'senator-br': 3,
   'senator-w0': 3,
+  'senator-w1': 3,
   'senator': 3,
   'serpent-bf': 1,
   'serpent-br': 1,
   'serpent-w0': 1,
+  'serpent-w1': 1,
   'serpent': 1,
   'silveropen-bf': 3,
   'silveropen-br': 3,
@@ -716,6 +816,7 @@ export const CHAPTERS: Record<string, number> = {
   'skyscraper-bf': 2,
   'skyscraper-br': 2,
   'skyscraper-w0': 2,
+  'skyscraper-w1': 2,
   'skyscraper': 2,
   'sledge-bf': 2,
   'sledge-br': 2,
@@ -725,30 +826,37 @@ export const CHAPTERS: Record<string, number> = {
   'sovereign-bf': 3,
   'sovereign-br': 3,
   'sovereign-w0': 3,
+  'sovereign-w1': 3,
   'sovereign': 3,
   'storm-bf': 4,
   'storm-br': 4,
   'storm-w0': 4,
+  'storm-w1': 4,
   'storm': 4,
   'swedebrick-bf': 1,
   'swedebrick-br': 1,
   'swedebrick-w0': 1,
+  'swedebrick-w1': 1,
   'swedebrick': 1,
   'swiftarrow-bf': 3,
   'swiftarrow-br': 3,
   'swiftarrow-w0': 3,
+  'swiftarrow-w1': 3,
   'swiftarrow': 3,
   'tangerine-bf': 1,
   'tangerine-br': 1,
   'tangerine-w0': 1,
+  'tangerine-w1': 1,
   'tangerine': 1,
   'tempest-bf': 3,
   'tempest-br': 3,
   'tempest-w0': 3,
+  'tempest-w1': 3,
   'tempest': 3,
   'thunderfour-bf': 1,
   'thunderfour-br': 1,
   'thunderfour-w0': 1,
+  'thunderfour-w1': 1,
   'thunderfour': 1,
   'touringgt-bf': 2,
   'touringgt-br': 2,
@@ -758,10 +866,12 @@ export const CHAPTERS: Record<string, number> = {
   'trackwing-bf': 3,
   'trackwing-br': 3,
   'trackwing-w0': 3,
+  'trackwing-w1': 3,
   'trackwing': 3,
   'turini-bf': 2,
   'turini-br': 2,
   'turini-w0': 2,
+  'turini-w1': 2,
   'turini': 2,
   'twincam-bf': 1,
   'twincam-br': 1,
@@ -776,6 +886,7 @@ export const CHAPTERS: Record<string, number> = {
   'vandal-bf': 2,
   'vandal-br': 2,
   'vandal-w0': 2,
+  'vandal-w1': 2,
   'vandal': 2,
   'viaggio-bf': 2,
   'viaggio-br': 2,
@@ -785,6 +896,7 @@ export const CHAPTERS: Record<string, number> = {
   'viola-bf': 4,
   'viola-br': 4,
   'viola-w0': 4,
+  'viola-w1': 4,
   'viola': 4,
   'violetwide-bf': 2,
   'violetwide-br': 2,
@@ -794,6 +906,7 @@ export const CHAPTERS: Record<string, number> = {
   'voltage-bf': 1,
   'voltage-br': 1,
   'voltage-w0': 1,
+  'voltage-w1': 1,
   'voltage': 1,
   'vten-bf': 3,
   'vten-br': 3,
@@ -823,5 +936,6 @@ export const CHAPTERS: Record<string, number> = {
   'zeppelin-bf': 3,
   'zeppelin-br': 3,
   'zeppelin-w0': 3,
+  'zeppelin-w1': 3,
   'zeppelin': 3,
 };
