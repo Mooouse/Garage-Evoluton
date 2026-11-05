@@ -2531,11 +2531,11 @@ export default async function start({ host, canvas, ui }: GameContext): Promise<
       return { down, stage: car.stage, layer: cur >= 0 ? car.layers[cur].kind : null, left: cur >= 0 ? +(car.layers[cur].left / car.layers[cur].total).toFixed(3) : 0, n: pts.length, x: [Math.min(...xs), Math.max(...xs)], y: [Math.min(...ys), Math.max(...ys)], box: scene.carBox() };
     };
   }
-  // The owner's painted cars come in chapters (painted-art.ts): a new player's first car is painted before the first frame —
-  // before the QA hooks: a tester sees the game ready (game_ready) as soon as they are there
-  // (its 4 pictures, in chapter 0); everything else is asked for when it is drawn, and decoded after Play
-  // (at most 0.6 s: while the page's later chapters are still being parsed the idle time it decodes in is scarce)
-  if (!seenBefore) await Promise.race([carReady('glide'), new Promise((r) => setTimeout(r, 600))]);
+  // The first job is 'aero', not the retired 'glide'. The previous warm-up
+  // asked for missing glide assets and resolved instantly, starting gameplay
+  // with an untextured rectangle and two empty wheel arches. Do not show the
+  // first car until its factory body AND wheels have actually decoded.
+  if (!seenBefore) await carReady('aero');
   const qaDriver: Parameters<typeof host.qa>[0] = {
     play: () => {
       if (state === 'results') return void nextCar(false);
