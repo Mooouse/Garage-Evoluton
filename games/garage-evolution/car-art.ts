@@ -273,20 +273,29 @@ function bakePainted(model: Model, color: string, variant: Variant, L: number, s
   const drawCleanBody = (g: Ctx, fillWheelWells = false) => {
     drawBody(g);
     if (!fillWheelWells) return;
+    // The HD image importer removes a circular tyre AND a separate lower
+    // oval (centred 0.36 radius below the axle, width 1.12r, height 0.85r).
+    // Filling only a circle exposes blue garage-background crescents along
+    // the lower tyre. Match BOTH actual cutouts behind the factory wheel.
     g.save();
     g.globalCompositeOperation = 'destination-over';
+    const floorY = px(0, 0)[1];
+    g.beginPath();
+    g.rect(0, 0, w, floorY);
+    g.clip();
     for (const wh of wheels) {
       const [cx, cy] = px(wh.x, wh.r + (wh.lift ?? 0));
       const r = wh.r * L;
-      const well = g.createRadialGradient(cx, cy - r * 0.15, r * 0.12, cx, cy + r * 0.12, r * 1.2);
-      well.addColorStop(0, '#161920');
-      well.addColorStop(0.7, '#101218');
+      const well = g.createRadialGradient(cx, cy - r * 0.1, r * 0.12, cx, cy + r * 0.24, r * 1.55);
+      well.addColorStop(0, '#101217');
+      well.addColorStop(0.75, '#080a0e');
       well.addColorStop(1, '#050609');
       g.fillStyle = well;
       g.beginPath();
-      // Importer removes a low tyre crescent as well as the circular tyre.
-      // Cover that whole transparent opening, not just its upper half.
-      g.ellipse(cx, cy - r * 0.015, r * 1.13, r * 1.11, 0, 0, Math.PI * 2);
+      g.arc(cx, cy, r * 1.095, 0, Math.PI * 2);
+      g.fill();
+      g.beginPath();
+      g.ellipse(cx, cy + r * 0.36, r * 1.16, r * 0.90, 0, 0, Math.PI * 2);
       g.fill();
     }
     g.restore();
